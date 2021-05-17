@@ -1,0 +1,12 @@
+.svg-container {
+    width: 100%;
+    height: max-content;
+    background-color: #3E6259;
+}
+
+path{
+    fill: #294936;
+    stroke: #FFFFFF;
+    stroke-width: 1px;
+}
+
