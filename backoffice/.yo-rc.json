@@ -41,6 +41,8 @@
     "packageFolder": "com/tripntips/myapp",
     "jwtSecretKey": "ZWZjODNhM2JjYjY5MzUyYzU3ZDA0YTY3MDNjODM4OTg5ZTNmZjgyYjFlZjE5YzNiZjFkZDU0ZjMwOTI5OGI0MTdiOGY2YjIxZjA5ZTY4OWY5ZDJmMzNiZTZjZDEzNWU3MGIzYWZlMTQ4ODU3YWE4YTFiOGU2ZGMzMDY0YTI2YjU=",
     "clientPackageManager": "npm",
-    "languages": ["en", "fr"]
+    "languages": ["en", "fr"],
+    "lastLiquibaseTimestamp": 1621355389000,
+    "entities": ["Country"]
   }
 }
