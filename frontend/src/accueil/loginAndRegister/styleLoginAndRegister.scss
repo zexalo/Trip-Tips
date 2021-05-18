@@ -45,6 +45,8 @@ $TRIP_TIPS_DARK_BLUE_RGBA: rgba(34, 41, 60,0.96);
                 flex-direction: column;
                 align-items: flex-start;
                 width: fit-content;
+                margin-bottom: 1.2em;
+
                 label{
                     font-size: 1.3em;
                 }
@@ -58,13 +60,22 @@ $TRIP_TIPS_DARK_BLUE_RGBA: rgba(34, 41, 60,0.96);
                     background-color: $TRIP_TIPS_GREY;
                     border : 0;
                     border-radius: 5px;
-                    margin-bottom: 1.2em;
                     transition: all $TIME_TRANSITION ease-in-out;
                     &focus {
                         outline: none;
                         box-shadow: 0px 0px 12px 0.8px $TRIP_TIPS_DARK_BLUE;
                     }
 
+                    &.error{
+                      background-color:rgba(167, 35, 35, 0.2);
+                    }
+
+                }
+
+                span{
+                  align-self: center;
+                  color: rgba(248, 16, 16, 0.836);
+                  font-size: 0.8em;
                 }
             }
         }
