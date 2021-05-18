@@ -18,10 +18,10 @@ spring:
     # Uncomment the following line to enable tests against production database type rather than H2, using Testcontainers
     #active: testcontainers
   application:
-    name: tripntips
+    name: backoffice
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:h2:mem:tripntips;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:mem:backoffice;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     name:
     username:
     password:
@@ -57,13 +57,13 @@ spring:
     basename: i18n/messages
   task:
     execution:
-      thread-name-prefix: tripntips-task-
+      thread-name-prefix: backoffice-task-
       pool:
         core-size: 1
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: tripntips-scheduling-
+      thread-name-prefix: backoffice-scheduling-
       pool:
         size: 1
   thymeleaf:
@@ -81,7 +81,7 @@ server:
 
 jhipster:
   clientApp:
-    name: 'tripntipsApp'
+    name: 'backofficeApp'
   logging:
     # To test json console appender
     use-json-format: false
@@ -97,7 +97,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
-        base64-secret: MTk5ZWExNWI0MzVlMzExZTczY2VhYTU5YmFkYzU2YmNmM2ZhYTJkOWU0MjViY2I5NWIwMjJlY2RjMTE4NzgwMzIyMzIyYWU0OWIxZDY4Y2VjMmExOTU2MjVhMDYwNDdjZDEyNzA0MDQ4NjQ3NDliMmQ5ODYyYmFhNTQ1MmI2YmI=
+        base64-secret: ZWZjODNhM2JjYjY5MzUyYzU3ZDA0YTY3MDNjODM4OTg5ZTNmZjgyYjFlZjE5YzNiZjFkZDU0ZjMwOTI5OGI0MTdiOGY2YjIxZjA5ZTY4OWY5ZDJmMzNiZTZjZDEzNWU3MGIzYWZlMTQ4ODU3YWE4YTFiOGU2ZGMzMDY0YTI2YjU=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
 # ===================================================================

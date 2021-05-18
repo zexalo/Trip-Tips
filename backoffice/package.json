@@ -1,8 +1,8 @@
 {
-  "name": "tripntips",
+  "name": "backoffice",
   "version": "0.0.1-SNAPSHOT",
   "private": true,
-  "description": "Description for tripntips",
+  "description": "Description for backoffice",
   "license": "UNLICENSED",
   "scripts": {
     "prettier:check": "prettier --check \"{,src/**/,webpack/}*.{md,json,yml,html,js,ts,tsx,css,scss,java}\"",
@@ -28,8 +28,8 @@
     "webapp:test": "npm run test",
     "webpack-dev-server": "npm run webpack -- serve",
     "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js",
-    "docker:db:up": "docker-compose -f src/main/docker/postgresql.yml up -d",
-    "docker:db:down": "docker-compose -f src/main/docker/postgresql.yml down -v --remove-orphans",
+    "docker:db:up": "docker-compose -f src/main/docker/mysql.yml up -d",
+    "docker:db:down": "docker-compose -f src/main/docker/mysql.yml down -v --remove-orphans",
     "docker:others:await": "",
     "predocker:others:up": "",
     "docker:others:up": "",

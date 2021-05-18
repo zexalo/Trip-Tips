@@ -97,7 +97,7 @@ module.exports = options =>
       ),
       new webpack.HotModuleReplacementPlugin(),
       new WebpackNotifierPlugin({
-        title: 'Tripntips',
+        title: 'Backoffice',
         contentImage: path.join(__dirname, 'logo-jhipster.png'),
       }),
     ].filter(Boolean),

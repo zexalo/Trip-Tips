@@ -1,6 +1,6 @@
 package com.tripntips.myapp;
 
-import com.tripntips.myapp.TripntipsApp;
+import com.tripntips.myapp.BackofficeApp;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -12,6 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@SpringBootTest(classes = TripntipsApp.class)
+@SpringBootTest(classes = BackofficeApp.class)
 public @interface IntegrationTest {
 }
