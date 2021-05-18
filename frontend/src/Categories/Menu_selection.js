@@ -4,28 +4,23 @@ import ReactDOM from 'react-dom';
 const slideData = [
     {
       index: 0,
-      headline: 'New Fashion Apparel',
-      button: 'Shop now',
-      src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/fashion.jpg'
+      headline: 'Logements',
+      button: 'Détails',
+      src: 'https://www.villanovo.fr/images/landing_pages/landing_26_40_1507725110.1920.jpg'
     },
     {
       index: 1,
-      headline: 'In The Wilderness',
-      button: 'Book travel',
-      src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/forest.jpg'
+      headline: 'Activités Touristiques',
+      button: 'Détails',
+      src: 'https://maximumwallhd.com/wp-content/uploads/2015/07/fonds-ecran-mont-fuji-3.jpg'
     },
     {
       index: 2,
-      headline: 'For Your Current Mood',
-      button: 'Listen',
-      src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/guitar.jpg'
+      headline: 'Restauration',
+      button: 'Détails',
+      src: 'https://mo-zil-moris.com/wp-content/uploads/2019/12/la-citronnelle.jpg'
     },
-    {
-      index: 3,
-      headline: 'Focus On The Writing',
-      button: 'Get Focused',
-      src: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/typewriter.jpg'
-    }
+    
   ]
   
   
