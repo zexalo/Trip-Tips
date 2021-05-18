@@ -3,15 +3,18 @@ import './App.css';
 import Alert from 'react-bootstrap/Alert';
 import './Categories/Menu_selection.js';
 import SideBar from './Navbar/SideBar.js'
+import Slider from './Categories/Menu_selection.js';
+
 import { LoginAndRegisterButton, LoginAndRegisterContainer} from "./accueil/loginAndRegister/index"
 
 
 function App() {
   return (
     <div className="App">
-      <SideBar></SideBar>
+      
       <LoginAndRegisterButton
       />
+      <Slider heading="Example Slider"/>
 
     </div>
   
