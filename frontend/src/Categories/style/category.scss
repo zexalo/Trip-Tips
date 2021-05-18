@@ -126,7 +126,7 @@ h1, h2, h3 {
 // =========================
 
 .slider {
-  --slide-size: 85vmin;
+  --slide-size: 80vmin;
   --slide-margin: 4vmin;
   
   height: var(--slide-size);
@@ -278,7 +278,7 @@ h1, h2, h3 {
   }
   
   > * + * {
-    margin-top: 2rem;
+    margin-top: 0rem;
   }
 }
 
