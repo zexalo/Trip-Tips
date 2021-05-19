@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity Recommendation.
+    -->
+    <changeSet id="20210519134246-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="recommendation"
+                                 constraintName="fk_recommendation__category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="category"/>
+
+        <addForeignKeyConstraint baseColumnNames="country_id"
+                                 baseTableName="recommendation"
+                                 constraintName="fk_recommendation__country_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="country"/>
+
+        <addForeignKeyConstraint baseColumnNames="picture_id"
+                                 baseTableName="recommendation"
+                                 constraintName="fk_recommendation__picture_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="picture"/>
+    </changeSet>
+</databaseChangeLog>

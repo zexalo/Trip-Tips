@@ -51,6 +51,7 @@ public class CacheConfiguration {
             createCache(cm, com.tripntips.myapp.domain.Country.class.getName());
             createCache(cm, com.tripntips.myapp.domain.Picture.class.getName());
             createCache(cm, com.tripntips.myapp.domain.Category.class.getName());
+            createCache(cm, com.tripntips.myapp.domain.Recommendation.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
