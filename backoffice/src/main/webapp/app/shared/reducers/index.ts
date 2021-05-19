@@ -31,6 +31,10 @@ import recommendation, {
 import infoUser, {
   InfoUserState
 } from 'app/entities/info-user/info-user.reducer';
+// prettier-ignore
+import review, {
+  ReviewState
+} from 'app/entities/review/review.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -48,6 +52,7 @@ export interface IRootState {
   readonly category: CategoryState;
   readonly recommendation: RecommendationState;
   readonly infoUser: InfoUserState;
+  readonly review: ReviewState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -67,6 +72,7 @@ const rootReducer = combineReducers<IRootState>({
   category,
   recommendation,
   infoUser,
+  review,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 });
