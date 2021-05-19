@@ -1,0 +1,14 @@
+{
+  "fields": [
+    {
+      "fieldName": "path",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "service": "no",
+  "readOnly": false,
+  "pagination": "no",
+  "name": "Picture",
+  "changelogDate": "20210519114739"
+}
