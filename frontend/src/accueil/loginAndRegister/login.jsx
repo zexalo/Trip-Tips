@@ -1,5 +1,6 @@
 import React from "react";
 import logoTripTips from "../../images/logoTripTips.png";
+import { AuthService } from "../../services/AuthService";
 
 
 const formValid = ({ ...rest }) => {
@@ -11,6 +12,8 @@ const formValid = ({ ...rest }) => {
   
     return valid;
 };
+
+const { dispatch } = React.useContext(AuthContext);
 
 export class Login extends React.Component {
 
@@ -32,6 +35,7 @@ export class Login extends React.Component {
     
     handleSubmit = e => {
         e.preventDefault();
+        
     
         if (formValid(this.state)) {
           console.log(`
@@ -39,6 +43,15 @@ export class Login extends React.Component {
             Email: ${this.state.email}
             Password: ${this.state.password}
           `);
+
+          AuthService.login(this.state.email, this.state.password).then((response) => {
+              if (response.status === 200){
+                  dispatch({ type: 'login', jwt: response.data.id_token})
+              } else if (response.response.status === 401) {
+                  console.error("Identifiants invalides");
+              }
+
+          })
         } else {
           console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
         }

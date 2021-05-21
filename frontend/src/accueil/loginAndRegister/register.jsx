@@ -55,9 +55,21 @@ export class Register extends React.Component {
             Password: ${this.state.password}
             Confirm Password: ${this.state.confirmPassword}
           `);
+
+            AuthService.register(this.state.name, this.state.email, this.state.password).then((response) => {
+                if (response.status === 201) {
+                    Alert.alert("Compte créé avec succès!");
+                    navigation.navigate('Login');
+                } else if (response.response.status === 500) {
+                    Alert.alert("Cette adresse mail est déjà utilisée");
+                }
+            }).catch((error) => {
+                Alert.alert("Une erreur est survenue");
+            })
         } else {
           console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
         }
+        
     };
 
     handleChange = e => {
