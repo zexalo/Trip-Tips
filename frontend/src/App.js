@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import Alert from 'react-bootstrap/Alert';
-import SideBar from './Navbar/SideBar.js'
+import SideBar from './Navbar/SideBar.tsx'
 import Slider from './Categories/Menu_selection.js';
 
 import { LoginAndRegisterButton, LoginAndRegisterContainer} from "./accueil/loginAndRegister/index"
