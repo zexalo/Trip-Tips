@@ -7,6 +7,7 @@ import {AuthContext} from "../../contexts/AuthContext";
 import {HTTPRequestError} from "../../services/ApiService";
 import AuthService from "../../services/AuthService";
 import * as Yup from "yup";
+import { Link } from "react-router-dom";
 
 type LoginFormValues = {
     email: string,
@@ -103,9 +104,12 @@ export const Login: React.FC = () => {
                                 >
                                 </input>
                             </div>
+                            <Link to='/monProfil'>
                             <button onClick={() => handleLogin(values)}>
                                 Login
                             </button>
+                            </Link>
+                            
                         </div>
                     )}
 
