@@ -21,7 +21,6 @@ const login = (username: string, password: string) => async (dispatch: Function)
             const text = await res.text();
             return new HTTPRequestError(res.status, JSON.parse(text).detail);
         }
-
     } catch (e) {
         if (e.name === "InvalidTokenError") return new Error("errors:401.credentials");
         return e as Error;
