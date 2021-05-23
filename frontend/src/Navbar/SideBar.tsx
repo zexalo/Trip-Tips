@@ -5,7 +5,7 @@ import * as CgIcons from 'react-icons/cg';
 import {Link} from 'react-router-dom';
 import logoTripTips from "../images/logoTripTips.png";
 import './sidebar.scss'
-import { SidebarData } from './SideBarData.tsx';
+import { SidebarData } from './SideBarData';
 
 
 
