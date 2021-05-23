@@ -1,7 +1,7 @@
 import React from "react";
 import "./styleLoginAndRegister.scss";
-import { Login } from "./login";
 import { Register } from "./register";
+import {Login} from "./login";
 
 
 export class LoginAndRegisterContainer extends React.Component {
@@ -12,8 +12,8 @@ export class LoginAndRegisterContainer extends React.Component {
             isLoginActive: true,
         };
     }
-    
-    
+
+
 
     changeState() {
         const { isLoginActive } = this.state;
@@ -30,7 +30,7 @@ export class LoginAndRegisterContainer extends React.Component {
     }
 
     render() {
-        const { isLoginActive } = this.state; 
+        const { isLoginActive } = this.state;
         const current = isLoginActive ? "Register" : "Login";
 
         return (
@@ -49,7 +49,7 @@ export class LoginAndRegisterContainer extends React.Component {
                 </div>
             </div>
         );
-    }      
+    }
 }
 
 export const BlueSide = props => {
@@ -60,4 +60,3 @@ export const BlueSide = props => {
 
 export { Login } from "./login";
 export { Register } from "./register";
- 
