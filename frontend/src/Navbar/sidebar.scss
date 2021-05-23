@@ -1,0 +1,114 @@
+
+
+
+.sidebarButton{
+
+    position: absolute;
+    top: 2%;
+    left: 0;
+    z-index: 10000;
+    cursor: pointer;
+    transition: color 2000ms cubic-bezier(.68, -0.55, 0.265, 1.55);
+    transition-delay: .75s;
+  
+    
+
+}
+
+.nav-menu{
+
+    background-color: white;
+    z-index: 9999;
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top:0;
+    left:-100%;
+    transition: 850ms;
+
+}
+
+.nav-menu.active{
+    z-index: 9999;
+    left: 0;
+    transition: 350ms;
+}
+
+.nav-text{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 8px 0px 0px 0px;
+    list-style: none;
+    height: 60px;
+  
+
+}
+
+.nav-text a{
+    text-decoration: none;
+    color: #22293c    ;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 0px 5px;
+    border-radius: 4px;
+
+
+
+
+}
+
+.nav-text a:hover{
+    background-color: #22293c;
+    color: white;
+}
+
+.nav-menu-items{
+    width: 100%;
+    
+    
+}
+
+span {
+    margin-left: 16px;
+    
+}
+
+hr{
+    margin-left: -100px;
+}
+
+.form-control{
+    width: 200px;
+}
+
+.searchbtn{
+    background-color: #22293c;
+    border: none;
+    border-radius: 0.125rem;
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0.2rem 2.5rem 0.2rem;
+
+    &:focus {
+        outline-color: #22293c;
+        outline-offset: 2px;
+        outline-style: solid;
+        outline-width: 3px;
+    }
+
+    &:active {
+        transform: translateY(1px);
+    }
+}
+
+
+

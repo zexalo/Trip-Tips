@@ -6,6 +6,9 @@ import { AuthContext } from "./contexts/AuthContext";
 import {authReducer} from "./hooks/reducers/authReducer";
 import {Token} from "./models/Token";
 import {User} from "./models/User";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import SideBar from './Navbar/SideBar'
+
 
 
 const App: React.FC = () => {
@@ -13,9 +16,13 @@ const App: React.FC = () => {
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       <div className="App">
-        <LoginAndRegisterButton
-        />
-        <Slider heading="Example Slider" />
+      <Router>
+        <SideBar/>
+        <Switch>
+            <Route path='/login_register' exact component={LoginAndRegisterButton}/>
+            <Route path='/categories' component={() => <Slider heading="Example Slider"/>}/>
+        </Switch>
+      </Router>
       </div>
     </AuthContext.Provider>
 
