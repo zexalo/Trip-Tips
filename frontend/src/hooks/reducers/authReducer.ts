@@ -1,36 +1,22 @@
-import { AuthAction, AuthState } from "../../models/Auth";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AuthAction, AuthActionType} from "../../models/Auth";
+import {AuthContextState} from "../../contexts/AuthContext";
 
-export function authenticationReducer(state: AuthState, action: AuthAction) {
+export const authReducer = (state: AuthContextState, action: AuthAction): AuthContextState => {
     switch (action.type) {
-        case "login":
-            if (action.jwt) {
-                AsyncStorage.setItem("jwt", action.jwt);
-                return {
-                    ...state,
-                    jwt: action.jwt
-                };
-            } else {
-                return {
-                    ...state,
-                    jwt: null
-                }
-            }
-
-        case "logout":
-            AsyncStorage.clear();
+        case AuthActionType.GET_LOGGED_USER:
             return {
                 ...state,
-                jwt: null
+                user: action.payload
             };
-        case "update":
-            AsyncStorage.clear();
-            AsyncStorage.setItem("jwt", action.jwt);
+        case AuthActionType.GET_TOKEN:
             return {
                 ...state,
-                jwt: action.jwt
-            }
-        default:
-            return state;
+                token: action.payload
+            };
+        case AuthActionType.LOGOUT:
+            return {
+                token: undefined,
+                user: undefined
+            };
     }
-}
+};

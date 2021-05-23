@@ -1,9 +1,16 @@
-import React from "react";
-import { AuthAction, AuthState } from "../models/Auth";
+import React, {Dispatch} from "react";
+import { AuthAction } from "../models/Auth";
+import {User} from "../models/User";
+import {Token} from "../models/Token";
 
-const AuthContext = React.createContext<{ state: AuthState, dispatch: React.Dispatch<AuthAction> }>({
-    state: { jwt: null },
-    dispatch: () => null
-});
+export type AuthContextState = {
+    user?: User,
+    token?: Token,
+};
 
-export default AuthContext;
+export type AuthContextProps = {
+    state: AuthContextState;
+    dispatch: Dispatch<AuthAction>;
+};
+
+export const AuthContext = React.createContext<AuthContextProps>({} as AuthContextProps);
