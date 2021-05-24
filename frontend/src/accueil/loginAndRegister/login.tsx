@@ -7,7 +7,7 @@ import {AuthContext} from "../../contexts/AuthContext";
 import {HTTPRequestError} from "../../services/ApiService";
 import AuthService from "../../services/AuthService";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 type LoginFormValues = {
     email: string,
@@ -25,6 +25,8 @@ export const Login: React.FC = () => {
 
     const [isLoading, setLoading] = useState<boolean>(false);
 
+    let history = useHistory();
+
 
     const handleLogin = (values: FormikValues) => {
         console.log(values);
@@ -36,6 +38,7 @@ export const Login: React.FC = () => {
             } else {
                 dispatch({type: AuthActionType.GET_LOGGED_USER, payload: user});
             }
+            history.push('/monProfil')
         }).catch((e: HTTPRequestError) => {
             handleLoginError(e);
             setLoading(false);
@@ -54,17 +57,6 @@ export const Login: React.FC = () => {
         password: ''
     };
 
-
-
-
-          // AuthService.login(this.state.email, this.state.password).then((response) => {
-          //     if (response.status === 200){
-          //         dispatch({ type: 'login', jwt: response.data.id_token})
-          //     } else if (response.response.status === 401) {
-          //         console.error("Identifiants invalides");
-          //     }
-          //
-          // })
 
 
 
@@ -93,6 +85,7 @@ export const Login: React.FC = () => {
                                     value={values.email}
                                 />
                             </div>
+                            {errors.email && touched.email ?(<div>{errors.email}</div>) : null}
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
                                 <input
@@ -104,11 +97,12 @@ export const Login: React.FC = () => {
                                 >
                                 </input>
                             </div>
-                            <Link to='/monProfil'>
-                            <button onClick={() => handleLogin(values)}>
+                            {errors.password && touched.password ?(<div>{errors.password}</div>) : null}
+                           
+                            <button onClick={() => handleSubmit()}>
                                 Login
                             </button>
-                            </Link>
+                           
                             
                         </div>
                     )}
