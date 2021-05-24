@@ -1,11 +1,10 @@
 import React, {useContext, useState, useEffect} from 'react';
-import { ProSidebar, Menu, MenuItem, SubMenu,SidebarHeader,SidebarContent,SidebarFooter } from 'react-pro-sidebar';
 import * as FaIcons from 'react-icons/fa';
 import * as CgIcons from 'react-icons/cg';
 import {Link} from 'react-router-dom';
 import logoTripTips from "../images/logoTripTips.png";
 import './sidebar.scss'
-import {SidebarDataOn, SidebarDataOut} from './SideBarData';
+import {SidebarDataOn, SidebarDataOut} from './SideBarData.jsx';
 import {AuthContext} from "../contexts/AuthContext";
 
 

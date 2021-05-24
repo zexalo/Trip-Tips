@@ -13,8 +13,6 @@ export class LoginAndRegisterContainer extends React.Component {
         };
     }
 
-
-
     changeState() {
         const { isLoginActive } = this.state;
         if(isLoginActive) {

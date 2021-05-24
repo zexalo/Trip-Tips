@@ -1,13 +1,5 @@
 import * as FaIcons from 'react-icons/fa';
 import * as CgIcons from 'react-icons/cg';
-import {Link} from 'react-router-dom';
-import logoTripTips from "../images/logoTripTips.png";
-import {AuthContext} from "../contexts/AuthContext";
-import React, {useContext, useState, useEffect} from 'react';
-
-
-
-   
 
  export let SidebarDataOn=[
 
@@ -40,9 +32,6 @@ import React, {useContext, useState, useEffect} from 'react';
         cName: 'nav-text',
         
     },
-
-
-
 
 
 
