@@ -1,30 +1,31 @@
-import React from "react";
+import React, {useContext, useEffect, useState} from "react";
 import PreviewRecomandation from "../Recommendation/Preview";
+import {Recomandation} from "../models/Recomandation";
+import ApiService from "../services/ApiService";
+import {AuthContext} from "../contexts/AuthContext";
 
-const list = [
-    {
-        id: 'a',
-        firstname: 'Robin',
-        lastname: 'Wieruch',
-        year: 1988,
-    },
-    {
-        id: 'b',
-        firstname: 'Dave',
-        lastname: 'Davidds',
-        year: 1990,
-    },
-];
-const List = () => (
-    <ul>
-        {(list || []).map(() => (
-            <PreviewRecomandation/>
-        ))}
-    </ul>
-);
+
 
 const Category: React.FC = () => {
+    const {state} = useContext(AuthContext);
+    const [list, setList] = useState<Recomandation[]>([]);
 
+    const fetchRecomandations = async () => {
+        await ApiService.get<Recomandation[]>('/recomendations?', state).then((data) =>  setList(data))
+    }
+
+    useEffect(() => {
+        fetchRecomandations()
+            .then(() => (console.log(list)));
+    }, [])
+
+    const List = () => (
+        <ul>
+            {(list || []).map(item => (
+                <PreviewRecomandation title={item.title} content={item.content}/>
+            ))}
+        </ul>
+    );
 
     return (
         <div>

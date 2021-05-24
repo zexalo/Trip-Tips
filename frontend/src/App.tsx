@@ -9,6 +9,7 @@ import {User} from "./models/User";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SideBar from './Navbar/SideBar'
 import Category from "./Categories/Category";
+import DetailRecomandation from "./Recommendation/Detail";
 
 
 
@@ -23,6 +24,7 @@ const App: React.FC = () => {
             <Route path='/login_register' exact component={LoginAndRegisterButton}/>
             <Route path='/categories' component={() => <Slider heading="Example Slider"/>}/>
             <Route path='/recommandations' component={Category}/>
+            <Route path='/recommandation' component={DetailRecomandation}/>
         </Switch>
       </Router>
       </div>

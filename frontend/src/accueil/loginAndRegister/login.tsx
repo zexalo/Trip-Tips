@@ -20,19 +20,18 @@ const loginSchema = Yup.object().shape({
 
 export const Login: React.FC = () => {
 
-    const {dispatch} = useContext(AuthContext);
+    const {state, dispatch} = useContext(AuthContext);
 
     const [isLoading, setLoading] = useState<boolean>(false);
 
-
     const handleLogin = (values: FormikValues) => {
-        console.log(values);
         AuthService.login(values.email, values.password)(dispatch).then(p => {
             const error = p as HTTPRequestError;
             const user = p as User;
             if (error.message) {
                 handleLoginError(error);
             } else {
+                console.log("vhjsbvh", state.token);
                 dispatch({type: AuthActionType.GET_LOGGED_USER, payload: user});
             }
         }).catch((e: HTTPRequestError) => {
@@ -52,20 +51,6 @@ export const Login: React.FC = () => {
         email: '',
         password: ''
     };
-
-
-
-
-          // AuthService.login(this.state.email, this.state.password).then((response) => {
-          //     if (response.status === 200){
-          //         dispatch({ type: 'login', jwt: response.data.id_token})
-          //     } else if (response.response.status === 401) {
-          //         console.error("Identifiants invalides");
-          //     }
-          //
-          // })
-
-
 
         return (
             <div className="base-container">
@@ -108,7 +93,6 @@ export const Login: React.FC = () => {
                             </button>
                         </div>
                     )}
-
                     </Formik>
                 </div>
             </div>

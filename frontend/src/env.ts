@@ -5,7 +5,7 @@ const envs = {
         DEV_API: "https://backend-triptips.herokuapp.com/api",
     },
     dev: {
-        DEV_API: "http://localhost:9000/api",
+        DEV_API: "http://localhost:8080/api",
     }
 
 };

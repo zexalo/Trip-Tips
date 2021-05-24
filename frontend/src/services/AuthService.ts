@@ -5,8 +5,6 @@ import {Token, TokenBody} from "../models/Token";
 import ApiService, {HTTPRequestError} from "./ApiService";
 import {User} from "../models/User";
 
-
-
 const login = (username: string, password: string) => async (dispatch: Function) => {
     try {
         const res = await authenticate("/authenticate", {username: username, password: password});
