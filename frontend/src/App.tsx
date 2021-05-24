@@ -8,7 +8,7 @@ import {authReducer} from "./hooks/reducers/authReducer";
 import {Token} from "./models/Token";
 import {User} from "./models/User";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import SideBar from './Navbar/SideBar'
+import SideBar from './navbar/SideBar'
 
 
 
