@@ -2,11 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="app.css" rel="stylesheet">
-
+    <link href="../../worldMap/app.css" rel="stylesheet">
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
     <title>Title</title>
+
+    <script>
+        // $(document).on("ready", function(){
+        //     $(".land").on("mouseover", function(){
+        //         $(".land").style.backgroundColor= "red";
+        //     });
+        // });
+        $(document).on("ready", function(){
+            $("p").on("mouseover", function(){
+                $("p").css("background-color", "yellow");
+            });
+            $("p").on("mouseout", function(){
+                $("p").css("background-color", "lightgray");
+            });
+        });
+    </script>
 </head>
 <body>
+    <script>
+                var tooltip = document.querySelectorAll(".country-tooltip");
+
+                document.addEventListener("mousemove", fn, false);
+
+                function fn(e) {
+                    for (var i=tooltip.length; i--;) {
+                        tooltip[i].style.left = e.pageX + "px";
+                        tooltip[i].style.top = e.pageY + "px";
+           }
+        }
+    </script>
+
+
+    <script type="text/javascript" src="countryTooltip.js.js"></script>
+    <p class="tooltip-container">
+        This is a test
+    </p>
+
+
+
+    <span class="country-tooltip">This is a test</span>
+
+    <ul class="f32">
+        <li id="country-flag" class="flag us"></li>
+    </ul>
+
     <div class="svg-container">
             <svg viewBox="0 0 1010 650" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg" xmlns:amcharts="http://amcharts.com/ammap" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
                 <a xlink:href="http://google.com?q=AE"><path id="AE" title="United Arab Emirates" class="land" d="M619.874,393.722L620.373,393.573L620.477,394.411L622.671,393.93L624.99,394.009L626.684,394.1L628.604,392.028L630.695,390.054L632.467,388.146L633.001,389.202L633.382,391.639L631.949,391.651L631.72,393.648L632.216,394.073L630.947,394.674L630.939,395.919L630.122,397.175L630.049,398.394L629.484,399.032L621.056,397.508L619.981,394.428z"/></a>
@@ -187,5 +235,7 @@
                 <a xlink:href="http://google.com?q=ZW"><path id="ZW" title="Zimbabwe" class="land" d="M562.709,526.998L561.219,526.697L560.274,527.059L558.917,526.548L557.776,526.516L555.989,525.158L553.821,524.698L552.996,522.803L552.989,521.752L551.788,521.432L548.615,518.177L547.733,516.471L547.169,515.946L546.09,513.602L549.224,513.922L550.135,514.26L551.082,514.192L552.634,512.299L555.073,509.904L556.076,509.676L556.417,508.67L558.014,507.516L560.138,507.12L560.319,508.2L562.658,508.142L563.957,508.754L564.562,509.472L565.896,509.683L567.353,510.617L567.359,514.312L566.813,516.347L566.692,518.55L567.143,519.426L566.826,521.172L566.402,521.443L565.663,523.593z"/></a>
         </svg>
     </div>
+
+
 </body>
 </html>

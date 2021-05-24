@@ -1,12 +1,37 @@
 .svg-container {
-    width: 100%;
     height: max-content;
-    background-color: #3E6259;
+    background-color: lightblue;
 }
 
-path{
-    fill: #294936;
+.land{
+    fill: #22293C;
     stroke: #FFFFFF;
     stroke-width: 1px;
 }
 
+.land:hover{
+    fill: #1652AB;
+    stroke: #FFFFFF;
+    stroke-width: 1px;
+}
+
+.country-tooltip{
+    z-index: 99999999999;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+
+    width:150px;
+    height:fit-content;
+
+    text-align: center;
+
+    border: 1px solid #22293C;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+.country-tooltip p{
+    width: 100%;
+    font-family: 'Raleway';
+    font-size: 20px;
+}
