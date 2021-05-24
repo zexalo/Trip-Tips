@@ -1,0 +1,175 @@
+//constantes
+
+$TRIP_TIPS_BLUE: #1652ab;
+
+
+//myProfil
+
+.myProfilContainer{
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .myProfil {
+        width: 60%;
+        min-height: 100vh;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+            
+        .profilImageContainer{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            margin-top: 1em;
+            margin-bottom: 1em;
+
+            .profilImage{
+                border-radius: 50%;
+                width: 200px;
+                height: 200px;
+                background-image: url("../../images/profil/homme.jpg");
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                border: solid 5px black;
+
+                &:hover{
+                    cursor:pointer;
+                    
+                }
+            }
+        }
+
+        .nameContainer{
+            h1{
+                font-size: 1.8em;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+       }
+
+        .personnalInformationsMainContainer {
+            padding-top: 50px;
+            padding-bottom: 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            .personnalInformationTitleAndButton{
+                padding-bottom: 20px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
+
+                align-items: center;
+                h2{
+                    
+                    display: flex;
+                    font-size: 1.2em;
+                    padding-left: 10px;
+                }
+
+                button{
+                    display: flex;
+                    justify-self: flex-end;
+                    font-size: 0.9em;
+                    padding: 5px 15px;
+                    border: 0;
+                    background-color: $TRIP_TIPS_BLUE;
+                    color: #fff;
+                    border-radius: 5px;
+                    margin-right: 20px;
+
+                    &:hover {
+                        transition: 100ms;
+                        background-color: #2386c8;
+                    }
+                    &:focus {
+                        outline: none;
+                      }
+                    
+                    p{
+                        margin: 0px;
+                        padding:0px;
+                    }
+                } 
+            }
+            
+        }
+
+        .favoriteRecommandationsMainContainer{
+            padding-top: 50px;
+            padding-bottom: 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            
+            h2{
+                display: flex;
+                font-size: 1.2em;
+                padding-left: 10px;
+                padding-bottom: 10px;
+                margin: 0;
+            }  
+
+            .dropDownButtonsContainer{
+                width: 100%;
+                padding: 10px 30px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                
+                .dropDownButton{
+
+                    button{
+                        padding: 5px 15px;
+                        border: 0;
+                        background-color: $TRIP_TIPS_BLUE;
+
+                        &:hover {
+                            transition: 100ms;
+                            background-color: #2386c8;
+                        }
+                    }
+                }
+            }
+
+            .favoriteRecommandationsMainContainer{
+                
+                width: 100%;
+                margin-top: 10px;
+                padding: 10px 40px;
+                border-top: solid black;
+                border-bottom: solid black;
+                border-radius: 50px;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                max-height: 310px;
+                overflow-y: scroll;
+                margin-bottom: 30px;
+                
+
+                .favoriteRecommandationContainer{
+                    width: 202px;
+                    height: 125px;
+                    margin: 10px;
+                    background-color: rgb(218, 84, 84);
+                    display: flex;
+                    
+                }
+            }
+
+        }
+    }
+}
+
