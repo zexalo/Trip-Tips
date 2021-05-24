@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import logoTripTips from "../../images/logoTripTips.png";
 import {Formik, FormikValues} from "formik";
-import {AuthAction, AuthActionType} from "../../models/Auth";
+import {AuthActionType} from "../../models/Auth";
 import {User} from "../../models/User";
 import {AuthContext} from "../../contexts/AuthContext";
 import {HTTPRequestError} from "../../services/ApiService";

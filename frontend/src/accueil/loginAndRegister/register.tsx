@@ -20,7 +20,6 @@ type registerFormValues = {
 
 }
 
-
 const registerSchema = Yup.object().shape({
     firstName: Yup.string().required('Champs requis'),
     lastName: Yup.string().required('Champs requis'),
@@ -29,17 +28,12 @@ const registerSchema = Yup.object().shape({
     confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Les mots de passe doivent correspondre'),
 })
 
-
-
 export const Register: React.FC = () => {
 
     const {dispatch} = useContext(AuthContext);
-
     const [isLoading, setLoading] = useState<boolean>(false);
     let history = useHistory();
     
-
-
     const handleRegister = (values: FormikValues) => {
         console.log(values);
         
@@ -67,12 +61,7 @@ export const Register: React.FC = () => {
         confirmPassword: '',
         langKey: "fr",
     
-    }
-
-
-
-
-        
+    }   
 
         return (
             <div className="base-container">
