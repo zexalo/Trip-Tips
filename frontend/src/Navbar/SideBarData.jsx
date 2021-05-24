@@ -5,18 +5,18 @@ import logoTripTips from "../images/logoTripTips.png";
 import {AuthContext} from "../contexts/AuthContext";
 import React, {useContext, useState, useEffect} from 'react';
 
-export const  SidebarData = ()=>{
-    const { state } = useContext(AuthContext);
+
 
    
 
- const rubrique=[
+ export let SidebarDataOn=[
 
     
 {   title: 'Home',
     path: '/home',
     icon: <FaIcons.FaHome/>,
     cName: 'nav-text mt-5',
+    
     
 },
 
@@ -35,17 +35,13 @@ export const  SidebarData = ()=>{
    
 },
 {   title: 'Login/Register',
-    path: '/login_register',
-    icon: <FaIcons.FaBlog/>,
-    cName: 'nav-text',
-    
-},
-{   title: 'LogOut',
-    path: '/',
-    icon: <FaIcons.FaBlog/>,
-    cName: 'nav-text',
-   
-},
+        path: '/login_register',
+        icon: <FaIcons.FaBlog/>,
+        cName: 'nav-text',
+        
+    },
+
+
 
 
 
@@ -53,4 +49,41 @@ export const  SidebarData = ()=>{
 
 ]
 
-}
+export let SidebarDataOut=[
+
+    
+    {   title: 'Home',
+        path: '/home',
+        icon: <FaIcons.FaHome/>,
+        cName: 'nav-text mt-5',
+        
+    },
+    
+    {   title: 'Profil',
+        path: '/monProfil',
+        icon: <FaIcons.Fa500Px/>,
+        cName: 'nav-text',
+        
+    },
+    
+    
+    {   title: 'Categories',
+        path: '/categories',
+        icon: <FaIcons.FaAdobe/>,
+        cName: 'nav-text',
+       
+    },
+    
+    {   title: 'LogOut',
+    path: '/log_out',
+    icon: <FaIcons.FaBlog/>,
+    cName: 'nav-text',
+   
+},
+    
+    
+    
+    
+    
+    
+    ]

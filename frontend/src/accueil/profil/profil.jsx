@@ -7,7 +7,7 @@ function Profil() {
     
     return (
         <div>
-            <h1>{state.user.email}</h1>
+            <h1>{state.user?.email}</h1>
         </div>
     )
 }

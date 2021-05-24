@@ -1,11 +1,11 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import { ProSidebar, Menu, MenuItem, SubMenu,SidebarHeader,SidebarContent,SidebarFooter } from 'react-pro-sidebar';
 import * as FaIcons from 'react-icons/fa';
 import * as CgIcons from 'react-icons/cg';
 import {Link} from 'react-router-dom';
 import logoTripTips from "../images/logoTripTips.png";
 import './sidebar.scss'
-import { SidebarData} from './SideBarData';
+import {SidebarDataOn, SidebarDataOut} from './SideBarData';
 import {AuthContext} from "../contexts/AuthContext";
 
 
@@ -18,7 +18,16 @@ function SideBar() {
   const [sidebar, setSidebar] = useState(false)
   const showSidebar = () => setSidebar(!sidebar)
   const { state } = useContext(AuthContext);
-  
+  const [data, setSidebarData] = useState([])
+
+  useEffect(() => {
+    if(state.user?.email){
+      setSidebarData(SidebarDataOut)
+      
+    }else{
+      setSidebarData(SidebarDataOn)
+    }
+  }, [state.user?.email]);
   
 
 
@@ -36,7 +45,7 @@ function SideBar() {
         
 
         
-          {SidebarData.map((item, index) =>{
+          {data.map((item, index) =>{
 
             
             
@@ -49,7 +58,9 @@ function SideBar() {
                 
               </li>
             )
+          
           })}
+
          <hr/>
       
           <input  type="search" className="form-control rounded" placeholder="Pays" aria-label="Search"

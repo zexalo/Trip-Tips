@@ -1,7 +1,7 @@
 import React, {useReducer} from "react";
 import './App.css';
 import Slider from './Categories/Menu_selection.js';
-import {  LoginAndRegisterContainer} from "./accueil/loginAndRegister/index";
+import { LogOut, LoginAndRegisterContainer} from "./accueil/loginAndRegister/index";
 import Profil from './accueil/profil/profil.jsx';
 import { AuthContext } from "./contexts/AuthContext";
 import {authReducer} from "./hooks/reducers/authReducer";
@@ -23,6 +23,7 @@ const App: React.FC = () => {
             <Route path='/login_register' exact component={() => <LoginAndRegisterContainer/>}/>
             <Route path='/categories' component={() => <Slider heading="Example Slider"/>}/>
             <Route path='/monProfil' component={Profil}/>
+            <Route path='/log_out' component={LogOut}/>
         </Switch>
       </Router>
       </div>
