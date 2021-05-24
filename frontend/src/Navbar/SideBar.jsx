@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import { ProSidebar, Menu, MenuItem, SubMenu,SidebarHeader,SidebarContent,SidebarFooter } from 'react-pro-sidebar';
+import React, {useContext, useState, useEffect} from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as CgIcons from 'react-icons/cg';
 import {Link} from 'react-router-dom';
 import logoTripTips from "../images/logoTripTips.png";
 import './sidebar.scss'
-import { SidebarData } from './SideBarData';
+import {SidebarDataOn, SidebarDataOut} from './SideBarData.jsx';
+import {AuthContext} from "../contexts/AuthContext";
 
 
 
@@ -16,6 +16,19 @@ function SideBar() {
 
   const [sidebar, setSidebar] = useState(false)
   const showSidebar = () => setSidebar(!sidebar)
+  const { state } = useContext(AuthContext);
+  const [data, setSidebarData] = useState([])
+
+  useEffect(() => {
+    if(state.user?.email){
+      setSidebarData(SidebarDataOut)
+      
+    }else{
+      setSidebarData(SidebarDataOn)
+    }
+  }, [state.user?.email]);
+  
+
 
     return (
       <div>
@@ -28,8 +41,13 @@ function SideBar() {
       <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
         <ul className='nav-menu-items'>
         
+        
 
-          {SidebarData.map((item, index) =>{
+        
+          {data.map((item, index) =>{
+
+            
+            
             return (
               <li key={index} className={item.cName}>
                 <Link to={item.path}>
@@ -39,7 +57,9 @@ function SideBar() {
                 
               </li>
             )
+          
           })}
+
          <hr/>
       
           <input  type="search" className="form-control rounded" placeholder="Pays" aria-label="Search"

@@ -13,8 +13,6 @@ export class LoginAndRegisterContainer extends React.Component {
         };
     }
 
-
-
     changeState() {
         const { isLoginActive } = this.state;
         if(isLoginActive) {
@@ -36,7 +34,7 @@ export class LoginAndRegisterContainer extends React.Component {
         return (
             <div className="modalWindow" onKeyDown={this.props.handleKeyDown} tabIndex={0} onClick={this.props.hideModalWindow}
             style = {{
-                display: this.props.isModalVisible ? "flex" : "none"
+                display: "flex" 
             }}
             >
                 <div className="carouselLoginAndRegister" onClick={(e) => e.stopPropagation()}>
