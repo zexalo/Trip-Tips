@@ -1,16 +1,37 @@
 import React from "react";
 import { DropdownButton, Dropdown } from 'react-bootstrap';
-import { Container, Row, Col } from 'react-bootstrap';
+import { EditMyProfil } from './editMyProfil';
 
 export class MyProfil extends React.Component {
-    constructor(props) {
-        super(props);
+
+    state = {
+        isEditProfileVisible: false
+    }
+
+    showEditProfileWindow = () => {
+        this.setState({
+            isEditProfileVisible: true
+        })
+    }
+
+    hideEditProfileWindow = () => {
+        this.setState({
+            isEditProfileVisible: false
+        })
+    }
+
+    handleKeyDown = (event) => {
+        if(event.key === "Escape"){
+            this.setState({
+                isEditProfileVisible: false
+            })  
+        }
     }
 
     render() {
         return <div className="myProfilContainer">
         <div className="myProfil">
-
+    
             <div className="profilImageContainer">
                 <div className="profilImage">
                 </div>
@@ -19,14 +40,14 @@ export class MyProfil extends React.Component {
             <div className="nameContainer">
                 <h1>Félix Nedelec</h1>
             </div>
-            
 
             <div className="personnalInformationsMainContainer">
                 <div className="personnalInformationTitleAndButton">
                     <h2>Your personnal informations</h2>
-                    <button>
-                        <p>edit your profil</p>
+                    <button onClick={this.showEditProfileWindow}>
+                        <p>edit your profile</p>
                     </button>
+                    
                 </div>
                 
                 <div className="personnalInformationsContainer">
@@ -59,6 +80,7 @@ export class MyProfil extends React.Component {
                                 <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                             </DropdownButton>
                 </div>
+                
                 <div className="favoriteRecommandationsMainContainer">
                     <div className="favoriteRecommandationContainer"></div>
                     <div className="favoriteRecommandationContainer"></div>
@@ -70,7 +92,13 @@ export class MyProfil extends React.Component {
                     <div className="favoriteRecommandationContainer"></div>
                 </div>
             </div>
-        </div>  
+        </div> 
+        <EditMyProfil 
+                    isEditProfileVisible={this.state.isEditProfileVisible}
+                    hideEditProfileWindow={this.hideEditProfileWindow}
+                    handleKeyDown={this.handleKeyDown}
+                    /> 
         </div>
+        
     }
 }
