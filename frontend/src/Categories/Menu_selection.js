@@ -1,27 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-const slideData = [
-    {
-      index: 0,
-      headline: 'Logements',
-      button: 'Détails',
-      src: 'https://www.villanovo.fr/images/landing_pages/landing_26_40_1507725110.1920.jpg'
-    },
-    {
-      index: 1,
-      headline: 'Activités Touristiques',
-      button: 'Détails',
-      src: 'https://maximumwallhd.com/wp-content/uploads/2015/07/fonds-ecran-mont-fuji-3.jpg'
-    },
-    {
-      index: 2,
-      headline: 'Restauration',
-      button: 'Détails',
-      src: 'https://mo-zil-moris.com/wp-content/uploads/2019/12/la-citronnelle.jpg'
-    },
-    
-  ]
+
+export const slideData = [
+  {
+    index: 0,
+    headline: 'Logements',
+    button: 'Détails',
+    src: 'https://www.villanovo.fr/images/landing_pages/landing_26_40_1507725110.1920.jpg'
+  },
+  {
+    index: 1,
+    headline: 'Activités Touristiques',
+    button: 'Détails',
+    src: 'https://maximumwallhd.com/wp-content/uploads/2015/07/fonds-ecran-mont-fuji-3.jpg'
+  },
+  {
+    index: 2,
+    headline: 'Restauration',
+    button: 'Détails',
+    src: 'https://mo-zil-moris.com/wp-content/uploads/2019/12/la-citronnelle.jpg'
+  },
+  
+]
   
   
   // =========================
@@ -123,6 +123,7 @@ const slideData = [
       this.handlePreviousClick = this.handlePreviousClick.bind(this)
       this.handleNextClick = this.handleNextClick.bind(this)
       this.handleSlideClick = this.handleSlideClick.bind(this)
+      
     }
     
     handlePreviousClick() {
@@ -130,7 +131,7 @@ const slideData = [
           
       this.setState({ 
         current: (previous < 0) 
-          ? this.props.slides.length - 1
+          ? slideData.length - 1
           : previous
       })
     }
@@ -139,7 +140,7 @@ const slideData = [
       const next = this.state.current + 1;
       
       this.setState({ 
-        current: (next === this.props.slides.length) 
+        current: (next === slideData.length) 
           ? 0
           : next
       })
@@ -155,10 +156,10 @@ const slideData = [
   
     render() {
       const { current, direction } = this.state
-      const { slides, heading } = this.props 
+      const {heading} = this.props
       const headingId = `slider-heading__${heading.replace(/\s+/g, '-').toLowerCase()}`
       const wrapperTransform = {
-        'transform': `translateX(-${current * (100 / slides.length)}%)`
+        'transform': `translateX(-${current * (100 / slideData.length)}%)`
       }
       
       return (
@@ -166,7 +167,7 @@ const slideData = [
           <ul className="slider__wrapper" style={wrapperTransform}>
             <h3 id={headingId} class="visuallyhidden">{heading}</h3>
             
-            {slides.map(slide => {
+            {slideData.map(slide => {
               return (
                 <Slide
                   key={slide.index}
@@ -197,4 +198,5 @@ const slideData = [
   }
   
   
-  ReactDOM.render(<Slider heading="Example Slider" slides={slideData} />, document.getElementById('app'));
+//ReactDOM.render(<Slider heading="Example Slider" slides={slideData} />, document.getElementById('app'));
+export default Slider;
