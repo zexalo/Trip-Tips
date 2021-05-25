@@ -1,4 +1,4 @@
 import "./styleProfil.scss";
 
-export { MyProfil } from "./myProfil"
+export { Profil } from "./profil"
 export { EditMyProfil } from "./editMyProfil"
