@@ -12,20 +12,6 @@ import * as CgIcons from 'react-icons/cg';
     
 },
 
-{   title: 'Profil',
-    path: '/monProfil',
-    icon: <FaIcons.Fa500Px/>,
-    cName: 'nav-text',
-    
-},
-
-
-{   title: 'Categories',
-    path: '/categories',
-    icon: <FaIcons.FaAdobe/>,
-    cName: 'nav-text',
-   
-},
 {   title: 'Login/Register',
         path: '/login_register',
         icon: <FaIcons.FaBlog/>,

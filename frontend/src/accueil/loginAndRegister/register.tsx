@@ -61,7 +61,7 @@ export const Register: React.FC = () => {
         confirmPassword: '',
         langKey: "fr",
     
-    }   
+    } 
 
         return (
             <div className="base-container">
@@ -78,9 +78,9 @@ export const Register: React.FC = () => {
                         }}
                         
                     >{({handleChange, handleSubmit, values, errors, touched}) => (
-                        <div>
+                        <div className="form">
                             <div className="form-group">
-                                <label htmlFor="password">First Name</label>
+                                <label htmlFor="firstName">First Name</label>
                                 <input
                                     type="firstName"
                                     name="firstName"
@@ -93,7 +93,7 @@ export const Register: React.FC = () => {
                             {errors.firstName && touched.firstName ?(<div>{errors.firstName}</div>) : null}
                           
                             <div className="form-group">
-                                <label htmlFor="password">Last Name</label>
+                                <label htmlFor="lastName">Last Name</label>
                                 <input
                                     type="lastName"
                                     name="lastName"
@@ -144,9 +144,11 @@ export const Register: React.FC = () => {
                             {errors.confirmPassword && touched.confirmPassword ?(<div>{errors.confirmPassword}</div>) : null}
                     
                 
-                            <button type='submit' onClick={() => handleSubmit()}>
-                                register
-                            </button>
+                            <div className="footer">
+                                <button type="submit" className="login-button" onClick={() => handleSubmit()}>
+                                    Login
+                                </button>
+                            </div>
                             
                             
                         </div>

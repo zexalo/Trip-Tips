@@ -74,7 +74,7 @@ export const Login: React.FC = () => {
                         }}
                         validationSchema={loginSchema}
                     >{({handleChange, handleSubmit, values, errors, touched}) => (
-                        <div>
+                        <div className="form">
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
                                 <input
@@ -99,10 +99,11 @@ export const Login: React.FC = () => {
                             </div>
                             {errors.password && touched.password ?(<div>{errors.password}</div>) : null}
 
-                            <button onClick={() => handleSubmit()}>
-                                Login
-                            </button>
-
+                            <div className="footer">
+                                <button type="submit" className="login-button" onClick={() => handleSubmit()}>
+                                    Login
+                                </button>
+                            </div>
 
                         </div>
                     )}
