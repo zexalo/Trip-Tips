@@ -1,7 +1,7 @@
 import React from "react";
 import "./styleLoginAndRegister.scss";
-import { Login } from "./login";
 import { Register } from "./register";
+import {Login} from "./login";
 
 
 export class LoginAndRegisterContainer extends React.Component {
@@ -12,8 +12,6 @@ export class LoginAndRegisterContainer extends React.Component {
             isLoginActive: true,
         };
     }
-    
-    
 
     changeState() {
         const { isLoginActive } = this.state;
@@ -30,13 +28,13 @@ export class LoginAndRegisterContainer extends React.Component {
     }
 
     render() {
-        const { isLoginActive } = this.state; 
+        const { isLoginActive } = this.state;
         const current = isLoginActive ? "Register" : "Login";
 
         return (
             <div className="modalWindow" onKeyDown={this.props.handleKeyDown} tabIndex={0} onClick={this.props.hideModalWindow}
             style = {{
-                display: this.props.isModalVisible ? "flex" : "none"
+                display: "flex" 
             }}
             >
                 <div className="carouselLoginAndRegister" onClick={(e) => e.stopPropagation()}>
@@ -49,7 +47,7 @@ export class LoginAndRegisterContainer extends React.Component {
                 </div>
             </div>
         );
-    }      
+    }
 }
 
 export const BlueSide = props => {
@@ -60,4 +58,3 @@ export const BlueSide = props => {
 
 export { Login } from "./login";
 export { Register } from "./register";
- 
