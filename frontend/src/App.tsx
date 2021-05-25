@@ -2,7 +2,7 @@ import React, {useReducer} from "react";
 import './App.css';
 import Slider from './Categories/Menu_selection';
 import { LogOut, LoginAndRegisterContainer} from "./accueil/loginAndRegister/index";
-
+import Profil  from "./accueil/profil/profil"
 import { AuthContext } from "./contexts/AuthContext";
 import {authReducer} from "./hooks/reducers/authReducer";
 import {Token} from "./models/Token";

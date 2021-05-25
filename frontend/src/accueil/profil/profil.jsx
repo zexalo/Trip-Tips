@@ -4,7 +4,6 @@ import { DropdownButton, Dropdown } from 'react-bootstrap';
 import "./styleProfil.scss";
 import EditMyProfil from './editMyProfil';
 
-
 function Profil() {
     const { state } = useContext(AuthContext);
 
@@ -95,5 +94,4 @@ function Profil() {
 
     )
 }
-
 export default Profil;
