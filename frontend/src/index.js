@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import './categories/style/category.scss';
+import './Categories/style/category.scss';
 
 
 

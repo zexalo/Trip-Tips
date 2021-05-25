@@ -1,6 +1,6 @@
 import React, {useReducer} from "react";
 import './App.css';
-import Slider from './categories/Menu_selection.js';
+import Slider from './Categories/Menu_selection';
 import { LogOut, LoginAndRegisterContainer} from "./accueil/loginAndRegister/index";
 import Profil from './accueil/profil/profil.jsx';
 import { AuthContext } from "./contexts/AuthContext";
