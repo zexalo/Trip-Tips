@@ -2,7 +2,6 @@ import React, {useReducer} from "react";
 import './App.css';
 import Slider from './categories/Menu_selection.js';
 import { LogOut, LoginAndRegisterContainer} from "./accueil/loginAndRegister/index";
-import Profil  from "./accueil/profil/profil"
 import { AuthContext } from "./contexts/AuthContext";
 import {authReducer} from "./hooks/reducers/authReducer";
 import {Token} from "./models/Token";
@@ -11,6 +10,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import DetailRecomandation from "./Recommendation/Detail";
 import SideBar from './navbar/SideBar'
 import Profil from "./accueil/profil/profil";
+import Category from "./categories/Category";
+import WorldMap from "./worldMap/WorldMap";
 
 const App: React.FC = () => {
     const [state, dispatch] = useReducer(authReducer, {user: {} as User, token: {} as Token});
@@ -26,6 +27,7 @@ const App: React.FC = () => {
             <Route path='/recommandation' component={DetailRecomandation}/>
             <Route path='/monProfil' component={Profil}/>
             <Route path='/log_out' component={LogOut}/>
+            <Route path='/home' component={WorldMap}/>
         </Switch>
       </Router>
       </div>
