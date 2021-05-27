@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import CountryTooltip from "./CountryTooltip";
-import './app.css';
+import './worldMap.css';
 
 function WorldMap(props) {
     {
@@ -11,12 +12,14 @@ function WorldMap(props) {
         function populateCountryToolTip(e, visible){
             setCountryToolTipVisibility(visible);
             setCountryToolTipText(e.target.getAttribute("title"));
-            setCountryToolTipCode(e.target.id)
+            setCountryToolTipCode(e.target.id);
         }
-        
-        function countryOnClick(e){
-            console.log(e.target.id);
-        }
+
+        const history = useHistory();
+        const countryOnClick = (e) => {
+            history.push('/categories/'+e.target.id);
+        };
+
         return (
             <div className="svg-container" style={{width: props.width}}>
                 <CountryTooltip visible={countryToolTipVisibility} text={countryToolTipText} code={countryToolTipCode}/>

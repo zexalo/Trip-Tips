@@ -1,7 +1,7 @@
 import React from 'react';
 import MouseTooltip from 'react-sticky-mouse-tooltip';
 import Flag from "react-world-flags";
-import './app.css';
+import './worldMap.css';
 
 function CountryTooltip(props) {
     return (
@@ -11,7 +11,7 @@ function CountryTooltip(props) {
             offsetY={10}
         >
             <div className="country-tooltip">
-                <Flag code={props.code} height="50" fallback={<span>Unknown</span>} style={{border : "1px solid black"}}/>
+                <Flag code={props.code} height="45" fallback={<span>Unknown</span>} style={{border : "1px solid black"}}/>
                 <p>{props.text}</p>
             </div>
         </MouseTooltip>
