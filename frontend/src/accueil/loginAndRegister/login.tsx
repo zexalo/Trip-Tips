@@ -37,8 +37,8 @@ export const Login: React.FC = () => {
                 handleLoginError(error);
             } else {
                 dispatch({type: AuthActionType.GET_LOGGED_USER, payload: user});
+                history.push('/monProfil')
             }
-            history.push('/monProfil')
         }).catch((e: HTTPRequestError) => {
             handleLoginError(e);
             setLoading(false);

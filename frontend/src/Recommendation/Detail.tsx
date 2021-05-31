@@ -8,9 +8,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import ApiService, {HTTPRequestError} from "../services/ApiService";
 import {AuthContext} from "../contexts/AuthContext";
 import {Formik, FormikValues} from "formik";
-import {TextField} from "@material-ui/core";
 import {Review} from "../models/Review";
-import {Recomandation} from "../models/Recomandation";
 import PreviewRecomandation from "./Preview";
 
 const useStyles = makeStyles({
