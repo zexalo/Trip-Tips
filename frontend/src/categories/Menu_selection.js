@@ -90,6 +90,7 @@ export const slideData = [
                     <h2 className="slide__headline">{headline}</h2>
                     <Link to={{
                         pathname: "/recommandations",
+                        state: {index: index}
                     }}>
                         <button className="slide__action btn">{button}</button>
                     </Link>
