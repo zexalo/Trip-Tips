@@ -14,7 +14,7 @@ const Category = (props) => {
     }
 
     useEffect(() => {
-        console.log(props.location.state.index)
+        console.log(props?.location?.state?.index)
         fetchRecomandations()
             .then(() => (console.log(list)));
     }, [])
