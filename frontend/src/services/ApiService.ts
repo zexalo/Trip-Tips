@@ -1,5 +1,6 @@
 import {AuthContextState} from "../contexts/AuthContext";
 import env from "../env";
+import AuthService from "./AuthService";
 
 
 export class HTTPRequestError extends Error {
@@ -48,6 +49,7 @@ async function api<T>(path: string, method: Method = "GET", authContext: AuthCon
     }
     return res.json();
 }
+
 
 async function get<T>(path: string, authContext: AuthContextState, authorize: boolean = true): Promise<T> {
     return api<T>(path, "GET", authContext,undefined, authorize, false);

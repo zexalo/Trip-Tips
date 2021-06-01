@@ -5,8 +5,6 @@ import {Token, TokenBody} from "../models/Token";
 import ApiService, {HTTPRequestError} from "./ApiService";
 import {User} from "../models/User";
 
-
-
 const login = (username: string, password: string) => async (dispatch: Function) => {
     try {
         const res = await authenticate("/authenticate", {username: username, password: password});
@@ -21,7 +19,6 @@ const login = (username: string, password: string) => async (dispatch: Function)
             const text = await res.text();
             return new HTTPRequestError(res.status, JSON.parse(text).detail);
         }
-
     } catch (e) {
         if (e.name === "InvalidTokenError") return new Error("errors:401.credentials");
         return e as Error;

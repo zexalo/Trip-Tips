@@ -5,7 +5,6 @@ import "./styleProfil.scss";
 import EditMyProfil from './editMyProfil';
 import EditMyPassword from './editMyPassword';
 
-
 function Profil() {
     const { state } = useContext(AuthContext);
 
@@ -44,8 +43,8 @@ function Profil() {
                 <div className="nameContainer">
                     <h1>{state.user?.firstName} {state.user?.lastName}</h1>
                 </div>
-                
-                
+
+
 
                 <div className="personnalInformationsMainContainer">
                     <div className="personnalInformationTitleAndButton">
@@ -53,9 +52,9 @@ function Profil() {
                         <button onClick={showEditProfileWindow}>
                             <p>edit your profil</p>
                         </button>
-                        
+
                     </div>
-                    
+
                     <div className="personnalInformationsContainer">
                         <div className="personnalInformation">Name : {state.user?.firstName} {state.user?.lastName}</div>
                         <div className="personnalInformation">Email : {state.user?.email}</div>
@@ -78,7 +77,7 @@ function Profil() {
                                 </DropdownButton>
 
                     </div>
-                    
+
                     <div className="favoriteRecommandationsMainContainer">
                         <div className="favoriteRecommandationContainer"></div>
                         <div className="favoriteRecommandationContainer"></div>
@@ -90,7 +89,7 @@ function Profil() {
                         <div className="favoriteRecommandationContainer"></div>
                     </div>
                 </div>
-            </div>     
+            </div>
             <EditMyProfil
             isEditProfileVisible = {isEditProfileVisible}
             hideEditProfileWindow = {hideEditProfileWindow}
@@ -100,10 +99,8 @@ function Profil() {
             isEditPasswordVisible = {isEditPasswordVisible}
             hideEditPasswordWindow = {hideEditPasswordWindow}
             />
-        </div>    
-        
-        
+        </div>
+
     )
 }
-
 export default Profil;
