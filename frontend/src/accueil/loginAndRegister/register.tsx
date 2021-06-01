@@ -82,7 +82,7 @@ export const Register: React.FC = () => {
                             <div className="form-group">
                                 <label htmlFor="firstName">First Name</label>
                                 <input
-                                    type="firstName"
+                                    type="text"
                                     name="firstName"
                                     placeholder="firstName"
                                     onChange={handleChange('firstName')}
@@ -95,7 +95,7 @@ export const Register: React.FC = () => {
                             <div className="form-group">
                                 <label htmlFor="lastName">Last Name</label>
                                 <input
-                                    type="lastName"
+                                    type="text"
                                     name="lastName"
                                     placeholder="lastName"
                                     onChange={handleChange('lastName')}
@@ -108,7 +108,7 @@ export const Register: React.FC = () => {
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
                                 <input
-                                    type="email"
+                                    type="text"
                                     name="email"
                                     placeholder="email"
                                     onChange={handleChange('email')}
@@ -142,7 +142,23 @@ export const Register: React.FC = () => {
                                 </input>
                             </div>
                             {errors.confirmPassword && touched.confirmPassword ?(<div className="errorText">{errors.confirmPassword}</div>) : null}
-                    
+                            <div className="form-group-inline">
+                                <input className="form-check-input" 
+                                type="radio" 
+                                name="RadioRole" 
+                                id="traveler"
+                                checked/>
+                                <label className="form-check-label" htmlFor="flexRadioDefault1" >
+                                    Traveler
+                                </label>
+                                <input className="form-check-input ml-4" 
+                                type="radio" 
+                                name="RadioRole" 
+                                id="owner"/>
+                                <label className="form-check-label" htmlFor="flexRadioDefault1">
+                                    Owner
+                                </label>
+                            </div>
                 
                             <div className="footer">
                                 <button type="submit" className="login-button" onClick={() => handleSubmit()}>

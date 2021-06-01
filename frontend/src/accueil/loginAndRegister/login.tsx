@@ -78,7 +78,7 @@ export const Login: React.FC = () => {
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
                                 <input
-                                    type="email"
+                                    type="text"
                                     name="email"
                                     placeholder="email"
                                     onChange={handleChange('email')}
