@@ -15,6 +15,7 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
         margin: '15px',
+        border: '1px solid #282c34',
         boxShadow: 'none',
     },
     bullet: {
@@ -39,12 +40,7 @@ const Comments: React.FC<RecomandationProps> = ({title, content}) => {
     const classes = useStyles();
 
     return (
-        <Card className={classes.root} style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column'
-        }}>
+        <Card className={classes.root}>
             <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                     {title}

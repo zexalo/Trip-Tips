@@ -67,7 +67,6 @@ const DetailRecomandation: React.FC = () => {
         } catch (e) {
             console.log('e', e)
         }
-
     }
 
     const initialValues: ReviewFormValues = {
@@ -106,41 +105,49 @@ const DetailRecomandation: React.FC = () => {
     );
 
     return (
-        <Card className={classes.root}>
-            <CardContent>
-                <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Title recomandation
-                </Typography>
-                <Typography variant="h5" component="h2">
-                    Content recomandation
-                </Typography>
-                <Typography variant="h6" component="h2">
-                    Commentaires
-                </Typography>
-            </CardContent>
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column'
+        }}>
+            <Card className={classes.root}>
+                <CardContent>
+                    <Typography className={classes.title} color="textSecondary" gutterBottom>
+                        Title recomandation
+                    </Typography>
+                    <Typography variant="h5" component="h2">
+                        Content recomandation
+                    </Typography>
+                    <Typography variant="h6" component="h2">
+                        Commentaires
+                    </Typography>
+                </CardContent>
 
-            <List/>
+                <List/>
 
-            <Formik
-            initialValues={initialValues}
-            onSubmit={(values) => {
-                postReview(values)
-            }}>{({handleChange, handleSubmit, values}) => (
-                <div>
-                    <input
-                        type="textarea"
-                        name="content"
-                        placeholder="Commentaire"
-                        onChange={handleChange('content')}
-                        value={values.content}
-                    />
-                    <CardActions>
-                        <Button onClick={() => postReview(values)} size="small">See Details</Button>
-                    </CardActions>
-                </div>
-            )}
-            </Formik>
-        </Card>
+                <Formik
+                    initialValues={initialValues}
+                    onSubmit={(values) => {
+                        postReview(values)
+                    }}>{({handleChange, handleSubmit, values}) => (
+                    <div>
+                        <input
+                            type="textarea"
+                            name="content"
+                            placeholder="Commentaire"
+                            onChange={handleChange('content')}
+                            value={values.content}
+                        />
+                        <CardActions>
+                            <Button onClick={() => postReview(values)} size="small">See Details</Button>
+                        </CardActions>
+                    </div>
+                )}
+                </Formik>
+            </Card>
+        </div>
+
     )
 }
 
