@@ -90,7 +90,7 @@ export const Register: React.FC = () => {
                                 >
                                 </input>
                             </div>
-                            {errors.firstName && touched.firstName ?(<div>{errors.firstName}</div>) : null}
+                            {errors.firstName && touched.firstName ?(<div className="errorText">{errors.firstName}</div>) : null}
                           
                             <div className="form-group">
                                 <label htmlFor="lastName">Last Name</label>
@@ -103,7 +103,7 @@ export const Register: React.FC = () => {
                                 >
                                 </input>
                             </div>
-                            {errors.lastName && touched.lastName ?(<div>{errors.lastName}</div>) : null}
+                            {errors.lastName && touched.lastName ?(<div className="errorText">{errors.lastName}</div>) : null}
                         
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
@@ -115,7 +115,7 @@ export const Register: React.FC = () => {
                                     value={values.email}
                                 />
                             </div>
-                            {errors.email && touched.email ?(<div>{errors.email}</div>) : null}
+                            {errors.email && touched.email ?(<div className="errorText">{errors.email}</div>) : null}
                            
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
@@ -128,7 +128,7 @@ export const Register: React.FC = () => {
                                 >
                                 </input>
                             </div>
-                            {errors.password && touched.password ?(<div>{errors.password}</div>) : null}
+                            {errors.password && touched.password ?(<div className="errorText">{errors.password}</div>) : null}
                             
                             <div className="form-group">
                                 <label htmlFor="confirmPassword">Confirm password</label>
@@ -141,7 +141,7 @@ export const Register: React.FC = () => {
                                 >
                                 </input>
                             </div>
-                            {errors.confirmPassword && touched.confirmPassword ?(<div>{errors.confirmPassword}</div>) : null}
+                            {errors.confirmPassword && touched.confirmPassword ?(<div className="errorText">{errors.confirmPassword}</div>) : null}
                     
                 
                             <div className="footer">
