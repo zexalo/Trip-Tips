@@ -84,8 +84,9 @@ export const Login: React.FC = () => {
                                     onChange={handleChange('email')}
                                     value={values.email}
                                 />
+                                {errors.email && touched.email ?(<div className="errorText">{errors.email}</div>) : null}
                             </div>
-                            {errors.email && touched.email ?(<div>{errors.email}</div>) : null}
+                            
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
                                 <input
@@ -96,8 +97,9 @@ export const Login: React.FC = () => {
                                     value={values.password}
                                 >
                                 </input>
+                                {errors.password && touched.password ?(<div className="errorText">{errors.password}</div>) : null}
                             </div>
-                            {errors.password && touched.password ?(<div>{errors.password}</div>) : null}
+                            
 
                             <div className="footer">
                                 <button type="submit" className="login-button" onClick={() => handleSubmit()}>
