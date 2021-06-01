@@ -11,11 +11,16 @@ import {Formik, FormikValues} from "formik";
 import {TextField} from "@material-ui/core";
 import {Review} from "../models/Review";
 import {Recomandation} from "../models/Recomandation";
-import PreviewRecomandation from "./Preview";
+import Comments from "./Comments";
 
 const useStyles = makeStyles({
     root: {
-        minWidth: 275,
+        width: '75%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: '15px',
+        flexDirection: 'column',
     },
     bullet: {
         display: 'inline-block',
@@ -88,9 +93,14 @@ const DetailRecomandation: React.FC = () => {
     },[])
 
     const List = () => (
-        <ul>
+        <ul style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column'
+        }}>
             {(list || []).map(item => (
-                <PreviewRecomandation title={item.user.login} content={item.content}/>
+                <Comments title={item.user.login} content={item.content}/>
             ))}
         </ul>
     );
@@ -110,6 +120,7 @@ const DetailRecomandation: React.FC = () => {
             </CardContent>
 
             <List/>
+
             <Formik
             initialValues={initialValues}
             onSubmit={(values) => {

@@ -15,7 +15,7 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
         margin: '15px',
-        flexDirection: 'column',
+        boxShadow: 'none',
     },
     bullet: {
         display: 'inline-block',
@@ -35,11 +35,16 @@ type RecomandationProps = {
     content: string,
 };
 
-const PreviewRecomandation: React.FC<RecomandationProps> = ({title, content}) => {
+const Comments: React.FC<RecomandationProps> = ({title, content}) => {
     const classes = useStyles();
 
     return (
-        <Card className={classes.root}>
+        <Card className={classes.root} style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column'
+        }}>
             <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                     {title}
@@ -48,15 +53,8 @@ const PreviewRecomandation: React.FC<RecomandationProps> = ({title, content}) =>
                     {content}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Link
-                    to={{pathname: "/recommandation"}}
-                >
-                    <Button onClick={() => console.log("click")} size="small">See Details</Button>
-                </Link>
-            </CardActions>
         </Card>
     );
 }
 
-export default PreviewRecomandation;
+export default Comments;

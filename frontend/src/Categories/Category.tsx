@@ -5,13 +5,12 @@ import ApiService from "../services/ApiService";
 import {AuthContext} from "../contexts/AuthContext";
 
 
-
 const Category: React.FC = () => {
     const {state} = useContext(AuthContext);
     const [list, setList] = useState<Recomandation[]>([]);
 
     const fetchRecomandations = async () => {
-        await ApiService.get<Recomandation[]>('/recomendations?', state).then((data) =>  setList(data))
+        await ApiService.get<Recomandation[]>('/recomendations?', state).then((data) => setList(data))
     }
 
     useEffect(() => {
@@ -20,7 +19,17 @@ const Category: React.FC = () => {
     }, [])
 
     const List = () => (
-        <ul>
+        <ul style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            paddingTop: '50px',
+        }}>
+            <p style={{
+                color: 'white',
+                fontSize: 24,
+            }}>Recommendations</p>
             {(list || []).map(item => (
                 <PreviewRecomandation title={item.title} content={item.content}/>
             ))}

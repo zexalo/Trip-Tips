@@ -1,16 +1,16 @@
 import React, {useReducer} from "react";
 import './App.css';
-import Slider from './categories/Menu_selection.js';
+import Slider from './Categories/Menu_selection.js';
 import { LogOut, LoginAndRegisterContainer} from "./accueil/loginAndRegister/index";
-import Profil  from "./accueil/profil/profil"
 import { AuthContext } from "./contexts/AuthContext";
 import {authReducer} from "./hooks/reducers/authReducer";
 import {Token} from "./models/Token";
 import {User} from "./models/User";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import DetailRecomandation from "./Recommendation/Detail";
-import SideBar from './navbar/SideBar'
+import SideBar from './Navbar/SideBar'
 import Profil from "./accueil/profil/profil";
+import Category from "./Categories/Category";
 
 const App: React.FC = () => {
     const [state, dispatch] = useReducer(authReducer, {user: {} as User, token: {} as Token});
