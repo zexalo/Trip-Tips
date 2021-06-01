@@ -18,16 +18,25 @@ export default function EditMyPassword(props) {
     let history = useHistory();
 
     const handleEditPassword = async (values) => {
-        console.log(values);
+        
+        const valuesToSend = {
+            currentPassword: values.currentPassword,
+            newPassword: values.newPassword
+        }
+
         /*
-        await ApiService.post('/account', values, state)
+        console.log(valuesToSend);
+        console.log(state);
+        */
+       
+        await ApiService.post('/account/change-password', valuesToSend, state)
             .then(() => {
                 AuthService.logout()(dispatch).then(() => {history.push('/home')})
             })
             .catch((e) => {
                 console.log(e);
             });
-        */
+
     };
 
     const handleEditPasswordError = (error) => {
