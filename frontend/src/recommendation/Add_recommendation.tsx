@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import logoTripTips from "../images/logoTripTips.png";
 import AuthService from "../services/AuthService";
 import * as Yup from "yup";
@@ -8,6 +8,7 @@ import ApiService, { HTTPRequestError } from "../services/ApiService";
 import { User } from "../models/User";
 import { AuthActionType } from "../models/Auth";
 import { useHistory } from "react-router-dom";
+import {Country} from '../models/Country'
 
 
 type addRecoFormValues = {
@@ -16,8 +17,8 @@ type addRecoFormValues = {
     price: number,
     city: string,
     globalRating: number,
-    category: {id: number},
-    country: {id: number},
+    category: {id: string},
+    country: {id: string},
     
 
 }
@@ -37,9 +38,23 @@ function Add_recommendation() {
     const {state} = useContext(AuthContext);
     const [isLoading, setLoading] = useState<boolean>(false);
     let history = useHistory();
+    const [list, setList] = useState<Country[]>([]);
     
 
-  
+    
+
+    const fetchCountries = async () => {
+        await ApiService.get<Country[]>('/countries', state).then((data) =>  setList(data))
+    }
+
+    useEffect(()=>{
+        fetchCountries()
+            .then(() => (console.log(list)));
+
+        
+    },[])
+       
+
     
     
     
@@ -51,6 +66,8 @@ function Add_recommendation() {
                 .catch((e: HTTPRequestError) => {
                     console.log(e);
                 });
+            alert("Recommendation bien recu !")
+            history.push("/monProfil")
         } catch (e) {
             console.log('e', e)
         }
@@ -69,8 +86,8 @@ function Add_recommendation() {
         price: 0.00,
         city: '',
         globalRating: 0,
-        category: {id: 1},
-        country:{id: 1},
+        category: {id: "1"},
+        country:{id: "1"},
     
     } 
 
@@ -156,12 +173,32 @@ function Add_recommendation() {
                             {errors.globalRating && touched.globalRating ?(<div className="errorText">{errors.globalRating}</div>) : null}
 
                             <div className="form-group">
+                                <label htmlFor="country">Countries</label>
+                                <select
+                                   
+                                    name="country"
+                                    placeholder="country"
+                                    onChange={handleChange('country.id')}
+                                    value={values.country.id}
+                                
+                                >
+                                   
+                                    {(list || []).map(item => (
+                                        <option value={item.id}>{item.name}</option>
+                                    ))}
+
+                                </select>
+                               
+                            </div>
+                            {errors.country && touched.country ?(<div className="errorText">{errors.country}</div>) : null}
+
+                            <div className="form-group">
                                 <label htmlFor="category">Catégories</label>
                                 <select
                                    
                                     name="category"
                                     placeholder="category"
-                                    onChange={handleChange('category')}
+                                    onChange={handleChange('category.id')}
                                     value={values.category.id}
                                 >
                                         <option value={1}>Logement</option>

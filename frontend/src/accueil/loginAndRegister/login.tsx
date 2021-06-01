@@ -16,7 +16,7 @@ type LoginFormValues = {
 
 const loginSchema = Yup.object().shape({
     email: Yup.string().email('Adresse mail invalide').required('Champs requis'),
-    password: Yup.string().min(8, 'Le mot de passe doit contenir au moins 8 caractères').matches(/^((?=.*[a-z])(?=.*[A-Z])(?=.*\d))[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/, 'Le mot de passe doit contenir au moins 8 caractères, une minuscule et une majuscule'),
+    password: Yup.string().required("Mot de passe invalide")
 })
 
 export const Login: React.FC = () => {
