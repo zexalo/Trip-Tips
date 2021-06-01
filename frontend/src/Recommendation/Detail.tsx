@@ -53,13 +53,13 @@ const DetailRecomandation: React.FC = () => {
     const [list, setList] = useState<Review[]>([]);
 
     const fetchReviews = async () => {
-        await ApiService.get<Review[]>('/reviews?', state).then((data) =>  setList(data))
+        await ApiService.get<Review[]>('/reviews?', state).then((data) => setList(data))
     }
 
     const postReview = async (values: FormikValues) => {
         try {
             console.log(values)
-            await ApiService.post('/reviews', values,state)
+            await ApiService.post('/reviews', values, state)
                 .then(() => fetchReviews())
                 .catch((e: HTTPRequestError) => {
                     console.log(e);
@@ -81,7 +81,7 @@ const DetailRecomandation: React.FC = () => {
         createdAt: "2021-05-24T12:55:58.355Z"
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchReviews()
             .then(() => (console.log(list)));
 
@@ -89,7 +89,7 @@ const DetailRecomandation: React.FC = () => {
         // const now = new Date().toLocaleString();
         // const date = new Date(now);
         // console.log(date);
-    },[])
+    }, [])
 
     const List = () => (
         <ul style={{
@@ -148,7 +148,7 @@ const DetailRecomandation: React.FC = () => {
             </Card>
         </div>
 
-    )
-}
+    );
+};
 
 export default DetailRecomandation;
