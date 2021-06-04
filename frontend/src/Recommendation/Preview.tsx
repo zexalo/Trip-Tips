@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {Recomandation} from "../models/Recomandation";
 import {Link} from "react-router-dom";
+import './recommendation.css';
 
 const useStyles = makeStyles({
     root: {
@@ -16,6 +17,7 @@ const useStyles = makeStyles({
         alignItems: 'center',
         margin: '15px',
         flexDirection: 'column',
+        position: 'relative',
     },
     bullet: {
         display: 'inline-block',
@@ -48,6 +50,18 @@ const PreviewRecomandation: React.FC<RecomandationProps> = ({title, content}) =>
                     {content}
                 </Typography>
             </CardContent>
+            <div style={{
+                position: 'absolute',
+                right: '30px',
+                top: '20px',
+                transform: 'scale(0.2, 0.2)',
+            }}>
+                <input type="checkbox" id="favCheckbox" />
+                <label htmlFor="favCheckbox" id="favLabel">
+                    <div id="tick_mark"/>
+                </label>
+            </div>
+            <input type="checkbox"/>
             <CardActions>
                 <Link
                     to={{pathname: "/recommandation"}}

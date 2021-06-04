@@ -7,11 +7,6 @@ import './sidebar.scss'
 import {SidebarDataOn, SidebarDataOut} from './SideBarData.jsx';
 import {AuthContext} from "../contexts/AuthContext";
 
-
-
-
-
-
 function SideBar() {
 
   const [sidebar, setSidebar] = useState(false)
@@ -29,7 +24,6 @@ function SideBar() {
   }, [state.user?.email]);
   
 
-
     return (
       <div>
       <div className="navbar">
@@ -40,26 +34,19 @@ function SideBar() {
       </div>
       <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
         <ul className='nav-menu-items'>
-        
-        
 
-        
           {data.map((item, index) =>{
 
-            
-            
             return (
               <li key={index} className={item.cName}>
-                <Link to={item.path}>
+                <Link to={item.path} onClick={showSidebar}>
                   {item.icon}
                   <span>{item.title}</span>
                 </Link>
                 
               </li>
             )
-          
           })}
-
          <hr/>
       
           <input  type="search" className="form-control rounded" placeholder="Pays" aria-label="Search"
@@ -69,16 +56,12 @@ function SideBar() {
         <hr/>
         <img src={logoTripTips} width='150px' height='75px'/>         
 
-        </ul> 
-        
-        
+        </ul>
       </nav>
       
       </div>
         
     )
 }
-
-
 
 export default SideBar
