@@ -3,11 +3,15 @@ import {AuthContext} from "../../contexts/AuthContext";
 import { DropdownButton, Dropdown } from 'react-bootstrap';
 import "./styleProfil.scss";
 import EditMyProfil from './editMyProfil';
+import EditProfilPicture from "./editProfilPicture";
+import DefaultImage from "../../images/profil/user.png";
 
 function Profil() {
     const { state } = useContext(AuthContext);
 
     const [isEditProfileVisible, setisEditProfileVisible] = useState(false);
+
+    const [isEditProfilePictureVisible, setisEditProfilePictureVisible] = useState(false);
 
     const showEditProfileWindow = () => {
         setisEditProfileVisible (true);
@@ -17,16 +21,24 @@ function Profil() {
         setisEditProfileVisible (false);
     }
 
-    useEffect( () => {
-    }, [isEditProfileVisible]);
+    const showEditProfilePictureWindow = () => {
+        setisEditProfilePictureVisible (true);
+    }
 
+    const hideEditProfilePictureWindow = () => {
+        setisEditProfilePictureVisible (false);
+    }
+
+    useEffect( () => {
+    }, [isEditProfileVisible, isEditProfilePictureVisible]);
 
     return (
         <div className="myProfilContainer">
             <div className="myProfil">
 
                 <div className="profilImageContainer">
-                    <div className="profilImage">
+                    <div className="profilImage" onClick={showEditProfilePictureWindow}>
+                        <img src={DefaultImage} alt="profile picture"></img>
                     </div>
                 </div>
 
@@ -89,9 +101,12 @@ function Profil() {
             isEditProfileVisible = {isEditProfileVisible}
             hideEditProfileWindow = {hideEditProfileWindow}
             />
+
+            <EditProfilPicture
+            isEditProfilePictureVisible = {isEditProfilePictureVisible}
+            hideEditProfilePictureWindow = {hideEditProfilePictureWindow}
+            />
         </div>
-
-
     )
 }
 export default Profil;
