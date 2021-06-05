@@ -31,7 +31,7 @@ const Category: React.FC = () => {
                 fontSize: 24,
             }}>Recommendations</p>
             {(list || []).map(item => (
-                <PreviewRecomandation title={item.title} content={item.content}/>
+                <PreviewRecomandation title={item.title} content={item.content} id={item.id}/>
             ))}
         </ul>
     );

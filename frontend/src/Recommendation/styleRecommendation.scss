@@ -1,0 +1,21 @@
+.title{
+    font-size: 2em;
+}
+
+.favoriteButtonContainer{
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    border: none;
+    background-color: white;
+    .favoriteButton{
+        border: none;
+        background-color: white;
+
+        svg{
+            stroke: red;
+            fill: white;
+        }
+    }
+
+}
