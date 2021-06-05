@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import ApiService from "../services/ApiService";
 import {AuthContext} from "../contexts/AuthContext";
-import PreviewRecomandation from "../recommendation/Preview";
+import PreviewRecomandation from "../Recommendation/Preview";
 
 
 
