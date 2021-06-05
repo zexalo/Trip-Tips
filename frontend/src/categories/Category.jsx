@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
-import PreviewRecomandation from "../Recommendation/Preview";
-import { Recomandation } from "../models/Recomandation";
+import React, {useContext, useEffect, useState} from "react";
 import ApiService from "../services/ApiService";
-import { AuthContext } from "../contexts/AuthContext";
+import {AuthContext} from "../contexts/AuthContext";
+import PreviewRecomandation from "../recommendation/Preview";
 
 
-const Category: React.FC = () => {
-    const { state } = useContext(AuthContext);
-    const [list, setList] = useState<Recomandation[]>([]);
+
+const Category = (props) => {
+    const {state} = useContext(AuthContext);
+    const [list, setList] = useState([]);
 
     /*
     const listIDFavorite = ApiService.get('/favorites', state)
@@ -18,10 +18,11 @@ const Category: React.FC = () => {
     */
 
     const fetchRecomandations = async () => {
-        await ApiService.get<Recomandation[]>('/recomendations?', state).then((data) => setList(data))
+        await ApiService.get('/recomendations?', state).then((data) =>  setList(data))
     }
 
     useEffect(() => {
+        console.log(props?.location?.state?.index)
         fetchRecomandations()
             .then(() => (console.log(list)));
     }, [])

@@ -59,7 +59,7 @@ const DetailRecomandation: React.FC = () => {
     const postReview = async (values: FormikValues) => {
         try {
             console.log(values)
-            await ApiService.post('/reviews', values, state)
+            await ApiService.post('/reviews', values,state)
                 .then(() => fetchReviews())
                 .catch((e: HTTPRequestError) => {
                     console.log(e);
@@ -89,7 +89,7 @@ const DetailRecomandation: React.FC = () => {
         // const now = new Date().toLocaleString();
         // const date = new Date(now);
         // console.log(date);
-    }, [])
+    },[])
 
     const List = () => (
         <ul style={{

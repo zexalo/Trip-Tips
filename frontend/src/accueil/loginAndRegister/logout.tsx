@@ -10,9 +10,7 @@ export const LogOut: React.FC = () => {
     let history = useHistory();
 
     const handleLogout = () => {
-        
-        AuthService.logout()(dispatch).then(() => {history.push('/home')})
-
+        AuthService.logout()(dispatch).then(() => {history.push('/login_register')})
     };
 
     useEffect(() => {handleLogout()}, []);
