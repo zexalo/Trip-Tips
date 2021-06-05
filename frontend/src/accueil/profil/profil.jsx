@@ -5,11 +5,13 @@ import "./styleProfil.scss";
 import EditMyProfil from './editMyProfil';
 import EditProfilPicture from "./editProfilPicture";
 import DefaultImage from "../../images/profil/user.png";
+import EditMyPassword from './editMyPassword';
 
 function Profil() {
     const { state } = useContext(AuthContext);
 
     const [isEditProfileVisible, setisEditProfileVisible] = useState(false);
+    const [isEditPasswordVisible, setisEditPasswordVisible] = useState(false);
 
     const [isEditProfilePictureVisible, setisEditProfilePictureVisible] = useState(false);
 
@@ -29,8 +31,17 @@ function Profil() {
         setisEditProfilePictureVisible (false);
     }
 
+    const showEditPasswordWindow = () => {
+        setisEditPasswordVisible (true);
+    }
+
+    const hideEditPasswordWindow = () => {
+        setisEditPasswordVisible (false);
+    }
+
     useEffect( () => {
-    }, [isEditProfileVisible, isEditProfilePictureVisible]);
+    }, [isEditProfileVisible, isEditPasswordVisible, isEditProfilePictureVisible]);
+
 
     return (
         <div className="myProfilContainer">
@@ -50,7 +61,7 @@ function Profil() {
 
                 <div className="personnalInformationsMainContainer">
                     <div className="personnalInformationTitleAndButton">
-                        <h2>Your personnal informations {isEditProfileVisible} </h2>
+                        <h2>Your personnal informations</h2>
                         <button onClick={showEditProfileWindow}>
                             <p>edit your profil</p>
                         </button>
@@ -60,6 +71,12 @@ function Profil() {
                     <div className="personnalInformationsContainer">
                         <div className="personnalInformation">Name : {state.user?.firstName} {state.user?.lastName}</div>
                         <div className="personnalInformation">Email : {state.user?.email}</div>
+                    </div>
+
+                    <div className="buttonEditPasswordContainer">
+                        <button className="buttonEditPassword" onClick={showEditPasswordWindow}>
+                            <p>modify your password</p>
+                        </button>
                     </div>
                 </div>
 
@@ -72,17 +89,6 @@ function Profil() {
                                     <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                                 </DropdownButton>
 
-                                <DropdownButton className="dropDownButton" title="sort for ..">
-                                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                                </DropdownButton>
-
-                                <DropdownButton className="dropDownButton" title="sort by blabla">
-                                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                                </DropdownButton>
                     </div>
 
                     <div className="favoriteRecommandationsMainContainer">
@@ -100,6 +106,11 @@ function Profil() {
             <EditMyProfil
             isEditProfileVisible = {isEditProfileVisible}
             hideEditProfileWindow = {hideEditProfileWindow}
+            />
+
+            <EditMyPassword
+            isEditPasswordVisible = {isEditPasswordVisible}
+            hideEditPasswordWindow = {hideEditPasswordWindow}
             />
 
             <EditProfilPicture

@@ -8,6 +8,7 @@ import NotFound from "../NotFound";
 import {LoginAndRegisterContainer, LogOut} from "../accueil/loginAndRegister";
 import React, {useContext} from "react";
 import {AuthContext} from "../contexts/AuthContext";
+import WorldMapPage from "../worldMap/WorldMapPage";
 
 const LoggedInRouter = () => {
     return (
@@ -17,6 +18,7 @@ const LoggedInRouter = () => {
             <Route path='/recommandation' component={DetailRecomandation}/>
             <Route path='/monProfil' component={Profil}/>
             <Route path='/log_out' component={LogOut}/>
+            <Route path='/home' component={WorldMapPage}/>
             <Route component={NotFound}/>
         </Switch>
     )

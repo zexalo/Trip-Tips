@@ -34,6 +34,7 @@ $TRIP_TIPS_DARK_BLUE_RGBA: rgba(34, 41, 60,0.96);
             align-items: center;
             margin-top: 1em;
             margin-bottom: 1em;
+            box-shadow: 1px 1px 4px 1px;
 
             .profilImage{
                 border-radius: 50%;
@@ -74,6 +75,7 @@ $TRIP_TIPS_DARK_BLUE_RGBA: rgba(34, 41, 60,0.96);
             width: 100%;
             display: flex;
             flex-direction: column;
+
             .personnalInformationTitleAndButton{
                 padding-bottom: 20px;
                 display: flex;
@@ -107,6 +109,38 @@ $TRIP_TIPS_DARK_BLUE_RGBA: rgba(34, 41, 60,0.96);
                     &:focus {
                         outline: none;
                       }
+                    
+                    p{
+                        margin: 0px;
+                        padding:0px;
+                    }
+                } 
+            }
+            
+            .buttonEditPasswordContainer{
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                padding-top: 1em;
+                
+
+                .buttonEditPassword{
+                    display: flex;
+                    font-size: 0.9em;
+                    padding: 5px 15px;
+                    border: 0;
+                    background-color: $TRIP_TIPS_BLUE;
+                    color: #fff;
+                    border-radius: 5px;
+                    margin-right: 20px;
+
+                    &:hover {
+                        transition: 100ms;
+                        background-color: #2386c8;
+                    }
+                    &:focus {
+                        outline: none;
+                    }
                     
                     p{
                         margin: 0px;
@@ -275,7 +309,7 @@ $TRIP_TIPS_DARK_BLUE_RGBA: rgba(34, 41, 60,0.96);
 
                     }
 
-                    span{
+                    .errorText{
                     align-self: center;
                     color: rgba(248, 16, 16, 0.836);
                     font-size: 0.8em;
