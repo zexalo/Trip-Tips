@@ -1,6 +1,23 @@
-.title{
-    font-size: 2em;
+.recommandationPreview{
+    .title{
+        font-size: 2em;
+    }
+    
+    .content{
+        font-size: 1.3em;
+        color : rgba(0, 0, 0, 0.5);
+        max-height: 50px;
+        overflow: scroll;
+    }
+    ::-webkit-scrollbar {
+        display: none;
+   }
+
+   span{
+       margin:0px;
+   }
 }
+
 
 .favoriteButtonContainer{
     position: absolute;
@@ -12,9 +29,27 @@
         border: none;
         background-color: white;
 
-        svg{
+        .isNotFavorite{
             stroke: red;
+            stroke-width: 2;
             fill: white;
+            overflow: visible;
+
+            &:hover{
+                stroke-width: 3;
+                transition-duration:100ms;
+            }
+        }
+
+        .isFavorite{
+            stroke: red;
+            stroke-width: 2;
+            fill: red;
+            overflow: visible;
+            &:hover{
+                stroke-width: 3;
+                transition-duration:100ms;
+            }
         }
     }
 

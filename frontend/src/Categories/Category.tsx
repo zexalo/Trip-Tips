@@ -1,13 +1,21 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PreviewRecomandation from "../Recommendation/Preview";
-import {Recomandation} from "../models/Recomandation";
+import { Recomandation } from "../models/Recomandation";
 import ApiService from "../services/ApiService";
-import {AuthContext} from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext";
 
 
 const Category: React.FC = () => {
-    const {state} = useContext(AuthContext);
+    const { state } = useContext(AuthContext);
     const [list, setList] = useState<Recomandation[]>([]);
+
+    /*
+    const listIDFavorite = ApiService.get('/favorites', state)
+        .then((data: Recomandation[]) => {
+            data.map(item : Recomandation => item.id);
+        }
+        );
+    */
 
     const fetchRecomandations = async () => {
         await ApiService.get<Recomandation[]>('/recomendations?', state).then((data) => setList(data))
@@ -31,14 +39,21 @@ const Category: React.FC = () => {
                 fontSize: 24,
             }}>Recommendations</p>
             {(list || []).map(item => (
-                <PreviewRecomandation title={item.title} content={item.content} id={item.id}/>
+                /*
+                //Check si l'id est dans la liste des id favoris
+                let isUserFavorite = false;
+                if (listIDFavorite.includes(item.id)){
+                isUserFavorite = true;
+                }
+                */
+            <PreviewRecomandation title={item.title} content={item.content} id={item.id}/>
             ))}
         </ul>
     );
 
     return (
         <div>
-            <List/>
+            <List />
         </div>
     );
 };
