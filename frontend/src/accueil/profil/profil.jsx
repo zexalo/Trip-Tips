@@ -1,5 +1,7 @@
 import React, {useContext, useState, useEffect} from "react";
 import {AuthContext} from "../../contexts/AuthContext";
+import ApiService from "../../services/ApiService";
+import PreviewRecomandationInProfile from "../../Recommendation/PreviewInProfile";
 import { DropdownButton, Dropdown } from 'react-bootstrap';
 import "./styleProfil.scss";
 import EditMyProfil from './editMyProfil';
@@ -28,7 +30,25 @@ function Profil() {
     }
 
     useEffect( () => {
+        fetchFavoriteRecommandation()
     }, [isEditProfileVisible, isEditPasswordVisible]);
+
+
+    const [listFav, setListFav] = useState([]);
+
+    const fetchFavoriteRecommandation = async () => { 
+        await ApiService.get('/favorites?', state).then((data) =>  setListFav(data))
+    }
+
+    const ListFavorite = () => (
+        <div className="favoriteRecommandationsMainContainer">
+                {(listFav || []).map(item => (
+                    <div className="favoriteRecommandationContainer">
+                        <PreviewRecomandationInProfile title={item.title}/>
+                    </div >
+                ))}
+        </div>
+    );
 
 
     return (
@@ -78,16 +98,7 @@ function Profil() {
 
                     </div>
 
-                    <div className="favoriteRecommandationsMainContainer">
-                        <div className="favoriteRecommandationContainer"></div>
-                        <div className="favoriteRecommandationContainer"></div>
-                        <div className="favoriteRecommandationContainer"></div>
-                        <div className="favoriteRecommandationContainer"></div>
-                        <div className="favoriteRecommandationContainer"></div>
-                        <div className="favoriteRecommandationContainer"></div>
-                        <div className="favoriteRecommandationContainer"></div>
-                        <div className="favoriteRecommandationContainer"></div>
-                    </div>
+                    <ListFavorite/>
                 </div>
             </div>
             <EditMyProfil
