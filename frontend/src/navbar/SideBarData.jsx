@@ -17,7 +17,40 @@ export let SidebarDataOn = [
     
 ]
 
-export let SidebarDataOut = [
+export let SidebarDataOutUser = [
+
+    {
+        title: 'Home',
+        path: '/home',
+        icon: <FaIcons.FaHome/>,
+        cName: 'nav-text mt-5',
+
+    },
+
+    {
+        title: 'Profil',
+        path: '/monProfil',
+        icon: <FaIcons.Fa500Px/>,
+        cName: 'nav-text',
+    },
+
+    {
+        title: 'categories',
+        path: '/categories',
+        icon: <FaIcons.FaAdobe/>,
+        cName: 'nav-text',
+    },
+    
+
+    {
+        title: 'LogOut',
+        path: '/log_out',
+        icon: <FaIcons.FaBlog/>,
+        cName: 'nav-text',
+    },
+]
+
+export let SidebarDataOutOwner = [
 
     {
         title: 'Home',
