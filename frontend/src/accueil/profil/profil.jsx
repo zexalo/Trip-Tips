@@ -9,10 +9,13 @@ import EditMyPassword from './editMyPassword';
 
 function Profil() {
     const { state } = useContext(AuthContext);
+    let display = <h2></h2>;
 
     const [isEditProfileVisible, setisEditProfileVisible] = useState(false);
     const [isEditPasswordVisible, setisEditPasswordVisible] = useState(false);
 
+ 
+    
 
     const showEditProfileWindow = () => {
         setisEditProfileVisible (true);
@@ -33,7 +36,7 @@ function Profil() {
     useEffect( () => {
         fetchFavoriteRecommandation()
     }, [isEditProfileVisible, isEditPasswordVisible]);
-
+    
 
     const [listFav, setListFav] = useState([]);
 
@@ -50,6 +53,12 @@ function Profil() {
                 ))}
         </div>
     );
+
+    if(state.user?.authorities[0]=="ROLE_OWNER"){
+        display = <h2>Your posted recomendations</h2>;
+    }else{
+        display = <h2>Your favorite recommandations</h2>;
+    }
 
 
     return (
@@ -69,6 +78,7 @@ function Profil() {
 
                 <div className="personnalInformationsMainContainer">
                     <div className="personnalInformationTitleAndButton">
+                     
                         <h2>Your personnal informations</h2>
                         <button onClick={showEditProfileWindow}>
                             <p>edit your profil</p>
@@ -90,7 +100,7 @@ function Profil() {
 
                 <div className="favoriteRecommandationsMainContainer">
                     
-                    <h2>Your favorite recommandations</h2>
+                    {display}
                     <div className="dropDownButtonsContainer">
                                 <DropdownButton className="dropDownButton" title="sort with ..  ">
                                     <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
