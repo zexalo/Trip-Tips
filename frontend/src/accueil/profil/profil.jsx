@@ -1,7 +1,7 @@
 import React, {useContext, useState, useEffect} from "react";
 import {AuthContext} from "../../contexts/AuthContext";
 import ApiService from "../../services/ApiService";
-import PreviewRecomandationInProfile from "../../Recommendation/PreviewInProfile";
+import PreviewRecomandationInProfile from "../../recommendation/PreviewInProfile";
 import { DropdownButton, Dropdown } from 'react-bootstrap';
 import "./styleProfil.scss";
 import EditMyProfil from './editMyProfil';
@@ -12,6 +12,7 @@ function Profil() {
 
     const [isEditProfileVisible, setisEditProfileVisible] = useState(false);
     const [isEditPasswordVisible, setisEditPasswordVisible] = useState(false);
+
 
     const showEditProfileWindow = () => {
         setisEditProfileVisible (true);
@@ -88,6 +89,7 @@ function Profil() {
                 </div>
 
                 <div className="favoriteRecommandationsMainContainer">
+                    
                     <h2>Your favorite recommandations</h2>
                     <div className="dropDownButtonsContainer">
                                 <DropdownButton className="dropDownButton" title="sort with ..  ">

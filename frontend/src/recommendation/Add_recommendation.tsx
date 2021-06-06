@@ -18,7 +18,7 @@ type addRecoFormValues = {
     city: string,
     globalRating: number,
     category: {id: string},
-    country: {id: string},
+    country: {name: string},
     
 
 }
@@ -62,13 +62,15 @@ function Add_recommendation() {
     const postReccomandation = async (values: FormikValues) => {
         try {
             console.log(values)
-            await ApiService.post('/recomendations', values,state)
+            await ApiService.post('/owner-recomendations', values,state)
                 .catch((e: HTTPRequestError) => {
                     console.log(e);
+                    alert(e)
                 });
+            
+        } catch (e) {
             alert("Recommendation bien recu !")
             history.push("/monProfil")
-        } catch (e) {
             console.log('e', e)
         }
 
@@ -87,7 +89,7 @@ function Add_recommendation() {
         city: '',
         globalRating: 0,
         category: {id: "1"},
-        country:{id: "1"},
+        country:{name: "Fresh"},
     
     } 
 
@@ -178,13 +180,13 @@ function Add_recommendation() {
                                    
                                     name="country"
                                     placeholder="country"
-                                    onChange={handleChange('country.id')}
-                                    value={values.country.id}
+                                    onChange={handleChange('country.name')}
+                                    value={values.country.name}
                                 
                                 >
                                    
                                     {(list || []).map(item => (
-                                        <option value={item.id}>{item.name}</option>
+                                        <option value={item.name}>{item.name}</option>
                                     ))}
 
                                 </select>
