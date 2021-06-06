@@ -8,14 +8,12 @@ import PreviewRecomandation from "../recommendation/Preview";
 const Category = (props) => {
     const {state} = useContext(AuthContext);
     const [list, setList] = useState([]);
-
-    /*
-    const listIDFavorite = ApiService.get('/favorites', state)
-        .then((data: Recomandation[]) => {
-            data.map(item : Recomandation => item.id);
-        }
-        );
-    */
+    const[listIdRecomandationFav, setListIdRecomandationFav] = useState([]);
+    
+    const fetchFavoriteRecommandationID = async () => { 
+        await ApiService.get('/favorites', state).then( (data) =>  setListIdRecomandationFav(data.map( (item) => item.id ) ) )
+        //await ApiService.get('/favorites', state).then( (data) =>  setListIdRecomandationFav(data))
+    }
 
     const fetchRecomandations = async () => {
         await ApiService.get('/recomendations?', state).then((data) =>  setList(data))
@@ -23,6 +21,8 @@ const Category = (props) => {
 
     useEffect(() => {
         console.log(props?.location?.state?.index)
+        fetchFavoriteRecommandationID()
+            .then(() => (console.log(listIdRecomandationFav)));
         fetchRecomandations()
             .then(() => (console.log(list)));
     }, [])
@@ -41,13 +41,12 @@ const Category = (props) => {
             }}>Recommendations</p>
             {(list || []).map(item => (
                 /*
-                //Check si l'id est dans la liste des id favoris
-                let isUserFavorite = false;
-                if (listIDFavorite.includes(item.id)){
-                isUserFavorite = true;
-                }
+                console.log(listIdRecomandationFav),
+                console.log(item.id),
+                console.log(listIdRecomandationFav.includes(item.id)),
                 */
-            <PreviewRecomandation title={item.title} content={item.content} id={item.id}/>
+                
+            <PreviewRecomandation title={item.title} content={item.content} id={item.id} isInUserFavorite={listIdRecomandationFav.includes(item.id)}/>
             ))}
         </ul>
     );

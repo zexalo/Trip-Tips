@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -34,17 +34,21 @@ type RecomandationProps = {
     title: string,
     content: string,
     id: number,
+    isInUserFavorite: boolean,
 };
 
 
-const PreviewRecomandation: React.FC<RecomandationProps> = ({title, content, id}) => {
+const PreviewRecomandation: React.FC<RecomandationProps> = ({title, content, id, isInUserFavorite}) => {
     const classes = useStyles();
     const {state, dispatch} = useContext(AuthContext);
+    const [isInUserFavoriteLocal, setIsInUserFavoriteLocal] = useState<boolean>(isInUserFavorite);
 
     const toggleFavorite = (id: number) => {
         // console.log(id);
-
+        setIsInUserFavoriteLocal(!isInUserFavoriteLocal)
         ApiService.put('/favorite/' + id, {}, state)
+
+        
         /*
             .then((data) => {
                 console.log(data);
@@ -69,7 +73,7 @@ const PreviewRecomandation: React.FC<RecomandationProps> = ({title, content, id}
             </CardContent>
             <div className="favoriteButtonContainer">
                 <button onClick={() => toggleFavorite(id)} className="favoriteButton">
-                    <svg className="isFavorite" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    <svg className={isInUserFavoriteLocal ? "isFavorite" : "isNotFavorite"} xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                          viewBox="0 0 24 24">
                         <path
                             d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/>
