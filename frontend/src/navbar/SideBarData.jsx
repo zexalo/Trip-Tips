@@ -5,10 +5,7 @@ export let SidebarDataOn = [
 
 
     {
-        title: 'Home',
-        path: '/home',
-        icon: <FaIcons.FaHome/>,
-        cName: 'nav-text mt-5',
+
     },
 
     {
