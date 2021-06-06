@@ -40,13 +40,14 @@ const Category = (props) => {
                 fontSize: 24,
             }}>Recommendations</p>
             {(list || []).map(item => (
+                console.log(item),
                 /*
                 console.log(listIdRecomandationFav),
                 console.log(item.id),
                 console.log(listIdRecomandationFav.includes(item.id)),
                 */
                 
-            <PreviewRecomandation title={item.title} content={item.content} id={item.id} isInUserFavorite={listIdRecomandationFav.includes(item.id)}/>
+            <PreviewRecomandation title={item.title} content={item.content} id={item.id} isInUserFavorite={listIdRecomandationFav.includes(item.id)} globalRating={item.globalRating}/>
             ))}
         </ul>
     );
