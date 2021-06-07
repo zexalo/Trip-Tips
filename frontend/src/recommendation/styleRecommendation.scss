@@ -1,3 +1,9 @@
+//constantes
+
+$TIME_TRANSITION: 100ms;
+$TRIP_TIPS_BLUE: #1652ab;
+
+// for Preview
 .recommandationPreview{
     .title{
         font-size: 2em;
@@ -71,8 +77,285 @@
         }
 
         .unfilledStar{
-            fill: white;
+            fill: rgb(250, 250, 250);
             stroke: black;
+        }
+    }
+}
+
+
+//for Detail 
+
+.backgroundImageContainer{
+    height: 300px;
+    width: 100%;
+
+    img{
+        object-fit: contain;
+        max-height: 100%;
+        max-width: 100%;
+        min-height: 80%;
+        
+    }
+}
+
+.cardContent{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 2em 1em !important;
+    position: relative;
+
+    h1{
+        font-size: 2.5em;
+        margin-bottom: 1em;
+    }
+
+    .favoriteButtonContainer{
+        position: absolute;
+        right: 30px;
+        top: 30px;
+        border: none;
+        background-color: white;
+        .favoriteButton{
+            border: none;
+            background-color: white;
+    
+            .isNotFavorite{
+                stroke: red;
+                stroke-width: 2;
+                fill: white;
+                overflow: visible;
+    
+                &:hover{
+                    stroke-width: 3;
+                    transition-duration:100ms;
+                }
+            }
+    
+            .isFavorite{
+                stroke: red;
+                stroke-width: 2;
+                fill: red;
+                overflow: visible;
+                &:hover{
+                    stroke-width: 3;
+                    transition-duration:100ms;
+                }
+            }
+        }
+    }
+    
+    .recommandationAllContentContainer{
+        display: flex;
+        flex-direction: row;
+        
+        .leftContainer{
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+
+            .contentContainer{
+                h3{
+                    padding: 5px;
+                }
+                
+                p{
+                    font-size: 1.3em;
+                    color: rgba(0, 0, 0, 0.7);
+                }
+            }
+        }
+
+        .rightContainer{
+            width: 50%;
+            height: fit-content;
+            border: 1px solid;
+            border-radius: 20px;
+            margin-left: 10px;
+
+            .locationContainer{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-self: center;
+                    padding: 5px 20px;
+
+                    h4{
+                        align-self: start;
+                    }
+
+                    .countryContainer{
+                        display: flex;
+                        flex-direction: row;
+                        width: 100%;
+                        label{
+                            width: 50%;
+                            justify-self: start;
+                        }
+
+                        .country{
+                            width: 50%;
+                        }
+                    }
+
+                    .cityContainer{
+                        display: flex;
+                        flex-direction: row;
+                        width: 100%;
+                        label{
+                            width: 50%;
+                            justify-self: start;
+                        }
+
+                        .city{
+                            width: 50%;
+                        }
+                    }
+            }
+
+            .pricesContainer{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-self: center;
+                padding: 5px 20px;
+
+                h4{
+                    align-self: start;
+                }
+
+                .priceContainer{
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+                    label{
+                        width: 50%;
+                        justify-self: start;
+                    }
+
+                    .price{
+                        width: 50%;
+                    }
+                }
+            }
+
+            .ratingsContainer{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-self: center;
+                    padding: 5px 20px;
+
+                h4{
+                    align-self: start;
+                }
+                .globalRatings{
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+
+                    label{
+                        width: 50%;
+                        justify-self: start;
+                    }
+
+                    .stars{
+                        width: 50%;
+                        .filledStar{
+                            fill: gold;
+                            stroke: black;
+                        }
+                
+                        .unfilledStar{
+                            fill: rgb(250, 250, 250);
+                            stroke: black;
+                        }
+                    }
+                }
+
+                .personnalRating{
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+
+                    label{
+                        width: 50%;
+                        justify-self: start;
+                    }
+
+                    .stars{
+                        width: 50%;
+                        .personnalFilledStar{
+                            fill: red;
+                            stroke: black;
+                        }
+    
+                        .personnalUnfilledStar{
+                            fill: rgb(250, 250, 250);
+                            stroke: black;
+                        }
+                    }
+                    
+                }
+                
+            }
+        }
+    }
+}
+
+.commentsContainer{
+    margin-top:1em;
+    margin-bottom: 1em;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 20px;
+
+    h2{
+        padding: 10px;
+    }
+
+    .addCommentContainer{
+        border: solid 4px;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+
+        h3{
+            font-size: 1.5em;
+
+        }
+
+        input{
+            height: 50px;
+            width: 50%;
+            align-self: center;
+            margin: 15px 0px;
+        }
+
+        .buttonAddComment{
+            text-align: center;
+            align-self: center;
+            padding: 5px 20px;
+            border: 0;
+            background-color: $TRIP_TIPS_BLUE;
+            color: #fff;
+            border-radius: 3px;
+            transition: all $TIME_TRANSITION ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+              background-color: #2386c8;
+            }
+            &:focus {
+              outline: none;
+            }
+            span{
+                padding: 0px;
+                margin: 0px;
+            }
         }
     }
 }

@@ -20,11 +20,11 @@ const Category = (props) => {
     }
 
     useEffect(() => {
-        console.log(props?.location?.state?.index)
+        //console.log(props?.location?.state?.index)
         fetchFavoriteRecommandationID()
-            .then(() => (console.log(listIdRecomandationFav)));
+            //.then(() => (console.log(listIdRecomandationFav)));
         fetchRecomandations()
-            .then(() => (console.log(list)));
+            //.then(() => (console.log(list)));
     }, [])
 
     const List = () => (
@@ -40,6 +40,7 @@ const Category = (props) => {
                 fontSize: 24,
             }}>Recommendations</p>
             {(list || []).map(item => (
+                
                 console.log(item),
                 /*
                 console.log(listIdRecomandationFav),
@@ -47,7 +48,7 @@ const Category = (props) => {
                 console.log(listIdRecomandationFav.includes(item.id)),
                 */
                 
-            <PreviewRecomandation title={item.title} content={item.content} id={item.id} isInUserFavorite={listIdRecomandationFav.includes(item.id)} globalRating={item.globalRating}/>
+            <PreviewRecomandation title={item.title} content={item.content} id={item.id} isInUserFavorite={listIdRecomandationFav.includes(item.id)} globalRating={item.globalRating} city={item.city} country={item.country} picture={item.picture} price={item.price}  />
             ))}
         </ul>
     );
