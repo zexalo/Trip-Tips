@@ -41,7 +41,8 @@ export const Register: React.FC = () => {
         console.log(values);
         
         AuthService.register(values.email, values.password,values.firstName,values.lastName,values.authorities).then(p => {
-            //history.push('/home')
+            alert("Inscription réussi ! Vous pouvez maintenant vous connecter.")
+            history.go(0)
             
         }).catch((e: HTTPRequestError) => {
             handleRegisterError(e);
@@ -175,7 +176,7 @@ export const Register: React.FC = () => {
                                     Login
                                 </button>
                             </div>
-                            {values.authorities}
+                            
                             
                             
                         </div>

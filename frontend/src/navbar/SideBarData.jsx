@@ -67,15 +67,10 @@ export let SidebarDataOutOwner = [
         cName: 'nav-text',
     },
 
-    {
-        title: 'categories',
-        path: '/categories',
-        icon: <FaIcons.FaAdobe/>,
-        cName: 'nav-text',
-    },
+
     
     {
-        title: 'Add Recommendation',
+        title: 'Recommendation',
         path: '/add_recommendation',
         icon: <FaIcons.FaRedditAlien/>,
         cName: 'nav-text',
