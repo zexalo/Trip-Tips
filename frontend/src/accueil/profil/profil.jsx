@@ -33,22 +33,33 @@ function Profil() {
         setisEditPasswordVisible (false);
     }
 
+
     useEffect( () => {
         fetchFavoriteRecommandation()
     }, [isEditProfileVisible, isEditPasswordVisible]);
-    
+
 
     const [listFav, setListFav] = useState([]);
+    const[listIdRecomandationFav, setListIdRecomandationFav] = useState([]);
 
     const fetchFavoriteRecommandation = async () => { 
         await ApiService.get('/favorites?', state).then((data) =>  setListFav(data))
     }
+    const fetchFavoriteRecommandationID = async () => { 
+        await ApiService.get('/favorites', state).then( (data) =>  setListIdRecomandationFav(data.map( (item) => item.id ) ) )
+    }
+
+
+    useEffect( () => {
+        fetchFavoriteRecommandation()
+        fetchFavoriteRecommandationID()
+    }, [isEditProfileVisible, isEditPasswordVisible]);
 
     const ListFavorite = () => (
         <div className="favoriteRecommandationsMainContainer">
                 {(listFav || []).map(item => (
                     <div className="favoriteRecommandationContainer">
-                        <PreviewRecomandationInProfile title={item.title}/>
+                        <PreviewRecomandationInProfile title={item.title} content={item.content} id={item.id} isInUserFavorite={listIdRecomandationFav.includes(item.id)} globalRating={item.globalRating} city={item.city} country={item.country} picture={item.picture} price={item.price}/>
                     </div >
                 ))}
         </div>

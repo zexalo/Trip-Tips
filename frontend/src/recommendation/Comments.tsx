@@ -1,16 +1,18 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import {Recomandation} from "../models/Recomandation";
-import {Link} from "react-router-dom";
 
 const useStyles = makeStyles({
     root: {
-        minWidth: 275,
+        width: '75%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: '15px',
+        border: '1px solid #282c34',
+        boxShadow: 'none',
     },
     bullet: {
         display: 'inline-block',
@@ -30,7 +32,7 @@ type RecomandationProps = {
     content: string,
 };
 
-const PreviewRecomandation: React.FC<RecomandationProps> = ({title, content}) => {
+const Comments: React.FC<RecomandationProps> = ({title, content}) => {
     const classes = useStyles();
 
     return (
@@ -43,15 +45,8 @@ const PreviewRecomandation: React.FC<RecomandationProps> = ({title, content}) =>
                     {content}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Link
-                    to={{pathname: "/recommandation"}}
-                >
-                    <Button onClick={() => console.log("click")} size="small">See Details</Button>
-                </Link>
-            </CardActions>
         </Card>
     );
 }
 
-export default PreviewRecomandation;
+export default Comments;

@@ -6,16 +6,26 @@ import {Link} from "react-router-dom";
 type RecomandationProps = {
     title: string,
     content: string,
+    id: number,
+    isInUserFavorite: boolean,
+    globalRating: number,
+    city: string,
+    country: string
+    picture: string,
+    price: number
 };
 
-const PreviewRecomandationInProfile: React.FC<RecomandationProps> = ({title, content}) => {
+const PreviewRecomandationInProfile: React.FC<RecomandationProps> = ({title, content, id, isInUserFavorite, globalRating, city, country, picture, price}) => {
 
     return (
         <div className="favoriteReco">
             <h1>{title}</h1>
             <CardActions>
                 <Link
-                    to={{pathname: "/recommandation"}}
+                    to={{
+                        pathname: "/recommandation",
+                        state: {title: title, content: content, id: id, isInUserFavorite: isInUserFavorite, globalRating: globalRating, city: city, country: country, picture: picture, price: price},
+                }}
                 >
                     <Button onClick={() => console.log("click")} size="small">See Details</Button>
                 </Link>
