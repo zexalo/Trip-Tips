@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 import CountryTooltip from "./CountryTooltip";
 import './worldMap.css';
 
@@ -17,7 +17,7 @@ function WorldMap(props) {
 
         const history = useHistory();
         const countryOnClick = (e) => {
-            history.push('/categories/'+e.target.id);
+            history.push('/categories/'+e.target.getAttribute("title"));
         };
 
         return (
@@ -192,10 +192,13 @@ function WorldMap(props) {
                         <path id="DO" title="Dominican Republic" className="land"
                               d="M274.182,407.348L274.533,406.843L276.721,406.856L278.382,407.619L279.121,407.544L279.63,408.593L281.165,408.534L281.074,409.413L282.321,409.52L283.7,410.6L282.658,411.795L281.325,411.157L280.038,411.28L279.115,411.14L278.61,411.676L277.533,411.856L277.106,411.145L276.18,411.566L275.057,413.572L274.335,413.107L274.193,412.265L274.251,411.468L273.529,410.586L274.213,410.09L274.427,408.957z"/>
                     </a>
-                    <a href="#" onClick={(e) => countryOnClick(e)} onMouseEnter={(e) => populateCountryToolTip(e, true)} onMouseLeave={(e) => populateCountryToolTip(e, false)}>
+                    <Link to={{
+      pathname: '/categories/',
+      state: { detail: "DZ"}
+    }} onMouseEnter={(e) => populateCountryToolTip(e, true)} onMouseLeave={(e) => populateCountryToolTip(e, false)}>
                         <path id="DZ" title="Algeria" className="land"
                               d="M508.898,396.081L499.29,401.833L491.172,407.683L487.218,409L484.108,409.289L484.076,407.409L482.777,406.928L481.032,406.079L480.365,404.686L470.907,398.139L461.449,391.485L450.903,383.96L450.957,383.352L450.956,383.141L450.932,379.389L455.46,377.03L458.26,376.541L460.555,375.676L461.627,374.059L464.905,372.775L465.026,370.358L466.648,370.072L467.917,368.856L471.586,368.301L472.1,367.016L471.361,366.311L470.393,362.782L470.226,360.729L469.169,358.551L471.864,356.678L474.896,356.08L476.666,354.655L479.366,353.598L484.118,352.978L488.756,352.694L490.17,353.212L492.81,351.836L495.806,351.809L496.947,352.623L498.864,352.41L498.294,354.197L498.739,357.485L498.079,360.297L496.351,362.184L496.598,364.711L498.891,366.695L498.915,367.497L500.644,368.829L501.839,374.686L502.747,377.526L502.899,379.011L502.405,381.601L502.608,383.041L502.251,384.76L502.496,386.725L501.383,388.025L503.041,390.281L503.146,391.601L504.144,393.312L505.454,392.751L507.667,394.172z"/>
-                    </a>
+                    </Link>
                     <a href="#" onClick={(e) => countryOnClick(e)} onMouseEnter={(e) => populateCountryToolTip(e, true)} onMouseLeave={(e) => populateCountryToolTip(e, false)}>
                         <path id="EC" title="Ecuador" className="land"
                               d="M250.097,472.874L251.589,470.789L250.982,469.572L249.911,470.866L248.231,469.645L248.8,468.859L248.327,466.331L249.309,465.91L249.825,464.175L250.886,462.382L250.691,461.245L252.227,460.647L254.154,459.539L256.959,461.129L257.481,461.085L258.165,462.283L260.544,462.669L261.341,462.227L262.717,463.149L263.917,463.809L264.309,465.924L263.436,467.735L260.378,470.653L257.007,471.753L255.289,474.181L254.758,476.064L253.173,477.214L251.996,475.803L250.864,475.501L249.705,475.724L249.629,474.7L250.429,474.035z"/>

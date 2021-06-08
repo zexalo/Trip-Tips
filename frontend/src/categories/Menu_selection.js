@@ -1,10 +1,11 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
+
 
 export const slideData = [
   {
     index: 0,
-    headline: 'Logements',
+    headline: "Logement",
     button: 'Détails',
     src: 'https://www.villanovo.fr/images/landing_pages/landing_26_40_1507725110.1920.jpg'
   },
@@ -24,6 +25,9 @@ export const slideData = [
 ]
 
 
+
+
+
   // =========================
   // Slide
   // =========================
@@ -38,6 +42,8 @@ export const slideData = [
       this.imageLoaded = this.imageLoaded.bind(this)
       this.slide = React.createRef()
     }
+
+    
 
     handleMouseMove(event) {
       const el = this.slide.current
@@ -54,6 +60,7 @@ export const slideData = [
 
     handleSlideClick(event) {
       this.props.handleSlideClick(this.props.slide.index)
+      
     }
 
     imageLoaded(event) {
@@ -61,10 +68,13 @@ export const slideData = [
     }
 
     render() {
+      
         const {src, button, headline, index} = this.props.slide
         const current = this.props.current
+        const location = this.props.location
         let classNames = 'slide'
-
+        const country = location.pathname.split('/').pop();
+     
         if (current === index) classNames += ' slide--current'
         else if (current - 1 === index) classNames += ' slide--previous'
         else if (current + 1 === index) classNames += ' slide--next'
@@ -90,7 +100,7 @@ export const slideData = [
                     <h2 className="slide__headline">{headline}</h2>
                     <Link to={{
                         pathname: "/recommandations",
-                        state: {index: index}
+                        state: {country: country}
                     }}>
                         <button className="slide__action btn">{button}</button>
                     </Link>
@@ -160,6 +170,7 @@ export const slideData = [
     }
 
     render() {
+      const { router, params, location, routes } = this.props
       const { current, direction } = this.state
       const {heading} = this.props
       const headingId = `slider-heading__${heading.replace(/\s+/g, '-').toLowerCase()}`
@@ -178,6 +189,7 @@ export const slideData = [
                   key={slide.index}
                   slide={slide}
                   current={current}
+                  location={location}
                   handleSlideClick={this.handleSlideClick}
                 />
               )
@@ -204,4 +216,4 @@ export const slideData = [
 
 
 //ReactDOM.render(<Slider heading="Example Slider" slides={slideData} />, document.getElementById('app'));
-export default Slider;
+export default withRouter(Slider);
