@@ -3,11 +3,12 @@ import logoTripTips from "../../images/logoTripTips.png";
 import AuthService from "../../services/AuthService";
 import * as Yup from "yup";
 import { AuthContext } from "../../contexts/AuthContext";
-import { ErrorMessage, Formik, FormikValues } from "formik";
+import { ErrorMessage, Field, Formik, FormikValues } from "formik";
 import { HTTPRequestError } from "../../services/ApiService";
 import { User } from "../../models/User";
 import { AuthActionType } from "../../models/Auth";
 import { useHistory } from "react-router-dom";
+import { validateLocaleAndSetLanguage } from "typescript";
 
 
 type registerFormValues = {
@@ -17,6 +18,8 @@ type registerFormValues = {
     password: string,
     confirmPassword: string,
     langKey:string,
+    authorities : [string],
+  
 
 }
 
@@ -37,8 +40,9 @@ export const Register: React.FC = () => {
     const handleRegister = (values: FormikValues) => {
         console.log(values);
         
-        AuthService.register(values.email, values.password,values.firstName,values.lastName).then(p => {
-            history.push('/home')
+        AuthService.register(values.email, values.password,values.firstName,values.lastName,values.authorities).then(p => {
+            alert("Inscription réussi ! Vous pouvez maintenant vous connecter.")
+            history.go(0)
             
         }).catch((e: HTTPRequestError) => {
             handleRegisterError(e);
@@ -60,6 +64,8 @@ export const Register: React.FC = () => {
         password: '',
         confirmPassword: '',
         langKey: "fr",
+        authorities: [""],
+     
     
     } 
 
@@ -114,6 +120,7 @@ export const Register: React.FC = () => {
                                     onChange={handleChange('email')}
                                     value={values.email}
                                 />
+                             
                             </div>
                             {errors.email && touched.email ?(<div className="errorText">{errors.email}</div>) : null}
                            
@@ -127,6 +134,7 @@ export const Register: React.FC = () => {
                                     value={values.password}
                                 >
                                 </input>
+                                
                             </div>
                             {errors.password && touched.password ?(<div className="errorText">{errors.password}</div>) : null}
                             
@@ -140,31 +148,35 @@ export const Register: React.FC = () => {
                                     value={values.confirmPassword}
                                 >
                                 </input>
+
                             </div>
                             {errors.confirmPassword && touched.confirmPassword ?(<div className="errorText">{errors.confirmPassword}</div>) : null}
                             <div className="form-group-inline">
-                                <input className="form-check-input" 
+                                <Field className="form-check-input" 
                                 type="radio" 
-                                name="RadioRole" 
-                                id="traveler"
-                                checked/>
+                                name="authorities[0]" 
+                                value="ROLE_USER"
+                               
+                                />
                                 <label className="form-check-label" htmlFor="flexRadioDefault1" >
                                     Traveler
                                 </label>
-                                <input className="form-check-input ml-4" 
+                                <Field className="form-check-input ml-4" 
                                 type="radio" 
-                                name="RadioRole" 
-                                id="owner"/>
+                                name="authorities[0]" 
+                                value="ROLE_OWNER"
+                                
+                                />
                                 <label className="form-check-label" htmlFor="flexRadioDefault1">
                                     Owner
                                 </label>
                             </div>
-                
                             <div className="footer">
-                                <button type="submit" className="login-button" onClick={() => handleSubmit()}>
+                                <button type="submit"className="login-button" onClick={() => handleSubmit()}>
                                     Login
                                 </button>
                             </div>
+                            
                             
                             
                         </div>

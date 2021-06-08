@@ -1,12 +1,14 @@
 import React, {useContext, useEffect, useState} from "react";
+import {useLocation} from "react-router-dom";
 import ApiService from "../services/ApiService";
 import {AuthContext} from "../contexts/AuthContext";
-import PreviewRecomandation from "../Recommendation/Preview";
+import PreviewRecomandation from "../recommendation/Preview";
 
 
 
 const Category = (props) => {
     const {state} = useContext(AuthContext);
+    const location = useLocation();
     const [list, setList] = useState([]);
     const[listIdRecomandationFav, setListIdRecomandationFav] = useState([]);
     
@@ -20,9 +22,13 @@ const Category = (props) => {
     }
 
     useEffect(() => {
-        //console.log(props?.location?.state?.index)
+
+        console.log(location?.state?.country)
+
+     
         fetchFavoriteRecommandationID()
             //.then(() => (console.log(listIdRecomandationFav)));
+
         fetchRecomandations()
             //.then(() => (console.log(list)));
     }, [])

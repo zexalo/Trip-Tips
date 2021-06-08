@@ -4,7 +4,7 @@ import * as CgIcons from 'react-icons/cg';
 import {Link} from 'react-router-dom';
 import logoTripTips from "../images/logoTripTips.png";
 import './sidebar.scss'
-import {SidebarDataOn, SidebarDataOut} from './SideBarData.jsx';
+import {SidebarDataOn, SidebarDataOutOwner, SidebarDataOutUser} from './SideBarData.jsx';
 import {AuthContext} from "../contexts/AuthContext";
 
 function SideBar() {
@@ -15,10 +15,15 @@ function SideBar() {
     const [data, setSidebarData] = useState([])
 
     useEffect(() => {
-        if(state.user?.email){
-            setSidebarData(SidebarDataOut)
 
-        }else{
+        if (state.user?.email) {
+            if(state.user?.authorities[0]=="ROLE_USER"){
+                setSidebarData(SidebarDataOutUser)
+            }else if(state.user?.authorities[0]=="ROLE_OWNER"){
+                setSidebarData(SidebarDataOutOwner)
+            }
+        } else {
+
             setSidebarData(SidebarDataOn)
         }
     }, [state.user?.email]);

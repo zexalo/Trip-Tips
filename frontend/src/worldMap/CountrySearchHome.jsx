@@ -270,7 +270,10 @@ function CountrySearchHome(props) {
         console.log(country);
         if (Object.values(countries).includes(country)) {
             var id = Object.keys(countries).find(name => countries[name] === country);
-            history.push('/categories/' + id);
+            history.push({
+                pathname: '/categories/',
+                state: { id: "id" }
+              });
         }
         else{
             setErrorMessage(true);
