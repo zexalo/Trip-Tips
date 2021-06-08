@@ -2,14 +2,14 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import SideBar from "../navbar/SideBar";
 import Slider from "../categories/Menu_selection";
 import Category from "../categories/Category";
-import DetailRecomandation from "../Recommendation/Detail";
+import DetailRecomandation from "../recommendation/Detail";
 import Profil from "../accueil/profil/profil";
 import NotFound from "../NotFound";
 import {LoginAndRegisterContainer, LogOut} from "../accueil/loginAndRegister";
 import React, {useContext} from "react";
 import {AuthContext} from "../contexts/AuthContext";
 import WorldMapPage from "../worldMap/WorldMapPage";
-import Add_recommendation from "../Recommendation/Add_recommendation"
+import Add_recommendation from "../recommendation/Add_recommendation"
 
 const LoggedInRouter = () => {
     return (

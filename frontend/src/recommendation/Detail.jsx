@@ -43,15 +43,15 @@ const DetailRecomandation = (props) => {
     const [list, setList] = useState([]);
 
     const location = useLocation();
-    const title = location.state.title;
-    const content = location.state.content;
-    const id= location.state.id;
+    const title = location?.state?.title;
+    const content = location?.state?.content;
+    const id= location?.state?.id;
     const [isInUserFavoriteLocal, setIsInUserFavoriteLocal] = useState(location.state.isInUserFavorite);
-    const globalRating=  location.state.globalRating;
-    const city= location.state.city;
-    const country= location.state.country;
-    const picture= location.state.picture;
-    const price= location.state.price;
+    const globalRating=  location?.state?.globalRating;
+    const city= location?.state?.city;
+    const country= location?.state?.country;
+    const picture= location?.state.picture;
+    const price= location?.state.price;
 
     const personnalRating= 3;
 
