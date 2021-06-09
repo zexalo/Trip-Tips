@@ -1,4 +1,5 @@
 export type Review = {
+    id: number,
     content: string,
     rating?: number,
     recomandation: {

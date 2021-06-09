@@ -49,26 +49,14 @@ const PreviewRecomandation: React.FC<RecomandationProps> = ({title, content, id,
     const {state, dispatch} = useContext(AuthContext);
     const [isInUserFavoriteLocal, setIsInUserFavoriteLocal] = useState<boolean>(isInUserFavorite);
 
-    // const fetchOneRecommandation = async () => { 
-    //     await ApiService.get('/recomendations/'+id, state)
-    //        //  .then( (data) =>  console.log(data))
-    //        // .then( (data: any) =>  setlistRecommandation(data))
-    // }
-
     const toggleFavorite = (id: number) => {
-        // console.log(id);
-        ApiService.put('/favorite/' + id, {}, state)
-        setIsInUserFavoriteLocal(!isInUserFavoriteLocal)
-        
-        /*
-            .then((data) => {
-                console.log(data);
-            }
-            )
-            .catch((e) => {
-                console.log(e);
-            });
-        */
+        try{
+            ApiService.put('/favorite/' + id, {}, state)
+            setIsInUserFavoriteLocal(!isInUserFavoriteLocal)
+        }
+        catch(e){
+            console.log(e)
+        }
     };
 
 
