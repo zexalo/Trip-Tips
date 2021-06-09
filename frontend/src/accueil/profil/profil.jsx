@@ -9,6 +9,7 @@ import EditMyPassword from './editMyPassword';
 
 function Profil() {
     const { state } = useContext(AuthContext);
+    console.log("email", state.user.authorities);
 
     const [isEditProfileVisible, setisEditProfileVisible] = useState(false);
     const [isEditPasswordVisible, setisEditPasswordVisible] = useState(false);
@@ -30,25 +31,73 @@ function Profil() {
     }
 
     useEffect( () => {
-        fetchFavoriteRecommandation()
+        if(state.user?.authorities[0]=="ROLE_USER"){
+            fetchFavoriteRecommandation()
+        }
+        else{
+            fetchOwnerRecommandation()
+        }
     }, [isEditProfileVisible, isEditPasswordVisible]);
 
 
     const [listFav, setListFav] = useState([]);
+    const [listOwnReco, setListOwnReco] = useState([]);
 
     const fetchFavoriteRecommandation = async () => { 
         await ApiService.get('/favorites?', state).then((data) =>  setListFav(data))
     }
 
+    const fetchOwnerRecommandation = async () => {
+        await ApiService.get('/owner-recomendations', state).then((data) =>  setListOwnReco(data))
+    }
+
     const ListFavorite = () => (
-        <div className="favoriteRecommandationsMainContainer">
-                {(listFav || []).map(item => (
-                    <div className="favoriteRecommandationContainer">
-                        <PreviewRecomandationInProfile title={item.title}/>
-                    </div >
-                ))}
+        <div className="allFavoriteContainer">
+            <h2>Your favorite recommandations</h2>
+            <div className="dropDownButtonsContainer">
+                <DropdownButton className="dropDownButton" title="sort with ..  ">
+                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                </DropdownButton>
+
+            </div>
+            <div className="favoriteRecommandationsMainContainer">
+                <div className="favoriteRecommandationsMainContainer">
+                        
+                    {(listFav || []).map(item => (
+                            <div className="favoriteRecommandationContainer">
+                                <PreviewRecomandationInProfile title={item.title}/>
+                            </div >
+                    ))}
+                </div>
+            </div>
         </div>
     );
+
+    const ListOwnRecommandation = () => {
+        <div className="allOwnContainer">
+            <h2>Your own recommandations</h2>
+            <div className="dropDownButtonsContainer">
+                <DropdownButton className="dropDownButton" title="sort with ..  ">
+                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                </DropdownButton>
+
+            </div>
+            <div className="ownRecommandationsMainContainer">
+                <div className="ownRecommandationsMainContainer">
+                        
+                    {(listOwnReco || []).map(item => (
+                            <div className="ownRecommandationContainer">
+                                <PreviewRecomandationInProfile title={item.title}/>
+                            </div >
+                    ))}
+                </div>
+            </div>
+        </div>
+    }
 
 
     return (
@@ -86,20 +135,9 @@ function Profil() {
                         </button>
                     </div>
                 </div>
+                
+                { state.user?.authorities[0]=="ROLE_USER" ? <ListFavorite/> : <ListOwnRecommandation/> }
 
-                <div className="favoriteRecommandationsMainContainer">
-                    <h2>Your favorite recommandations</h2>
-                    <div className="dropDownButtonsContainer">
-                                <DropdownButton className="dropDownButton" title="sort with ..  ">
-                                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                                </DropdownButton>
-
-                    </div>
-
-                    <ListFavorite/>
-                </div>
             </div>
             <EditMyProfil
             isEditProfileVisible = {isEditProfileVisible}
