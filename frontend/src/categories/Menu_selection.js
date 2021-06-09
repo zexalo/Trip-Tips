@@ -100,7 +100,10 @@ export const slideData = [
                     <h2 className="slide__headline">{headline}</h2>
                     <Link to={{
                         pathname: "/recommandations",
-                        state: {country: country}
+                        state: {
+                            country: country,
+                            id: index+1
+                        }
                     }}>
                         <button className="slide__action btn">{button}</button>
                     </Link>
