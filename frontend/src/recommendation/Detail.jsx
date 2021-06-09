@@ -76,10 +76,10 @@ const DetailRecomandation = (props) => {
         await ApiService.get('/reviews?', state).then((data) => setList(data))
     }
 
-    const postReview = async (values) => {
+    const addReview = async (values) => {
         try {
             console.log(values)
-            await ApiService.post('/reviews', values,state)
+            await ApiService.post('/reviews-user', values,state)
                 .then(() => fetchReviews())
                 .catch((e) => {
                     console.log(e);
@@ -89,16 +89,16 @@ const DetailRecomandation = (props) => {
         }
     }
 
-    const initialValues = {
+    const initialValuesForReview = {
         content: "",
+        createdAt: "2021-06-09T16:35:32.597Z",
         rating: 0,
         recomendation: {
             id: 10
         },
         user: {
-            id: 5
+            id: null
         },
-        createdAt: "2021-05-24T12:55:58.355Z"
     };
 
     useEffect(() => {
@@ -211,18 +211,30 @@ const DetailRecomandation = (props) => {
                     
                 </CardContent>
 
-                <div className="commentsContainer">
-                    <h2>Commentaires</h2>
+                <div className="reviewContainer">
+                    <h2>Reviews</h2>
                     <List/>
             
                     <Formik
-                        initialValues={initialValues}
+                        initialValues={initialValuesForReview}
                         onSubmit={(values) => {
-                            postReview(values)
-                        }}>{({handleChange, handleSubmit, values}) => (
-                        <div className="addCommentContainer">
-                            <h3>Add a comment</h3>
+                            addReview(values)
+                        }}>{({setFieldValue, handleChange, handleSubmit, values}) => (
+                        <div className="addReviewContainer">
+                            <h3>Add a review</h3>
                             
+                            <div className="starsContainer">
+                                <div className="stars" onClick={() => setFieldValue("rating", 0)}>
+                                    <div onClick={(e) => e.stopPropagation()}>
+                                        <svg className={values.rating>=1 ? "personnalFilledStar" : "personnalUnfilledStar"} onClick={() => setFieldValue("rating", 1)}  xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+                                        <svg className={values.rating>=2 ? "personnalFilledStar" : "personnalUnfilledStar"} onClick={() => setFieldValue("rating", 2)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+                                        <svg className={values.rating>=3 ? "personnalFilledStar" : "personnalUnfilledStar"} onClick={() => setFieldValue("rating", 3)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+                                        <svg className={values.rating>=4 ? "personnalFilledStar" : "personnalUnfilledStar"} onClick={() => setFieldValue("rating", 4)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+                                        <svg className={values.rating>=5 ? "personnalFilledStar" : "personnalUnfilledStar"} onClick={() => setFieldValue("rating", 5)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+
                             <input
                                 type="textarea"
                                 name="content"
@@ -231,7 +243,7 @@ const DetailRecomandation = (props) => {
                                 value={values.content}
                             />
                             
-                            <Button className="buttonAddComment" onClick={() => postReview(values)} size="small">ADD COMMENT</Button>
+                            <Button className="buttonAddReview" onClick={() => handleSubmit()} size="small">ADD REVIEW</Button>
 
                         </div>
                     )}
