@@ -5,6 +5,8 @@ import PreviewRecomandationInProfile from "../../recommendation/PreviewInProfile
 import { DropdownButton, Dropdown } from 'react-bootstrap';
 import "./styleProfil.scss";
 import EditMyProfil from './editMyProfil';
+import EditProfilPicture from "./editProfilPicture";
+import DefaultImage from "../../images/profil/user.png";
 import EditMyPassword from './editMyPassword';
 
 function Profil() {
@@ -13,9 +15,8 @@ function Profil() {
 
     const [isEditProfileVisible, setisEditProfileVisible] = useState(false);
     const [isEditPasswordVisible, setisEditPasswordVisible] = useState(false);
+    const [isEditProfilePictureVisible, setisEditProfilePictureVisible] = useState(false);
 
- 
-    
 
     const showEditProfileWindow = () => {
         setisEditProfileVisible (true);
@@ -23,6 +24,14 @@ function Profil() {
 
     const hideEditProfileWindow = () => {
         setisEditProfileVisible (false);
+    }
+
+    const showEditProfilePictureWindow = () => {
+        setisEditProfilePictureVisible (true);
+    }
+
+    const hideEditProfilePictureWindow = () => {
+        setisEditProfilePictureVisible (false);
     }
 
     const showEditPasswordWindow = () => {
@@ -53,7 +62,7 @@ function Profil() {
     useEffect( () => {
         fetchFavoriteRecommandation()
         fetchFavoriteRecommandationID()
-    }, [isEditProfileVisible, isEditPasswordVisible]);
+    }, [isEditProfileVisible, isEditPasswordVisible, isEditProfilePictureVisible]);
 
     const ListFavorite = () => (
         <div className="favoriteRecommandationsMainContainer">
@@ -77,7 +86,8 @@ function Profil() {
             <div className="myProfil">
 
                 <div className="profilImageContainer">
-                    <div className="profilImage">
+                    <div className="profilImage" onClick={showEditProfilePictureWindow}>
+                        <img src={DefaultImage} alt="profile picture"></img>
                     </div>
                 </div>
 
@@ -133,8 +143,12 @@ function Profil() {
             isEditPasswordVisible = {isEditPasswordVisible}
             hideEditPasswordWindow = {hideEditPasswordWindow}
             />
-        </div>
 
+            <EditProfilPicture
+            isEditProfilePictureVisible = {isEditProfilePictureVisible}
+            hideEditProfilePictureWindow = {hideEditProfilePictureWindow}
+            />
+        </div>
     )
 }
 export default Profil;
