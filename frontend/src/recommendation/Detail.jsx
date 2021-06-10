@@ -8,8 +8,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import ApiService, {HTTPRequestError} from "../services/ApiService";
 import {AuthContext} from "../contexts/AuthContext";
 import {Formik, FormikValues} from "formik";
-import {Review} from "../models/Review";
-import Comments from "./Comments";
+import Review from "./Review";
 import { useLocation } from 'react-router-dom';
 
 import imageBatiment from "../images/recommandation/Batiment.jpg";
@@ -46,34 +45,34 @@ const DetailRecomandation = (props) => {
     const title = location?.state?.title;
     const content = location?.state?.content;
     const id= location?.state?.id;
-    const [isInUserFavoriteLocal, setIsInUserFavoriteLocal] = useState(location.state.isInUserFavorite);
+    const [isInUserFavoriteLocal, setIsInUserFavoriteLocal] = useState(location?.state?.isInUserFavorite);
     const globalRating=  location?.state?.globalRating;
     const city= location?.state?.city;
     const country= location?.state?.country;
-    const picture= location?.state.picture;
-    const price= location?.state.price;
+    const picture= location?.state?.picture;
+    const price= location?.state?.price;
 
-    const personnalRating= 3;
+    useEffect(() => {
+    }, [location,title, location?.state?.title])
 
     const toggleFavorite = (id) => {
-        // console.log(id);
-        ApiService.put('/favorite/' + id, {}, state)
-        setIsInUserFavoriteLocal(!isInUserFavoriteLocal)
-        
-        /*
-            .then((data) => {
-                console.log(data);
-            }
-            )
-            .catch((e) => {
-                console.log(e);
-            });
-        */
+        try{
+            ApiService.put('/favorite/' + id, {}, state)
+            setIsInUserFavoriteLocal(!isInUserFavoriteLocal)
+        }
+        catch (e) {
+            console.log(e)
+        }
     };
 
 
     const fetchReviews = async () => {
-        await ApiService.get('/reviews?', state).then((data) => setList(data))
+        try{
+            await ApiService.get('/reviews?', state).then((data) => setList(data))
+        }
+        catch(e){
+            console.log(e)
+        }
     }
 
     const postReview = async (values) => {
@@ -104,11 +103,6 @@ const DetailRecomandation = (props) => {
     useEffect(() => {
         fetchReviews()
             .then(() => (console.log(list)));
-
-        //TODO: add date
-        // const now = new Date().toLocaleString();
-        // const date = new Date(now);
-        // console.log(date);
     },[])
 
     const List = () => (
@@ -119,7 +113,7 @@ const DetailRecomandation = (props) => {
             flexDirection: 'column'
         }}>
             {(list || []).map(item => (
-                <Comments title={item.user.login} content={item.content}/>
+                <Review writer={item.user.login} content={item.content} rating={item.rating} id={item.id}/>
             ))}
         </ul>
     );
@@ -161,7 +155,7 @@ const DetailRecomandation = (props) => {
                                     <label>Country :</label>
                                     <div className="country">
                                     {(country!==null)?
-                                            country.name :           
+                                            country?.name :           
                                             <div>erreur</div>
                                     }
                                     </div>
@@ -194,16 +188,7 @@ const DetailRecomandation = (props) => {
                                         <svg className={globalRating>=5 ? "filledStar" : "unfilledStar"} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
                                     </div>
                                 </div>
-                                <div className="personnalRating">
-                                    <label>Your Personnal Rating :</label>
-                                    <div className="stars">
-                                        <svg className={personnalRating>=1 ? "personnalFilledStar" : "personnalUnfilledStar"} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-                                        <svg className={personnalRating>=2 ? "personnalFilledStar" : "personnalUnfilledStar"} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-                                        <svg className={personnalRating>=3 ? "personnalFilledStar" : "personnalUnfilledStar"} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-                                        <svg className={personnalRating>=4 ? "personnalFilledStar" : "personnalUnfilledStar"} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-                                        <svg className={personnalRating>=5 ? "personnalFilledStar" : "personnalUnfilledStar"} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-                                    </div>
-                                </div>
+                                
                             </div> 
                         </div>
                         
@@ -211,8 +196,8 @@ const DetailRecomandation = (props) => {
                     
                 </CardContent>
 
-                <div className="commentsContainer">
-                    <h2>Commentaires</h2>
+                <div className="reviewsContainer">
+                    <h2>Reviews</h2>
                     <List/>
             
                     <Formik
@@ -220,8 +205,8 @@ const DetailRecomandation = (props) => {
                         onSubmit={(values) => {
                             postReview(values)
                         }}>{({handleChange, handleSubmit, values}) => (
-                        <div className="addCommentContainer">
-                            <h3>Add a comment</h3>
+                        <div className="addReviewContainer">
+                            <h3>Add a review</h3>
                             
                             <input
                                 type="textarea"
@@ -231,7 +216,7 @@ const DetailRecomandation = (props) => {
                                 value={values.content}
                             />
                             
-                            <Button className="buttonAddComment" onClick={() => postReview(values)} size="small">ADD COMMENT</Button>
+                            <Button className="buttonAddReview" onClick={() => postReview(values)} size="small">ADD REVIEW</Button>
 
                         </div>
                     )}

@@ -274,49 +274,25 @@ $TRIP_TIPS_BLUE: #1652ab;
                         }
                     }
                 }
-
-                .personnalRating{
-                    display: flex;
-                    flex-direction: row;
-                    width: 100%;
-
-                    label{
-                        width: 50%;
-                        justify-self: start;
-                    }
-
-                    .stars{
-                        width: 50%;
-                        .personnalFilledStar{
-                            fill: red;
-                            stroke: black;
-                        }
-    
-                        .personnalUnfilledStar{
-                            fill: rgb(250, 250, 250);
-                            stroke: black;
-                        }
-                    }
-                    
-                }
                 
             }
         }
     }
 }
 
-.commentsContainer{
+.reviewsContainer{
     margin-top:1em;
     margin-bottom: 1em;
     padding: 10px;
     border: 1px solid;
     border-radius: 20px;
+    width: 80%;
 
     h2{
         padding: 10px;
     }
 
-    .addCommentContainer{
+    .addReviewContainer{
         border: solid 4px;
         border-radius: 20px;
         display: flex;
@@ -335,7 +311,7 @@ $TRIP_TIPS_BLUE: #1652ab;
             margin: 15px 0px;
         }
 
-        .buttonAddComment{
+        .buttonAddReview{
             text-align: center;
             align-self: center;
             padding: 5px 20px;
@@ -356,6 +332,135 @@ $TRIP_TIPS_BLUE: #1652ab;
                 padding: 0px;
                 margin: 0px;
             }
+        }
+    }
+}
+
+
+//for Review
+.reviewAllContainer{
+    width: 75%;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+    border: 1px solid #282c34;
+    
+    .ReviewContainer{
+
+        padding: 20px;
+        position: relative;
+
+        .reviewWriter{
+            font-size: 1.1em;
+            width: 50%;
+            color: rgba(87, 77, 77, 0.836);
+            text-align: left;
+            margin-bottom: 1em;
+        }
+
+        .reviewRating{
+            position: absolute;
+            right: 0px;
+
+            .stars{
+                .personnalFilledStar{
+                    fill: red;
+                    stroke: black;
+                }
+
+                .personnalUnfilledStar{
+                    fill: rgb(250, 250, 250);
+                    stroke: black;
+                }
+            }
+            
+        }
+
+        .reviewContent{
+            margin-bottom: 20px;
+        }
+
+        .showMessageButton{
+            font-size: 0.7em;
+            position:absolute;
+            bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            border: 1px solid #282c34;
+            border-radius: 20px 20px 0px 0px;
+            border-bottom: none;
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+    }
+
+
+    .hidden{
+        display: none !important;
+    }
+
+    .visible{
+        display: flex !important;
+    }
+
+    .MessagesAllContainer{
+        padding-top: 30px;
+        padding-bottom: 50px;
+        width: 100%;
+        background-color: rgba(245, 238, 238, 0.548);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        .MessagesContainer{
+
+            .listMessages{
+                margin: 0px;
+                padding: 0px;
+                
+                .message{
+                    border: solid 1px;
+                    margin-left: 15%;
+                    margin-right: 15%;
+
+                    .messageWriter{
+                        text-align: left;
+                    }
+
+                    .messageContent{
+                        text-align: center;
+                    }
+
+                }
+            }
+        }
+        .newMessageInput{
+            position: absolute;
+            bottom: 0px;
+            right: 0;
+            left: 0;
+            margin-left: auto;
+            margin-right: auto;
+            border-bottom: none;
+            width: 60%;
+        }
+        .newMessageButton{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border-right:none;
+            border-bottom: none;
+            background-color: $TRIP_TIPS_BLUE;
+            color: #fff;
+
+            &:hover {
+                background-color: #2386c8;
+              }
+              &:focus {
+                outline: none;
+              }
         }
     }
 }

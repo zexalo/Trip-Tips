@@ -12,12 +12,21 @@ const Category = (props) => {
     const [listIdRecomandationFav, setListIdRecomandationFav] = useState([]);
 
     const fetchFavoriteRecommandationID = async () => {
-        await ApiService.get('/favorites', state).then((data) => setListIdRecomandationFav(data.map((item) => item.id)))
-        //await ApiService.get('/favorites', state).then( (data) =>  setListIdRecomandationFav(data))
+        try{
+            await ApiService.get('/favorites', state).then((data) => setListIdRecomandationFav(data.map((item) => item.id)))
+        }
+        catch(e) {
+            console.log(e)
+        }
     }
 
     const fetchRecomandations = async () => {
-        await ApiService.get(`/recomendations/${location?.state?.country}/${location?.state?.id}`, state).then((data) => setList(data))
+        try{
+            await ApiService.get(`/recomendations/${location?.state?.country}/${location?.state?.id}`, state).then((data) => setList(data))
+        }
+        catch (e) {
+            console.log(e)
+        }
     }
 
     useEffect(() => {
