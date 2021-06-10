@@ -53,10 +53,17 @@ function SideBar() {
                             </li>
                         )
                     })}
+                    { state.user?.authorities && state.user?.authorities[0]=="ROLE_USER"  ?
+                    <div>
                     <hr className="mb-0"/>
                     <CountrySearchHome/>
+                    
+                    </div>   
+                    :
+                    ""
+                    }
+                    <hr className="mt-0"/> 
 
-                    <hr className="mt-0"/>      
                     <img src={logoTripTips} width='150px' height='75px'/>
 
                 </ul>
