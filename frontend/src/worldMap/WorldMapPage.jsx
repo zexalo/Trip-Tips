@@ -11,7 +11,6 @@ function WorldMapPage(props) {
             <div className="map-container">
                 <WorldMap width={"75%"}/>
             </div>
-            <CountrySearchHome/>
         </div>
     );
 }

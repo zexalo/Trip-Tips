@@ -8,6 +8,7 @@ import {HTTPRequestError} from "../../services/ApiService";
 import AuthService from "../../services/AuthService";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
+import Modal from "../../reusables/modal";
 
 type LoginFormValues = {
     email: string,
@@ -27,6 +28,8 @@ export const Login: React.FC = () => {
 
     let history = useHistory();
 
+    const [open, setOpen] = React.useState(false);
+
 
     const handleLogin = (values: FormikValues) => {
         console.log(values);
@@ -40,14 +43,18 @@ export const Login: React.FC = () => {
                 history.push('/home')
             }
         }).catch((e: HTTPRequestError) => {
+
             handleLoginError(e);
-            setLoading(false);
         });
     };
 
     const handleLoginError = (error: HTTPRequestError) => {
         setLoading(false);
         console.log(error);
+        setOpen(true);
+        setTimeout(function () {
+            setOpen(false);
+        }, 4000)
     };
 
 
@@ -108,6 +115,7 @@ export const Login: React.FC = () => {
 
                     </Formik>
                 </div>
+                { open && <Modal title={"Error"} content={"Login failed"}/>}
             </div>
         )
 }
