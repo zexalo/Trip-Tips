@@ -9,6 +9,7 @@ import { User } from "../../models/User";
 import { AuthActionType } from "../../models/Auth";
 import { useHistory } from "react-router-dom";
 import { validateLocaleAndSetLanguage } from "typescript";
+import Modal from "../../reusables/modal";
 
 
 type registerFormValues = {
@@ -36,6 +37,7 @@ export const Register: React.FC = () => {
     const {dispatch} = useContext(AuthContext);
     const [isLoading, setLoading] = useState<boolean>(false);
     let history = useHistory();
+    const [open, setOpen] = React.useState(false);
     
     const handleRegister = (values: FormikValues) => {
         console.log(values);
@@ -48,12 +50,15 @@ export const Register: React.FC = () => {
             handleRegisterError(e);
             setLoading(false);
         });
-
     };
 
     const handleRegisterError = (error: HTTPRequestError) => {
         setLoading(false);
         console.log(error);
+        setOpen(true);
+        setTimeout(function () {
+            setOpen(false);
+        }, 4000)
     };
 
 
@@ -184,6 +189,7 @@ export const Register: React.FC = () => {
 
                     </Formik>
                 </div>
+                { open && <Modal title={"Error"} content={"Register failed"}/>}
             </div>
         )
 }
