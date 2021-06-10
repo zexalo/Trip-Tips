@@ -51,7 +51,7 @@
 }
 
 .search-box{
-    height: 80px;
+    height: 60px;
     display: flex;
     align-items: center;
     border-radius: 60px;
@@ -67,9 +67,9 @@
 }
 
 .search-box:hover > .search-input {
-    width: 240px;
+    width: 100px;
     padding: 0 6px;
-    margin-left: 10px;
+    
 }
 
 .search-box:hover > .search-circle {
@@ -78,9 +78,9 @@
 }
 
 .search-circle{
-    height: 60px;
-    width: 60px;
-    float: right;
+    height: 50px;
+    width: 50px;
+    float: center;
     background-color: #22293C;
     border: 2px solid lightblue;
     border-radius: 50%;
@@ -98,12 +98,13 @@
     float:left;
     padding: 0;
     color: #22293C;
-    font-size: 16px;
+    font-size: 12px;
     transition: 0.5s;
-    line-height: 40px;
+    line-height: 30px;
     width: 0px;
 }
 
 .country-error{
     color: red;
+    font-size: 10px;
 }
