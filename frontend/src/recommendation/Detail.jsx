@@ -61,7 +61,7 @@ const DetailRecomandation = (props) => {
     const title = listInfoReco.title;
     const content = listInfoReco.content;
     const [isInUserFavoriteLocal, setIsInUserFavoriteLocal] = useState(location?.state?.isInUserFavorite);
-    const globalRating=  listInfoReco.globalRating;
+    const [globalRating, setGlobalRating]=  useState(listInfoReco.globalRating);
     const city= listInfoReco.city;
     const country= listInfoReco.country;
     const picture= listInfoReco.picture;
@@ -103,6 +103,7 @@ const DetailRecomandation = (props) => {
         }
         
         ApiService.put('/update-recomendation-rating/'+id, "",state)
+            .then( (data) => setGlobalRating(data.globalRating)  )
     }
 
     const initialValuesForReview = {
