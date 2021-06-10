@@ -15,3 +15,4 @@ How to start the project ?
 3) Start the project with : **yarn start** or **npm start**
 
 ![Alt Text](https://i.imgflip.com/5cuj59.gif)
+<img src="https://i.imgflip.com/5cuj59.gif" width="1080" height="720" />
