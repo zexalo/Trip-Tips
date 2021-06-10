@@ -15,5 +15,5 @@ How to start the project ?
 3) Start the project with : **yarn start** or **npm start**
 
 <p align="center">
-<img src="https://i.imgflip.com/5cuj59.gif" width="720" height="480" />
+<img src="https://i.imgflip.com/5cuj59.gif" width="640" height="360" />
 <p/>
