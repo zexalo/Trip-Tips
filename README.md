@@ -14,3 +14,6 @@ How to start the project ?
 2) Install modules with : **yarn install** or **npm install**
 3) Start the project with : **yarn start** or **npm start**
 
+<p align="center">
+<img src="https://i.imgflip.com/5cuj59.gif" width="720" height="480" />
+<p/>
