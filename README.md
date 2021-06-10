@@ -14,4 +14,4 @@ How to start the project ?
 2) Install modules with : **yarn install** or **npm install**
 3) Start the project with : **yarn start** or **npm start**
 
-
+![Alt Text](https://i.imgflip.com/5cuj59.gif)
