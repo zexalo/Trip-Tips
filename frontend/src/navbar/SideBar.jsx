@@ -53,10 +53,10 @@ function SideBar() {
                             </li>
                         )
                     })}
-                     <hr className="mb-0"/>
+                    <hr className="mb-0"/>
                     <CountrySearchHome/>
-                    
-                    <hr className="mt-0"/>
+
+                    <hr className="mt-0"/>      
                     <img src={logoTripTips} width='150px' height='75px'/>
 
                 </ul>

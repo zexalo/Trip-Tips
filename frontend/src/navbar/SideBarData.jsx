@@ -35,14 +35,6 @@ export let SidebarDataOutUser = [
     },
 
     {
-        title: 'Categories',
-        path: '/categories',
-        icon: <FaIcons.FaBorderAll/>,
-        cName: 'nav-text',
-    },
-    
-
-    {
         title: 'LogOut',
         path: '/log_out',
         icon: <FaIcons.FaPlaneDeparture/>,
@@ -53,18 +45,10 @@ export let SidebarDataOutUser = [
 export let SidebarDataOutOwner = [
 
     {
-        title: 'Home',
-        path: '/home',
-        icon: <FaIcons.FaHome/>,
-        cName: 'nav-text mt-5',
-
-    },
-
-    {
         title: 'Profil',
         path: '/monProfil',
         icon: <FaIcons.FaUser/>,
-        cName: 'nav-text',
+        cName: 'nav-text mt-5',
     },
 
 
