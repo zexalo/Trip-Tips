@@ -30,9 +30,9 @@ const Category = (props) => {
     }
 
     useEffect(() => {
-        console.log('id', location?.state?.id)
-        console.log('country', location?.state?.country)
-        console.log('listFavSize', listIdRecomandationFav.length)
+        // console.log('id', location?.state?.id)
+        // console.log('country', location?.state?.country)
+        // console.log('listFavSize', listIdRecomandationFav.length)
 
 
         fetchFavoriteRecommandationID()

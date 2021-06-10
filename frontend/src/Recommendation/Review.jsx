@@ -52,9 +52,9 @@ const Review = (props) => {
 
     
     useEffect(() => {
-        console.log("props.id: ", props.id)
+        //console.log("props.id: ", props.id)
         fetchMessages()
-            .then(() => (console.log(listMessages)));
+            // .then(() => (console.log(listMessages)));
     },[])
 
     const Messages = () => (
