@@ -51,7 +51,9 @@ const DetailRecomandation = (props) => {
     
     const fetchInfoReco = () =>{
         try{
-            ApiService.get('/recomendations/' + id, state).then( (data) => setListInfoReco(data)  )
+            ApiService.get('/recomendations/' + id, state)
+                .then( (data) => {setListInfoReco(data) ; setGlobalRating(data.globalRating)} )
+
         }
         catch (e) {
             console.log(e)
@@ -61,12 +63,12 @@ const DetailRecomandation = (props) => {
     const title = listInfoReco.title;
     const content = listInfoReco.content;
     const [isInUserFavoriteLocal, setIsInUserFavoriteLocal] = useState(location?.state?.isInUserFavorite);
-    const globalRating=  listInfoReco.globalRating;
     const city= listInfoReco.city;
     const country= listInfoReco.country;
     const picture= listInfoReco.picture;
     const price= listInfoReco.price;
-
+    const [globalRating, setGlobalRating]=  useState( 0 );
+    
 
     
 
@@ -103,6 +105,7 @@ const DetailRecomandation = (props) => {
         }
         
         ApiService.put('/update-recomendation-rating/'+id, "",state)
+            .then( (data) => setGlobalRating(data.globalRating)  )
     }
 
     const initialValuesForReview = {
@@ -120,9 +123,11 @@ const DetailRecomandation = (props) => {
     useEffect(() => {
         fetchInfoReco()
         fetchReviews()
+        
+
            // .then(() => (console.log(listReviews)));
         //console.log("globalRating :",globalRating)
-        console.log('listInfo :', listInfoReco)
+        // console.log('listInfo :', listInfoReco)
     },[globalRating])
 
     const ListReviews = () => (
