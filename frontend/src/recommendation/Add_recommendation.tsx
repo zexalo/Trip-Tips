@@ -94,8 +94,8 @@ function Add_recommendation() {
     } 
 
     return (
-        
-        <div className="base-container">
+        <div className="base-container-container">
+        <div className="base-container-add-reco">
                 <div className="logo">
                     <img alt="" src={logoTripTips}/>
                 </div>
@@ -225,6 +225,7 @@ function Add_recommendation() {
 
                     </Formik>
                 </div>
+            </div>
             </div>
     )
 }
