@@ -39,21 +39,36 @@ const useStyles = makeStyles({
 const DetailRecomandation = (props) => {
     const classes = useStyles();
     const {state} = useContext(AuthContext);
-    const [list, setList] = useState([]);
+    const [listReviews, setListReviews] = useState([]);
+    const [listInfoReco, setListInfoReco] = useState([]);
 
+
+    const [hasAlreadyAddReview, setHasAlreadyAddReview] = useState(false);
+    
     const location = useLocation();
-    const title = location?.state?.title;
-    const content = location?.state?.content;
-    const id= location?.state?.id;
-    const [isInUserFavoriteLocal, setIsInUserFavoriteLocal] = useState(location?.state?.isInUserFavorite);
-    const globalRating=  location?.state?.globalRating;
-    const city= location?.state?.city;
-    const country= location?.state?.country;
-    const picture= location?.state?.picture;
-    const price= location?.state?.price;
 
-    useEffect(() => {
-    }, [location,title, location?.state?.title])
+    const [id, setId]= useState(location?.state?.id);
+    
+    const fetchInfoReco = () =>{
+        try{
+            ApiService.get('/recomendations/' + id, state).then( (data) => setListInfoReco(data)  )
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+    const title = listInfoReco.title;
+    const content = listInfoReco.content;
+    const [isInUserFavoriteLocal, setIsInUserFavoriteLocal] = useState(location?.state?.isInUserFavorite);
+    const globalRating=  listInfoReco.globalRating;
+    const city= listInfoReco.city;
+    const country= listInfoReco.country;
+    const picture= listInfoReco.picture;
+    const price= listInfoReco.price;
+
+
+    
 
     const toggleFavorite = (id) => {
         try{
@@ -68,7 +83,7 @@ const DetailRecomandation = (props) => {
 
     const fetchReviews = async () => {
         try{
-            await ApiService.get('/reviews?', state).then((data) => setList(data))
+            await ApiService.get('/reviews-recomendation/'+id, state).then((data) => setListReviews(data))
         }
         catch(e){
             console.log(e)
@@ -77,15 +92,17 @@ const DetailRecomandation = (props) => {
 
     const addReview = async (values) => {
         try {
-            console.log(values)
             await ApiService.post('/reviews-user', values,state)
                 .then(() => fetchReviews())
+
                 .catch((e) => {
                     console.log(e);
                 });
         } catch (e) {
             console.log('e', e)
         }
+        
+        ApiService.put('/update-recomendation-rating/'+id, "",state)
     }
 
     const initialValuesForReview = {
@@ -93,7 +110,7 @@ const DetailRecomandation = (props) => {
         createdAt: "2021-06-09T16:35:32.597Z",
         rating: 0,
         recomendation: {
-            id: 10
+            id: id
         },
         user: {
             id: null
@@ -101,21 +118,65 @@ const DetailRecomandation = (props) => {
     };
 
     useEffect(() => {
+        fetchInfoReco()
         fetchReviews()
-            .then(() => (console.log(list)));
-    },[])
+           // .then(() => (console.log(listReviews)));
+        //console.log("globalRating :",globalRating)
+        console.log('listInfo :', listInfoReco)
+    },[globalRating])
 
-    const List = () => (
+    const ListReviews = () => (
         <ul style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             flexDirection: 'column'
         }}>
-            {(list || []).map(item => (
+            {(listReviews || []).map(item => (
+                item.user.id == state.user.id ? setHasAlreadyAddReview(true) : "",
                 <Review writer={item.user.login} content={item.content} rating={item.rating} id={item.id}/>
             ))}
         </ul>
+    );
+
+
+
+    const AddReview = () => (
+        <div>
+        <Formik
+            initialValues={initialValuesForReview}
+            onSubmit={(values) => {
+                addReview(values)
+            }}>{({setFieldValue, handleChange, handleSubmit, values}) => (
+            <div className="addReviewContainer">
+                <h3>Add a review</h3>
+                
+                <div className="starsContainer">
+                    <div className="stars" onClick={() => setFieldValue("rating", 0)}>
+                        <div onClick={(e) => e.stopPropagation()}>
+                            <svg className={values.rating>=1 ? "personnalFilledStar" : "personnalUnfilledStar"} onClick={() => setFieldValue("rating", 1)}  xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+                            <svg className={values.rating>=2 ? "personnalFilledStar" : "personnalUnfilledStar"} onClick={() => setFieldValue("rating", 2)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+                            <svg className={values.rating>=3 ? "personnalFilledStar" : "personnalUnfilledStar"} onClick={() => setFieldValue("rating", 3)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+                            <svg className={values.rating>=4 ? "personnalFilledStar" : "personnalUnfilledStar"} onClick={() => setFieldValue("rating", 4)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+                            <svg className={values.rating>=5 ? "personnalFilledStar" : "personnalUnfilledStar"} onClick={() => setFieldValue("rating", 5)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <input
+                    type="textarea"
+                    name="content"
+                    placeholder="Commentaire"
+                    onChange={handleChange('content')}
+                    value={values.content}
+                />
+                      
+                <Button className="buttonAddReview" onClick={() => handleSubmit()} size="small">ADD REVIEW</Button>
+
+            </div>
+        )}
+        </Formik>
+        </div>
     );
 
     return (
@@ -199,41 +260,10 @@ const DetailRecomandation = (props) => {
 
                 <div className="reviewsContainer">
                     <h2>Reviews</h2>
-                    <List/>
-            
-                    <Formik
-                        initialValues={initialValuesForReview}
-                        onSubmit={(values) => {
-                            addReview(values)
-                        }}>{({setFieldValue, handleChange, handleSubmit, values}) => (
-                        <div className="addReviewContainer">
-                            <h3>Add a review</h3>
-                            
-                            <div className="starsContainer">
-                                <div className="stars" onClick={() => setFieldValue("rating", 0)}>
-                                    <div onClick={(e) => e.stopPropagation()}>
-                                        <svg className={values.rating>=1 ? "personnalFilledStar" : "personnalUnfilledStar"} onClick={() => setFieldValue("rating", 1)}  xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-                                        <svg className={values.rating>=2 ? "personnalFilledStar" : "personnalUnfilledStar"} onClick={() => setFieldValue("rating", 2)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-                                        <svg className={values.rating>=3 ? "personnalFilledStar" : "personnalUnfilledStar"} onClick={() => setFieldValue("rating", 3)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-                                        <svg className={values.rating>=4 ? "personnalFilledStar" : "personnalUnfilledStar"} onClick={() => setFieldValue("rating", 4)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-                                        <svg className={values.rating>=5 ? "personnalFilledStar" : "personnalUnfilledStar"} onClick={() => setFieldValue("rating", 5)} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <input
-                                type="textarea"
-                                name="content"
-                                placeholder="Commentaire"
-                                onChange={handleChange('content')}
-                                value={values.content}
-                            />
-                                  
-                            <Button className="buttonAddReview" onClick={() => handleSubmit()} size="small">ADD REVIEW</Button>
-
-                        </div>
-                    )}
-                    </Formik>
+                    <ListReviews/>
+                    
+                    {hasAlreadyAddReview ? <div><p>You already posted a review</p></div> : <AddReview/>}
+                    
                 </div>
             </Card>
         </div>
