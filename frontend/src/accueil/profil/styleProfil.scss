@@ -206,11 +206,45 @@ $TRIP_TIPS_DARK_BLUE_RGBA: rgba(34, 41, 60,0.96);
                 
 
                 .favoriteRecommandationContainer{
+                    border: 1px solid;
+                    border-radius: 10px;
+                    box-shadow: 1px 4px 5px black;
                     width: 202px;
                     height: 125px;
                     margin: 10px;
-                    background-color: rgb(218, 84, 84);
+                    background-color: rgb(241, 235, 235);
                     display: flex;
+                    flex-direction: column;
+
+                    .favoriteReco{
+                        height: 100%;
+                        width: 100%;
+                        position: relative;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        h1{
+                            font-size: 1.4em;
+                            max-width: 100%;
+                            overflow: scroll;
+                            max-height: 90px;
+                        }
+                        div{
+                            position: absolute;
+                            bottom: 0;
+                            padding: 0;
+                            left: 50%;
+                            transform: translate(-50%, 0);
+                            button{
+                                padding: 3px;
+                                span{
+                                    margin: 0;
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+                    
                     
                 }
             }

@@ -270,7 +270,11 @@ function CountrySearchHome(props) {
         console.log(country);
         if (Object.values(countries).includes(country)) {
             var id = Object.keys(countries).find(name => countries[name] === country);
-            history.push('/categories/' + id);
+            history.push({
+                pathname: '/categories/'+country,
+                state: { id: "id" }
+              });
+            setErrorMessage(false);
         }
         else{
             setErrorMessage(true);
@@ -279,15 +283,15 @@ function CountrySearchHome(props) {
 
     const ErrorMessage = () => {
         return (
-            <div className="country-error" style={{width: "100%"}}>Please enter a valid country name (ex.: France, United States...).</div>
+            <div className="country-error" >Please enter a valid country name (ex.: France, United States...).</div>
         )
     }
 
     return (
         <div onLoad={() => setErrorMessage(false)}>
-            <div className="center-container" style={{padding: "25px", height: "150px", flexWrap: "wrap"}}>
+            <div className="center-container" style={{padding: "25px", height: "125px", flexWrap: "wrap"}}>
                 <div className="search-box" onMouseEnter={() => setIconColor("white")} onMouseLeave={() => setIconColor("lightblue")}>
-                    <input className="search-input" type="text" placeholder="Search Countries" onKeyDown={handleKeyDown} onChange={(e) => setSearchValue(e.target.value)}/>
+                    <input className="search-input" type="text" placeholder="Search Country" onKeyDown={handleKeyDown} onChange={(e) => setSearchValue(e.target.value)}/>
                     <div className="search-circle" onClick={handleSubmit}>
                         <CgIcons.CgSearch size={50} color={iconColor} style={{transform: "translate(-2px,0px)"}}/>
                     </div>

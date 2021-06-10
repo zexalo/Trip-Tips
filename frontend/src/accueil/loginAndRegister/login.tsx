@@ -8,6 +8,7 @@ import {HTTPRequestError} from "../../services/ApiService";
 import AuthService from "../../services/AuthService";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
+import Modal from "../../reusables/modal";
 
 type LoginFormValues = {
     email: string,
@@ -16,7 +17,7 @@ type LoginFormValues = {
 
 const loginSchema = Yup.object().shape({
     email: Yup.string().email('Adresse mail invalide').required('Champs requis'),
-    password: Yup.string().min(8, 'Le mot de passe doit contenir au moins 8 caractères').matches(/^((?=.*[a-z])(?=.*[A-Z])(?=.*\d))[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/, 'Le mot de passe doit contenir au moins 8 caractères, une minuscule et une majuscule'),
+    password: Yup.string().required("Mot de passe invalide")
 })
 
 export const Login: React.FC = () => {
@@ -26,6 +27,8 @@ export const Login: React.FC = () => {
     const [isLoading, setLoading] = useState<boolean>(false);
 
     let history = useHistory();
+
+    const [open, setOpen] = React.useState(false);
 
 
     const handleLogin = (values: FormikValues) => {
@@ -40,14 +43,18 @@ export const Login: React.FC = () => {
                 history.push('/home')
             }
         }).catch((e: HTTPRequestError) => {
+
             handleLoginError(e);
-            setLoading(false);
         });
     };
 
     const handleLoginError = (error: HTTPRequestError) => {
         setLoading(false);
         console.log(error);
+        setOpen(true);
+        setTimeout(function () {
+            setOpen(false);
+        }, 4000)
     };
 
 
@@ -74,7 +81,7 @@ export const Login: React.FC = () => {
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
                                 <input
-                                    type="email"
+                                    type="text"
                                     name="email"
                                     placeholder="email"
                                     onChange={handleChange('email')}
@@ -108,6 +115,7 @@ export const Login: React.FC = () => {
 
                     </Formik>
                 </div>
+                { open && <Modal title={"Error"} content={"Login failed"}/>}
             </div>
         )
 }

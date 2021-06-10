@@ -3,11 +3,13 @@ import logoTripTips from "../../images/logoTripTips.png";
 import AuthService from "../../services/AuthService";
 import * as Yup from "yup";
 import { AuthContext } from "../../contexts/AuthContext";
-import { ErrorMessage, Formik, FormikValues } from "formik";
+import { ErrorMessage, Field, Formik, FormikValues } from "formik";
 import { HTTPRequestError } from "../../services/ApiService";
 import { User } from "../../models/User";
 import { AuthActionType } from "../../models/Auth";
 import { useHistory } from "react-router-dom";
+import { validateLocaleAndSetLanguage } from "typescript";
+import Modal from "../../reusables/modal";
 
 
 type registerFormValues = {
@@ -17,6 +19,8 @@ type registerFormValues = {
     password: string,
     confirmPassword: string,
     langKey:string,
+    authorities : [string],
+  
 
 }
 
@@ -33,23 +37,28 @@ export const Register: React.FC = () => {
     const {dispatch} = useContext(AuthContext);
     const [isLoading, setLoading] = useState<boolean>(false);
     let history = useHistory();
+    const [open, setOpen] = React.useState(false);
     
     const handleRegister = (values: FormikValues) => {
         console.log(values);
         
-        AuthService.register(values.email, values.password,values.firstName,values.lastName).then(p => {
-            history.push('/home')
+        AuthService.register(values.email, values.password,values.firstName,values.lastName,values.authorities).then(p => {
+            alert("Inscription réussi ! Vous pouvez maintenant vous connecter.")
+            history.go(0)
             
         }).catch((e: HTTPRequestError) => {
             handleRegisterError(e);
             setLoading(false);
         });
-
     };
 
     const handleRegisterError = (error: HTTPRequestError) => {
         setLoading(false);
         console.log(error);
+        setOpen(true);
+        setTimeout(function () {
+            setOpen(false);
+        }, 4000)
     };
 
 
@@ -60,6 +69,8 @@ export const Register: React.FC = () => {
         password: '',
         confirmPassword: '',
         langKey: "fr",
+        authorities: [""],
+     
     
     } 
 
@@ -82,7 +93,7 @@ export const Register: React.FC = () => {
                             <div className="form-group">
                                 <label htmlFor="firstName">First Name</label>
                                 <input
-                                    type="firstName"
+                                    type="text"
                                     name="firstName"
                                     placeholder="firstName"
                                     onChange={handleChange('firstName')}
@@ -95,7 +106,7 @@ export const Register: React.FC = () => {
                             <div className="form-group">
                                 <label htmlFor="lastName">Last Name</label>
                                 <input
-                                    type="lastName"
+                                    type="text"
                                     name="lastName"
                                     placeholder="lastName"
                                     onChange={handleChange('lastName')}
@@ -108,12 +119,13 @@ export const Register: React.FC = () => {
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
                                 <input
-                                    type="email"
+                                    type="text"
                                     name="email"
                                     placeholder="email"
                                     onChange={handleChange('email')}
                                     value={values.email}
                                 />
+                             
                             </div>
                             {errors.email && touched.email ?(<div className="errorText">{errors.email}</div>) : null}
                            
@@ -127,6 +139,7 @@ export const Register: React.FC = () => {
                                     value={values.password}
                                 >
                                 </input>
+                                
                             </div>
                             {errors.password && touched.password ?(<div className="errorText">{errors.password}</div>) : null}
                             
@@ -140,15 +153,35 @@ export const Register: React.FC = () => {
                                     value={values.confirmPassword}
                                 >
                                 </input>
+
                             </div>
                             {errors.confirmPassword && touched.confirmPassword ?(<div className="errorText">{errors.confirmPassword}</div>) : null}
-                    
-                
+                            <div className="form-group-inline">
+                                <Field className="form-check-input" 
+                                type="radio" 
+                                name="authorities[0]" 
+                                value="ROLE_USER"
+                               
+                                />
+                                <label className="form-check-label" htmlFor="flexRadioDefault1" >
+                                    Traveler
+                                </label>
+                                <Field className="form-check-input ml-4" 
+                                type="radio" 
+                                name="authorities[0]" 
+                                value="ROLE_OWNER"
+                                
+                                />
+                                <label className="form-check-label" htmlFor="flexRadioDefault1">
+                                    Owner
+                                </label>
+                            </div>
                             <div className="footer">
-                                <button type="submit" className="login-button" onClick={() => handleSubmit()}>
+                                <button type="submit"className="login-button" onClick={() => handleSubmit()}>
                                     Login
                                 </button>
                             </div>
+                            
                             
                             
                         </div>
@@ -156,6 +189,7 @@ export const Register: React.FC = () => {
 
                     </Formik>
                 </div>
+                { open && <Modal title={"Error"} content={"Register failed"}/>}
             </div>
         )
 }

@@ -25,14 +25,15 @@ const login = (username: string, password: string) => async (dispatch: Function)
     }
 };
 
-const register = async (email: string, password: string, firstName: string, lastName: string) => {
+const register = async (email: string, password: string, firstName: string, lastName: string, authorities:[string]) => {
     try {
         await authenticate("/register", {
             firstName,
             email,
             lastName,
             password,
-            login: email
+            login: email,
+            authorities,
         })
     } catch (e) {
         throw new Error(e);
