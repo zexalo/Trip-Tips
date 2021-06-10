@@ -3,6 +3,7 @@ import * as FaIcons from 'react-icons/fa';
 import * as CgIcons from 'react-icons/cg';
 import {Link} from 'react-router-dom';
 import logoTripTips from "../images/logoTripTips.png";
+import CountrySearchHome from "../worldMap/CountrySearchHome";
 import './sidebar.scss'
 import {SidebarDataOn, SidebarDataOutOwner, SidebarDataOutUser} from './SideBarData.jsx';
 import {AuthContext} from "../contexts/AuthContext";
@@ -52,13 +53,10 @@ function SideBar() {
                             </li>
                         )
                     })}
-                    <hr/>
-
-                    <input  type="search" className="form-control rounded" placeholder="Pays" aria-label="Search"
-                            aria-describedby="search-addon" />
-                    <input className="mt-2 searchbtn" type="submit" value="Search"></input>
-
-                    <hr/>
+                     <hr className="mb-0"/>
+                    <CountrySearchHome/>
+                    
+                    <hr className="mt-0"/>
                     <img src={logoTripTips} width='150px' height='75px'/>
 
                 </ul>
