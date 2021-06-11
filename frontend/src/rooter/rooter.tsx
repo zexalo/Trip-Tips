@@ -30,7 +30,7 @@ const LoggedInRouter = () => {
 const NotLoggedInRouter = () => {
     return (
         <Switch>
-            <Route path='' component={Index}/>
+            <Route path='/home' component={() => <Index/>}/>
             <Route path='/login_register' component={() => <LoginAndRegisterContainer/>}/>
             <Route component={NotFound}/>
         </Switch>
