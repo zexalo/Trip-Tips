@@ -3,8 +3,11 @@ import * as CgIcons from 'react-icons/cg';
 
 export let SidebarDataOn = [
 
-
     {
+        title: 'Home',
+        path: '/home',
+        icon: <FaIcons.FaHome/>,
+        cName: 'nav-text mt-5',
 
     },
 
@@ -12,8 +15,9 @@ export let SidebarDataOn = [
         title: 'Login/Register',
         path: '/login_register',
         icon: <FaIcons.FaPlaneArrival/>,
-        cName: 'nav-text mt-4',
+        cName: 'nav-text',
     },
+    
     
 ]
 
