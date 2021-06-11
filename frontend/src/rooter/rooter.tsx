@@ -41,6 +41,7 @@ const OwnerRouter = () => {
         <Switch>
             <Route path='/home' component={() => <Index/>}/>
             <Route path='/add_recommendation' component={() => <Add_recommendation/>}/>
+            <Route path='/recommandation' component={DetailRecomandation}/>
             <Route path='/monProfil' component={Profil}/>
             <Route path='/log_out' component={LogOut}/>
             <Route component={NotFound}/>

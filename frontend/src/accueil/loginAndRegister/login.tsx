@@ -38,10 +38,13 @@ export const Login: React.FC = () => {
                 const error = p as HTTPRequestError;
                 const user = p as User;
                 if (error.message) {
+                    alert(error.message)
                     handleLoginError(error);
+                } else {
+                    dispatch({type: AuthActionType.GET_LOGGED_USER, payload: user});
+                    history.push('/monProfil')
                 }
-                dispatch({type: AuthActionType.GET_LOGGED_USER, payload: user});
-                history.push('/monProfil')
+
             })
             .catch((e: HTTPRequestError) => {
                 handleLoginError(e);
@@ -51,7 +54,6 @@ export const Login: React.FC = () => {
     const handleLoginError = (error: HTTPRequestError) => {
         setLoading(false);
         console.log(error);
-        setOpen(true);
         setTimeout(function () {
             setOpen(false);
         }, 4000)

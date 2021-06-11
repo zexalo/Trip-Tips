@@ -191,15 +191,18 @@ const DetailRecomandation = (props) => {
                     <img alt="image fond" src={imageBatiment}></img>
                 </div>
                 <CardContent className="cardContent">
+                    {state.user?.authorities[0] === "ROLE_USER" &&
                     <div className="favoriteButtonContainer">
                         <button onClick={() => toggleFavorite(id)} className="favoriteButton">
-                            <svg className={isInUserFavoriteLocal ? "isFavorite" : "isNotFavorite"} xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24">
+                            <svg className={isInUserFavoriteLocal ? "isFavorite" : "isNotFavorite"}
+                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                 viewBox="0 0 24 24">
                                 <path
                                     d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/>
                             </svg>
                         </button>
                     </div>
+                    }
                     <h1>{title}</h1>
                     <div className="recommandationAllContentContainer">
                         <div className="leftContainer">
@@ -261,7 +264,10 @@ const DetailRecomandation = (props) => {
                 <div className="reviewsContainer">
                     <h2>Reviews</h2>
                     <ListReviews/>
-                    {hasAlreadyAddReview ? <div><p>You already posted a review</p></div> : <AddReview/>}
+
+                    {hasAlreadyAddReview || state.user?.authorities[0] === "ROLE_OWNER"
+                        ? <div><p>You already posted a review or you are an owner</p></div>
+                        : <AddReview/>}
                 </div>
             </Card>
         </div>
