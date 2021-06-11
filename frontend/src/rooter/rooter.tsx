@@ -10,6 +10,7 @@ import React, {useContext} from "react";
 import {AuthContext} from "../contexts/AuthContext";
 import WorldMapPage from "../worldMap/WorldMapPage";
 import Add_recommendation from "../recommendation/Add_recommendation"
+import Index from "../index/index"
 
 const LoggedInRouter = () => {
     return (
@@ -29,6 +30,7 @@ const LoggedInRouter = () => {
 const NotLoggedInRouter = () => {
     return (
         <Switch>
+            <Route path='' component={Index}/>
             <Route path='/login_register' component={() => <LoginAndRegisterContainer/>}/>
             <Route component={NotFound}/>
         </Switch>
