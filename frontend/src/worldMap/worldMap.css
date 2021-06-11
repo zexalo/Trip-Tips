@@ -1,0 +1,110 @@
+.svg-container {
+    height: max-content;
+    background-color: lightblue;
+}
+
+.land{
+    fill: #22293C;
+    stroke: #FFFFFF;
+    stroke-width: 1px;
+}
+
+.land:hover{
+    fill: #1652AB;
+}
+
+.country-tooltip{
+    background: white;
+    border-radius: 10px;
+    padding-top: 20px;
+
+    width:150px;
+    height:fit-content;
+    text-align: center;
+
+    border: 1px solid #22293C;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+.country-tooltip p{
+    width: 100%;
+    font-family: 'Raleway';
+    font-size: 20px;
+}
+
+.trip-tip-logo{
+    padding: 50px;
+}
+
+.map-container{
+    background: lightblue;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-box{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-radius: 60px;
+    padding: 10px;
+}
+
+::placeholder{
+    color: #22293C;
+}
+
+.search-box:hover{
+    background: lightblue;
+}
+
+.search-box:hover > .search-input {
+    width: 100px;
+    padding: 0 6px;
+    
+}
+
+.search-box:hover > .search-circle {
+    background-color: #1652AB;
+    border-color: white;
+}
+
+.search-circle{
+    height: 50px;
+    width: 50px;
+    float: center;
+    background-color: #22293C;
+    border: 2px solid lightblue;
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+.search-input {
+    border:none;
+    background: none;
+    outline:none;
+    float:left;
+    padding: 0;
+    color: #22293C;
+    font-size: 12px;
+    transition: 0.5s;
+    line-height: 30px;
+    width: 0px;
+}
+
+.country-error{
+    color: red;
+    font-size: 10px;
+}

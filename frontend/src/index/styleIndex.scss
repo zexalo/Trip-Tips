@@ -1,0 +1,57 @@
+.container-index{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+
+    .container-index-2{
+
+        max-width: 70%;
+
+
+        h1{
+            color: white;
+        }
+        .logo{
+            img{
+                max-width: 50%;
+    
+            }
+        }
+    }
+
+}
+
+
+@media (max-width: 460px) {
+    .container-index{
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+    
+        .container-index-2{
+    
+            max-width: 90%;
+    
+    
+            h1{
+                color: white;
+                font-size: 2em;
+            }
+            .logo{
+                img{
+                    max-width: 85%;
+        
+                }
+            }
+        }
+    
+    }
+}
