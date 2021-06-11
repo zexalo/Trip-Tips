@@ -631,3 +631,177 @@ $TRIP_TIPS_BLUE: #1652ab;
 
     }
 }
+
+
+@media (max-width: 460px) {
+    .makeStyles-root-6{
+        width: 100%!important;
+        margin-top: 50px!important;
+    }
+
+    .backgroundImageContainer{
+        width: 100%;
+        height: fit-content;
+    }
+
+    .cardContent{
+        .favoriteButtonContainer{
+            position: absolute;
+            top:0;
+            right: 0;
+            border: none;
+            background-color: white;
+        }
+
+        .recommandationAllContentContainer{
+            display: flex;
+            flex-direction: column;
+
+            .leftContainer{
+                width: 100%;
+            }
+            .rightContainer{
+                width: 100%;
+            }
+        }
+        
+    }
+
+    .reviewsContainer{
+        width: 100%;
+
+        ul{
+            padding: 0px;
+        }
+    }
+
+    .reviewAllContainer{
+        width: 90%;
+        justify-content: center;
+        align-items: center;
+        margin: 15px;
+        border: 1px solid #282c34;
+
+        .ReviewContainer{
+    
+            padding: 20px;
+            position: relative;
+    
+            .reviewWriter{
+                font-size: 1.1em;
+                width: 50%;
+                color: rgba(87, 77, 77, 0.836);
+                text-align: left;
+                margin-bottom: 1em;
+            }
+    
+            .reviewRating{
+                position: absolute;
+                right: 0px;
+    
+                .stars{
+                    .personnalFilledStar{
+                        fill: red;
+                        stroke: black;
+                    }
+    
+                    .personnalUnfilledStar{
+                        fill: rgb(250, 250, 250);
+                        stroke: black;
+                    }
+                }
+                
+            }
+    
+            .reviewContent{
+                margin-bottom: 20px;
+            }
+    
+            .showMessageButton{
+                font-size: 0.7em;
+                position:absolute;
+                bottom: 0;
+                margin-left: auto;
+                margin-right: auto;
+                left: 0;
+                right: 0;
+                border: 1px solid #282c34;
+                border-radius: 20px 20px 0px 0px;
+                border-bottom: none;
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+        }
+    
+    
+        .hidden{
+            display: none !important;
+        }
+    
+        .visible{
+            display: flex !important;
+        }
+    
+        .MessagesAllContainer{
+            padding-top: 30px;
+            padding-bottom: 50px;
+            width: 100%;
+            background-color: rgba(245, 238, 238, 0.548);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+    
+            .MessagesContainer{
+    
+                .listMessages{
+                    margin: 0px;
+                    padding: 0px;
+                    
+                    .message{
+                        border: solid 1px;
+                        margin-left: 15%;
+                        margin-right: 15%;
+                        margin-top: 5px;
+                        margin-bottom: 5px;
+    
+                        .messageWriter{
+                            text-align: left;
+                        }
+    
+                        .messageContent{
+                            text-align: center;
+                        }
+    
+                    }
+                }
+            }
+            .newMessageInput{
+                position: absolute;
+                bottom: 0px;
+                right: 0;
+                left: 0;
+                margin-left: 0;
+                margin-right: 0;
+                border-bottom: none;
+                width: 40%;
+            }
+            .newMessageButton{
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                border-right:none;
+                border-bottom: none;
+                background-color: $TRIP_TIPS_BLUE;
+                color: #fff;
+    
+                &:hover {
+                    background-color: #2386c8;
+                  }
+                  &:focus {
+                    outline: none;
+                  }
+            }
+        }
+    }
+
+  }
