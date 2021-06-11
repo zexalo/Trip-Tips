@@ -22,7 +22,7 @@ const loginSchema = Yup.object().shape({
 
 export const Login: React.FC = () => {
 
-    const {dispatch} = useContext(AuthContext);
+    const {dispatch, state} = useContext(AuthContext);
 
     const [isLoading, setLoading] = useState<boolean>(false);
 
@@ -40,7 +40,7 @@ export const Login: React.FC = () => {
                 handleLoginError(error);
             } else {
                 dispatch({type: AuthActionType.GET_LOGGED_USER, payload: user});
-                history.push('/home')
+                state.user?.authorities[0]==="ROLE_OWNER" ? history.push('/add_recommendation') : history.push('/home')
             }
         }).catch((e: HTTPRequestError) => {
 
