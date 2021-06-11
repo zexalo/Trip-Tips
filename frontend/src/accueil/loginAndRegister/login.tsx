@@ -7,7 +7,7 @@ import {AuthContext} from "../../contexts/AuthContext";
 import {HTTPRequestError} from "../../services/ApiService";
 import AuthService from "../../services/AuthService";
 import * as Yup from "yup";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import Modal from "../../reusables/modal";
 
 type LoginFormValues = {
@@ -33,19 +33,19 @@ export const Login: React.FC = () => {
 
     const handleLogin = (values: FormikValues) => {
         console.log(values);
-        AuthService.login(values.email, values.password)(dispatch).then(p => {
-            const error = p as HTTPRequestError;
-            const user = p as User;
-            if (error.message) {
-                handleLoginError(error);
-            } else {
+        AuthService.login(values.email, values.password)(dispatch)
+            .then(p => {
+                const error = p as HTTPRequestError;
+                const user = p as User;
+                if (error.message) {
+                    handleLoginError(error);
+                }
                 dispatch({type: AuthActionType.GET_LOGGED_USER, payload: user});
-                state.user?.authorities[0]==="ROLE_OWNER" ? history.push('/add_recommendation') : history.push('/home')
-            }
-        }).catch((e: HTTPRequestError) => {
-
-            handleLoginError(e);
-        });
+                history.push('/monProfil')
+            })
+            .catch((e: HTTPRequestError) => {
+                handleLoginError(e);
+            });
     };
 
     const handleLoginError = (error: HTTPRequestError) => {
@@ -63,60 +63,61 @@ export const Login: React.FC = () => {
         password: ''
     };
 
-        return (
-            <div className="base-container">
-                <div className="logo">
-                    <img alt="" src={logoTripTips}/>
-                </div>
-                <div className="header">Login</div>
-                <div className="content">
-                    <Formik
-                        initialValues={initialValues}
-                        onSubmit={(values) => {
-                            handleLogin(values)
-                        }}
-                        validationSchema={loginSchema}
-                    >{({handleChange, handleSubmit, values, errors, touched}) => (
-                        <div className="form">
-                            <div className="form-group">
-                                <label htmlFor="email">Email</label>
-                                <input
-                                    type="text"
-                                    name="email"
-                                    placeholder="email"
-                                    onChange={handleChange('email')}
-                                    value={values.email}
-                                />
-                                {errors.email && touched.email ?(<div className="errorText">{errors.email}</div>) : null}
-                            </div>
-                            
-                            <div className="form-group">
-                                <label htmlFor="password">Password</label>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    placeholder="password"
-                                    onChange={handleChange('password')}
-                                    value={values.password}
-                                >
-                                </input>
-                                {errors.password && touched.password ?(<div className="errorText">{errors.password}</div>) : null}
-                            </div>
-                            
-
-                            <div className="footer">
-                                <button type="submit" className="login-button" onClick={() => handleSubmit()}>
-                                    Login
-                                </button>
-                            </div>
-
-                        </div>
-                    )}
-
-                    </Formik>
-                </div>
-                { open && <Modal title={"Error"} content={"Login failed"}/>}
+    return (
+        <div className="base-container">
+            <div className="logo">
+                <img alt="" src={logoTripTips}/>
             </div>
-        )
+            <div className="header">Login</div>
+            <div className="content">
+                <Formik
+                    initialValues={initialValues}
+                    onSubmit={(values) => {
+                        handleLogin(values)
+                    }}
+                    validationSchema={loginSchema}
+                >{({handleChange, handleSubmit, values, errors, touched}) => (
+                    <div className="form">
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input
+                                type="text"
+                                name="email"
+                                placeholder="email"
+                                onChange={handleChange('email')}
+                                value={values.email}
+                            />
+                            {errors.email && touched.email ? (<div className="errorText">{errors.email}</div>) : null}
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="password"
+                                onChange={handleChange('password')}
+                                value={values.password}
+                            >
+                            </input>
+                            {errors.password && touched.password ? (
+                                <div className="errorText">{errors.password}</div>) : null}
+                        </div>
+
+
+                        <div className="footer">
+                            <button type="submit" className="login-button" onClick={() => handleSubmit()}>
+                                Login
+                            </button>
+                        </div>
+
+                    </div>
+                )}
+
+                </Formik>
+            </div>
+            {open && <Modal title={"Error"} content={"Login failed"}/>}
+        </div>
+    )
 }
 

@@ -1,12 +1,9 @@
 import React, {useContext, useEffect, useState} from "react";
 import logoTripTips from "../images/logoTripTips.png";
-import AuthService from "../services/AuthService";
 import * as Yup from "yup";
 import { AuthContext } from "../contexts/AuthContext";
 import { ErrorMessage, Formik, FormikValues } from "formik";
 import ApiService, { HTTPRequestError } from "../services/ApiService";
-import { User } from "../models/User";
-import { AuthActionType } from "../models/Auth";
 import { useHistory } from "react-router-dom";
 import {Country} from '../models/Country'
 
@@ -49,14 +46,15 @@ function Add_recommendation() {
         try {
             console.log(values)
             await ApiService.post('/owner-recomendations', values,state)
+                .then(() => {
+                    alert("Recommendation bien recu !")
+                    history.push("/monProfil")
+                })
                 .catch((e: HTTPRequestError) => {
                     console.log(e);
                     alert(e)
                 });
-            
         } catch (e) {
-            alert("Recommendation bien recu !")
-            history.push("/monProfil")
             console.log('e', e)
         }
 
@@ -74,9 +72,8 @@ function Add_recommendation() {
         price: 0.00,
         city: '',
         globalRating: 0,
-        category: {id: undefined},
-        country:{name: undefined},
-    
+        category: {id: 1},
+        country:{name: "France"},
     } 
 
     return (

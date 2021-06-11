@@ -12,7 +12,7 @@ import WorldMapPage from "../worldMap/WorldMapPage";
 import Add_recommendation from "../recommendation/Add_recommendation"
 import Index from "../index/index"
 
-const LoggedInRouter = () => {
+const UserRouter = () => {
     return (
         <Switch>
             <Route path='/categories' component={() => <Slider heading="Example Slider"/>}/>
@@ -21,7 +21,6 @@ const LoggedInRouter = () => {
             <Route path='/monProfil' component={Profil}/>
             <Route path='/log_out' component={LogOut}/>
             <Route path='/home' component={WorldMapPage}/>
-            <Route path='/add_recommendation' component={() => <Add_recommendation/>}/>
             <Route component={NotFound}/>
         </Switch>
     )
@@ -37,13 +36,27 @@ const NotLoggedInRouter = () => {
     )
 }
 
+const OwnerRouter = () => {
+    return (
+        <Switch>
+            <Route path='/home' component={() => <Index/>}/>
+            <Route path='/add_recommendation' component={() => <Add_recommendation/>}/>
+            <Route path='/monProfil' component={Profil}/>
+            <Route path='/log_out' component={LogOut}/>
+            <Route component={NotFound}/>
+        </Switch>
+    )
+}
+
 const Rooter: React.FC = () => {
     const {state} = useContext(AuthContext);
     console.log("email", state.user?.email)
     return (
         <Router>
             <SideBar/>
-            {state.user?.email ? <LoggedInRouter/> : <NotLoggedInRouter/>}
+                {state.user?.email && state.user?.authorities[0] === "ROLE_OWNER" && <OwnerRouter/>}
+                {state.user?.email && state.user?.authorities[0] === "ROLE_USER" && <UserRouter/>}
+                {!state.user?.email && <NotLoggedInRouter/>}
         </Router>
     )
 }

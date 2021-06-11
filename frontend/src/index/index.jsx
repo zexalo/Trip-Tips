@@ -9,7 +9,7 @@ const Index = (props) => {
                 <div className="logo">
                     <img alt="" src={logoTripTipsBlanc}/>
                 </div>
-                <h1>Welcome on Trip and Tips App !</h1>
+                <h1>Welcome on Trip and Tips !</h1>
             </div>
         </div>
     )
