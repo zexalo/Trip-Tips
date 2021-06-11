@@ -1,12 +1,9 @@
 import React, {useContext, useEffect, useState} from "react";
 import logoTripTips from "../images/logoTripTips.png";
-import AuthService from "../services/AuthService";
 import * as Yup from "yup";
 import { AuthContext } from "../contexts/AuthContext";
 import { ErrorMessage, Formik, FormikValues } from "formik";
 import ApiService, { HTTPRequestError } from "../services/ApiService";
-import { User } from "../models/User";
-import { AuthActionType } from "../models/Auth";
 import { useHistory } from "react-router-dom";
 import {Country} from '../models/Country'
 
@@ -17,10 +14,8 @@ type addRecoFormValues = {
     price: number,
     city: string,
     globalRating: number,
-    category: {id: string},
-    country: {name: string},
-    
-
+    category: {id?: number},
+    country: {name?: string},
 }
 
 const addRecoSchema = Yup.object().shape({
@@ -28,9 +23,6 @@ const addRecoSchema = Yup.object().shape({
     content: Yup.string().required('Champs requis'),
     price: Yup.number().required('Un prix est néccessaire'),
     city: Yup.string().required('Entrer la ville'),
-    globalRating: Yup.number().min(0).max(5).integer().required('Entrer une note valide entre 0 et 5'),
-
-    
 })
 
 function Add_recommendation() {
@@ -39,9 +31,6 @@ function Add_recommendation() {
     const [isLoading, setLoading] = useState<boolean>(false);
     let history = useHistory();
     const [list, setList] = useState<Country[]>([]);
-    
-
-    
 
     const fetchCountries = async () => {
         await ApiService.get<Country[]>('/countries', state).then((data) =>  setList(data))
@@ -50,27 +39,22 @@ function Add_recommendation() {
     useEffect(()=>{
         fetchCountries()
             .then(() => (console.log(list)));
-
-        
     },[])
-       
-
-    
-    
     
 
     const postReccomandation = async (values: FormikValues) => {
         try {
             console.log(values)
             await ApiService.post('/owner-recomendations', values,state)
+                .then(() => {
+                    alert("Recommendation bien recu !")
+                    history.push("/monProfil")
+                })
                 .catch((e: HTTPRequestError) => {
                     console.log(e);
                     alert(e)
                 });
-            
         } catch (e) {
-            alert("Recommendation bien recu !")
-            history.push("/monProfil")
             console.log('e', e)
         }
 
@@ -88,9 +72,8 @@ function Add_recommendation() {
         price: 0.00,
         city: '',
         globalRating: 0,
-        category: {id: "1"},
-        country:{name: "Fresh"},
-    
+        category: {id: 1},
+        country:{name: "France"},
     } 
 
     return (
@@ -160,19 +143,6 @@ function Add_recommendation() {
                                 </input>
                             </div>
                             {errors.city && touched.city ?(<div className="errorText">{errors.city}</div>) : null}
-                            
-                            <div className="form-group">
-                                <label htmlFor="globalRating">Global Rating</label>
-                                <input
-                                    type="number"
-                                    name="globalRating"
-                                    placeholder="globalRating"
-                                    onChange={handleChange('globalRating')}
-                                    value={values.globalRating}
-                                >
-                                </input>
-                            </div>
-                            {errors.globalRating && touched.globalRating ?(<div className="errorText">{errors.globalRating}</div>) : null}
 
                             <div className="form-group">
                                 <label htmlFor="country">Countries</label>

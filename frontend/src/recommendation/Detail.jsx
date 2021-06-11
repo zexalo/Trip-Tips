@@ -123,11 +123,6 @@ const DetailRecomandation = (props) => {
     useEffect(() => {
         fetchInfoReco()
         fetchReviews()
-        
-
-           // .then(() => (console.log(listReviews)));
-        //console.log("globalRating :",globalRating)
-        // console.log('listInfo :', listInfoReco)
     },[globalRating])
 
     const ListReviews = () => (
@@ -266,9 +261,7 @@ const DetailRecomandation = (props) => {
                 <div className="reviewsContainer">
                     <h2>Reviews</h2>
                     <ListReviews/>
-                    
                     {hasAlreadyAddReview ? <div><p>You already posted a review</p></div> : <AddReview/>}
-                    
                 </div>
             </Card>
         </div>
